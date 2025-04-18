@@ -60,8 +60,14 @@ function createTileRow(rowNumber) {
  */
 function tileClick(element) {
 
-    /*condition for radio*/
-    element.innerHTML = "flag";
+    if (document.getElementById("flagbox").checked)
+    {
+        element.innerHTML = "flag";
+    }
+    else
+    {
+        element.style.backgroundColor = "yellow";
+    }
 }
 
 function placeMines() {
