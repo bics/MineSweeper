@@ -13,7 +13,6 @@ function createField(dimensionRow, dimensionColumn) {
         playArea.push(row);
     }
     
-
     console.log(playArea);
 
     for (let i=0;i<dimensionRow;i++)
@@ -27,18 +26,21 @@ function createField(dimensionRow, dimensionColumn) {
 
 }
 
+/**Creating tiles for game area
+ * p element as a background, button on face
+ */
 function createTile(rowNumber) {
 
-    let p = document.createElement("button");
-    let pNode = document.createTextNode(" ");
-    p.classList.add("tile");
-    p.style.backgroundColor = "#c0c0c0";
-    p.style.height = "25px";
-    p.style.width = "25px";
+    let button = document.createElement("button");
+    let buttonNode = document.createTextNode(" ");
+    let onclickNode = document.createAttribute("onclick");
+    onclickNode.value = "tileClick(this)";
+    button.classList.add("tile");
+    button.setAttributeNode(onclickNode);
 
-    p.appendChild(pNode);
+    button.appendChild(buttonNode);
 
-    document.getElementById("row-" + rowNumber).appendChild(p);
+    document.getElementById("row-" + rowNumber).appendChild(button);
 
 }
 
@@ -53,6 +55,15 @@ function createTileRow(rowNumber) {
     document.getElementById("game-field").appendChild(div);
 }
 
+/** Left mouse click to interact with the game area
+ * Radio button to enable flagging, otherwise reveal tiles
+ */
+function tileClick(element) {
+
+    /*condition for radio*/
+    element.innerHTML = "flag";
+}
+
 function placeMines() {
 
 }
@@ -60,5 +71,6 @@ function placeMines() {
 function placeHints() {
 
 }
+
 
 

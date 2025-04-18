@@ -6,3 +6,9 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.tile {
+    height: 25px;
+    width: 25px;
+    background-color: #c0c0c0;
+}
