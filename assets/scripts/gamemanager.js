@@ -1,5 +1,7 @@
 function createField(dimensionRow, dimensionColumn) {
     
+    clearField();
+    createGameField();
     let playArea = [];
 
     let row = [];
@@ -44,6 +46,15 @@ function createTile(rowNumber) {
 
 }
 
+/** Creating div container for field */
+function createGameField() {
+    let div = document.createElement("div");
+    div.id = "game-field";
+
+    document.getElementById("game-main").appendChild(div);    
+
+}
+
 function createTileRow(rowNumber) {
 
     let div = document.createElement("div");
@@ -76,6 +87,16 @@ function placeMines() {
 
 function placeHints() {
 
+}
+
+/** Remove generated field */
+function clearField() {
+    let field = document.getElementById("game-field");
+
+    if (field)
+    {
+        field.remove();
+    }
 }
 
 
