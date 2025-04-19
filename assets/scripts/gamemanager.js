@@ -1,21 +1,23 @@
 function createField(dimensionRow, dimensionColumn) {
     
+    console.clear();
     clearField();
     createGameField();
     let playArea = [];
 
-    let row = [];
-    for (let i=0;i<dimensionColumn;i++)
-    {
-        row[i] = "x";
-    }
-
     for (let i=0;i<dimensionRow;i++)
     {
+        let row = [];
+        for (let j=0;j<dimensionColumn;j++)
+        {
+            row[j] = "-1";
+        }
         playArea.push(row);
     }
     
     console.log(playArea);
+
+    placeMines(10,playArea);
 
     for (let i=0;i<dimensionRow;i++)
     {
@@ -74,6 +76,7 @@ function tileClick(element) {
     if (document.getElementById("flagbox").checked)
     {
         element.innerHTML = "flag";
+        element.style.backgroundColor = "red";
     }
     else
     {
@@ -81,7 +84,27 @@ function tileClick(element) {
     }
 }
 
-function placeMines() {
+/** Place mines in tiles where there are no mines present already */
+function placeMines(mineCount, playArea) {
+
+    if (playArea)
+    {
+        for (let i=0; i<mineCount;i++)
+        {
+            let notPlaced = true;
+            while(notPlaced)
+            {
+                let randomRow = parseInt(Math.random() * (playArea.length));
+                let randomColumn = parseInt(Math.random() * (playArea[0].length));
+                if (playArea[randomRow][randomColumn] < 0) 
+                {
+                    playArea[randomRow][randomColumn] = "0";
+                    notPlaced = false
+                }
+            }
+        }
+
+    }
 
 }
 
@@ -92,7 +115,6 @@ function placeHints() {
 /** Remove generated field */
 function clearField() {
     let field = document.getElementById("game-field");
-
     if (field)
     {
         field.remove();
