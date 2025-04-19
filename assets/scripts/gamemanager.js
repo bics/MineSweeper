@@ -121,5 +121,21 @@ function clearField() {
     }
 }
 
+function lookUp() {
+
+}
+
+function lookDown() {
+
+}
+
+function lookLeft() {
+
+}
+
+function lookRight() {
+    
+}
+
 
 
