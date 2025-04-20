@@ -15,9 +15,7 @@ function createField(dimensionRow, dimensionColumn) {
         playArea.push(row);
     }
     
-    console.log(playArea);
-
-    placeMines(2,playArea);
+    placeMines(12,playArea);
 
     for (let i=0;i<dimensionRow;i++)
     {
@@ -29,12 +27,14 @@ function createField(dimensionRow, dimensionColumn) {
     }
 
     for (let i=0;i<dimensionRow;i++)
+    {
+        for (let j=0;j<dimensionColumn;j++)
         {
-            for (let j=0;j<dimensionColumn;j++)
-            {
-                placeHints(i,j,playArea);
-            }
+            placeHints(i,j,playArea);
         }
+    }
+    
+    console.log(playArea);
 }
 
 /**Creating tiles for game area
@@ -144,57 +144,56 @@ function lookAround(row,column,playArea) {
     lookUp(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
 
     //NE
     lookRight(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
     
     //E
     lookDown(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
 
     //SE
     lookDown(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
     
     //S
     lookLeft(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
 
     //SW
     lookLeft(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
     
     //W
     lookUp(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
     
     //NW
     lookUp(observedTile);
-    lookLeft(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
-        hintCount -= 1;
+        hintCount += 1;
     }
 
     return hintCount;
