@@ -17,7 +17,7 @@ function createField(dimensionRow, dimensionColumn) {
     
     console.log(playArea);
 
-    placeMines(10,playArea);
+    placeMines(2,playArea);
 
     for (let i=0;i<dimensionRow;i++)
     {
@@ -105,7 +105,7 @@ function placeMines(mineCount, playArea) {
                 let randomColumn = parseInt(Math.random() * (playArea[0].length));
                 if (playArea[randomRow][randomColumn] < 0) 
                 {
-                    playArea[randomRow][randomColumn] = "0";
+                    playArea[randomRow][randomColumn] = "x";
                     notPlaced = false
                 }
             }
@@ -116,7 +116,7 @@ function placeMines(mineCount, playArea) {
 }
 
 function placeHints(row,column,playArea) {
-    if (playArea[row][column] == 0)
+    if (playArea[row][column] == "x")
     {
         return;
     }
@@ -142,49 +142,49 @@ function lookAround(row,column,playArea) {
     /* Look around clockwise*/
     //N
     lookUp(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
 
     //NE
     lookRight(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
     
     //E
     lookDown(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
 
     //SE
     lookDown(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
     
     //S
     lookLeft(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
 
     //SW
     lookLeft(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
     
     //W
     lookUp(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
@@ -192,12 +192,10 @@ function lookAround(row,column,playArea) {
     //NW
     lookUp(observedTile);
     lookLeft(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount -= 1;
     }
-
-    console.log(hintCount);
 
     return hintCount;
 
