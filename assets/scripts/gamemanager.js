@@ -28,6 +28,13 @@ function createField(dimensionRow, dimensionColumn) {
         }
     }
 
+    for (let i=0;i<dimensionRow;i++)
+        {
+            for (let j=0;j<dimensionColumn;j++)
+            {
+                placeHints(i,j,playArea);
+            }
+        }
 }
 
 /**Creating tiles for game area
@@ -108,8 +115,14 @@ function placeMines(mineCount, playArea) {
 
 }
 
-function placeHints() {
+function placeHints(row,column,playArea) {
+    if (playArea[row][column] == 0)
+    {
+        return;
+    }
 
+    let hint = lookAround(row,column,playArea);
+    playArea[row][column] = hint;
 }
 
 /** Remove generated field */
@@ -121,20 +134,107 @@ function clearField() {
     }
 }
 
-function lookUp() {
+function lookAround(row,column,playArea) {
+    let currentTile = [row, column];
+    let observedTile = currentTile;
+    let hintCount = 0;
 
-}
+    /* Look around clockwise*/
+    //N
+    lookUp(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
 
-function lookDown() {
-
-}
-
-function lookLeft() {
-
-}
-
-function lookRight() {
+    //NE
+    lookRight(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
     
+    //E
+    lookDown(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
+
+    //SE
+    lookDown(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
+    
+    //S
+    lookLeft(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
+
+    //SW
+    lookLeft(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
+    
+    //W
+    lookUp(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
+    
+    //NW
+    lookUp(observedTile);
+    lookLeft(observedTile);
+    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == 0)
+    {
+        hintCount -= 1;
+    }
+
+    console.log(hintCount);
+
+    return hintCount;
+
+}
+
+function isInBounds(observedTile, playArea){
+    if (observedTile[0]<0)
+    {
+        return false;
+    }
+    if (observedTile[0]>playArea.length-1)
+    {
+        return false;
+    }
+    if (observedTile[1] > playArea[0].length-1)
+    {
+        return false;
+    }
+    return true;
+}
+
+
+function lookUp(observedTile) {
+    observedTile[0] = observedTile[0]-1;
+}
+
+function lookDown(observedTile) {
+    observedTile[0] = observedTile[0]+1;
+
+}
+
+function lookLeft(observedTile) {
+    observedTile[1] = observedTile[1]-1;
+}
+
+function lookRight(observedTile) {
+    observedTile[1] = observedTile[1]+1;    
 }
 
 
