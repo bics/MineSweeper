@@ -139,7 +139,7 @@ function lookAround(row,column,playArea) {
     let observedTile = currentTile;
     let hintCount = 0;
 
-    /* Look around clockwise*/
+    /* Look around clockwise relative from position*/
     //N
     lookUp(observedTile);
     if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
