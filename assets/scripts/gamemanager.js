@@ -21,7 +21,7 @@ function createField(dimensionRow, dimensionColumn) {
     }
     
     //Place mines and create hints
-    placeMines(12);
+    placeMines(2);
 
     for (let i=0;i<dimensionRow;i++)
     {
@@ -102,15 +102,39 @@ function tileClick(element) {
 /** Replace interactive tile with non-iteractable */
 function revealTile(element) {
     let position = element.id.split('-');
+    let row = parseInt(position[0]);
+    let column = parseInt(position[1]);
 
     let p = document.createElement("p");
     p.id = element.id;
-    let pNode = document.createTextNode(playArea[position[0]][position[1]]);
+    let pNode = document.createTextNode(playArea[row][column]);
     p.appendChild(pNode);
     p.classList.add("tile");
+    p.classList.add("revealed");
     
-    element.replaceWith(p);
+    switch(playArea[row][column])
+    {
+    case "x":
+        element.replaceWith(p);
+        gameOver();
+        break;
+    case " ":
+        element.replaceWith(p);
+        revealEmptyTiles();
+        break;
+    default:
+        element.replaceWith(p);
+        break;
+    }
 
+}
+
+function revealEmptyTiles(){
+
+}
+
+function gameOver() {
+    
 }
 
 /** Place mines in tiles where there are no mines present already */
@@ -145,7 +169,14 @@ function placeHints(row,column) {
     }
 
     let hint = lookAround(row,column);
-    playArea[row][column] = hint;
+    if (hint == 0)
+    {
+        playArea[row][column] = " ";
+    }
+    else
+    {
+        playArea[row][column] = hint;
+    }
 }
 
 /** Remove generated field */
