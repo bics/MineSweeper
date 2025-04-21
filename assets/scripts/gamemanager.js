@@ -134,7 +134,7 @@ function revealTile(element) {
 }
 
 /** Cycle through all neighbour tiles, and reveal recursively
- * Current limit with 2 mines is 62*62
+ * Current limit with 2 mines is 62*62 with occasional overflow
  */
 function revealEmptyTiles(row,column){
     let currentTile = [row, column];
