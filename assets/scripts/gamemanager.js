@@ -155,6 +155,7 @@ function clearField() {
     {
         field.remove();
     }
+    playArea = [];
 }
 
 /** Return mine count around tile */
