@@ -9,7 +9,7 @@ function createField(dimensionRow, dimensionColumn) {
     createGameField();
 
 
-    //Create playarea variable
+    //Fill playarea variable
     for (let i=0;i<dimensionRow;i++)
     {
         let row = [];
@@ -70,7 +70,6 @@ function createTileRow(rowNumber) {
 
     div.classList.add("row");
     div.id = "row-" + rowNumber;
-    div.style.flex = "flex";
 
     document.getElementById("game-field").appendChild(div);
 }
@@ -96,13 +95,22 @@ function tileClick(element) {
     }
     else
     {
-        element.style.backgroundColor = "yellow";
+        revealTile(element);
     }
 }
 
 /** Replace interactive tile with non-iteractable */
 function revealTile(element) {
+    let position = element.id.split('-');
+
+    let p = document.createElement("p");
+    p.id = element.id;
+    let pNode = document.createTextNode(playArea[position[0]][position[1]]);
+    p.appendChild(pNode);
+    p.classList.add("tile");
     
+    element.replaceWith(p);
+
 }
 
 /** Place mines in tiles where there are no mines present already */

@@ -12,3 +12,7 @@
     width: 25px;
     background-color: #c0c0c0;
 }
+
+.row {
+    display: flex;
+}
