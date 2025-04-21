@@ -1,3 +1,5 @@
+let playArea = [];
+
 function createField(dimensionRow, dimensionColumn) {
     
     console.clear();
@@ -7,7 +9,6 @@ function createField(dimensionRow, dimensionColumn) {
     createGameField();
 
 
-    let playArea = [];
     //Create playarea variable
     for (let i=0;i<dimensionRow;i++)
     {
@@ -20,13 +21,13 @@ function createField(dimensionRow, dimensionColumn) {
     }
     
     //Place mines and create hints
-    placeMines(12,playArea);
+    placeMines(12);
 
     for (let i=0;i<dimensionRow;i++)
     {
         for (let j=0;j<dimensionColumn;j++)
         {
-            placeHints(i,j,playArea);
+            placeHints(i,j);
         }
     }
         
@@ -36,7 +37,7 @@ function createField(dimensionRow, dimensionColumn) {
         createTileRow(i);
         for (let j=0;j<dimensionColumn;j++)
         {
-            createTile(i);
+            createTile(i,j);
         }
     }
 
@@ -46,7 +47,7 @@ function createField(dimensionRow, dimensionColumn) {
 /**Creating tiles for game area
  * p element as a background, button on face
  */
-function createTile(rowNumber) {
+function createTile(rowNumber,column) {
 
     let button = document.createElement("button");
     let buttonNode = document.createTextNode(" ");
@@ -54,6 +55,7 @@ function createTile(rowNumber) {
     onclickNode.value = "tileClick(this)";
     button.classList.add("tile");
     button.setAttributeNode(onclickNode);
+    button.id = rowNumber + "-" + column;
 
     button.appendChild(buttonNode);
 
@@ -98,8 +100,13 @@ function tileClick(element) {
     }
 }
 
+/** Replace interactive tile with non-iteractable */
+function revealTile(element) {
+    
+}
+
 /** Place mines in tiles where there are no mines present already */
-function placeMines(mineCount, playArea) {
+function placeMines(mineCount) {
 
     if (playArea)
     {
@@ -123,13 +130,13 @@ function placeMines(mineCount, playArea) {
 }
 
 /** Place hints on tiles with no mines */
-function placeHints(row,column,playArea) {
+function placeHints(row,column) {
     if (playArea[row][column] == "x")
     {
         return;
     }
 
-    let hint = lookAround(row,column,playArea);
+    let hint = lookAround(row,column);
     playArea[row][column] = hint;
 }
 
@@ -143,7 +150,7 @@ function clearField() {
 }
 
 /** Return mine count around tile */
-function lookAround(row,column,playArea) {
+function lookAround(row,column) {
     let currentTile = [row, column];
     let observedTile = currentTile;
     let hintCount = 0;
@@ -151,56 +158,56 @@ function lookAround(row,column,playArea) {
     /* Look around clockwise relative from position*/
     //N
     lookUp(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
 
     //NE
     lookRight(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
     
     //E
     lookDown(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
 
     //SE
     lookDown(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
     
     //S
     lookLeft(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
 
     //SW
     lookLeft(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
     
     //W
     lookUp(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
     
     //NW
     lookUp(observedTile);
-    if (isInBounds(observedTile, playArea) && playArea[observedTile[0]][observedTile[1]] == "x")
+    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
@@ -209,7 +216,7 @@ function lookAround(row,column,playArea) {
 
 }
 
-function isInBounds(observedTile, playArea){
+function isInBounds(observedTile){
     if (observedTile[0]<0)
     {
         return false;
@@ -242,6 +249,7 @@ function lookLeft(observedTile) {
 function lookRight(observedTile) {
     observedTile[1] = observedTile[1]+1;    
 }
+
 
 
 
