@@ -101,7 +101,11 @@ function tileClick(element) {
 
 /** Replace interactive tile with non-iteractable */
 function revealTile(element) {
-    let position = element.id.split('-');
+    if (element?.classList.contains("revealed"))
+    {
+        return;
+    }
+    let position = element?.id?.split('-');
     let row = parseInt(position[0]);
     let column = parseInt(position[1]);
 
@@ -120,7 +124,7 @@ function revealTile(element) {
         break;
     case " ":
         element.replaceWith(p);
-        revealEmptyTiles();
+        revealEmptyTiles(row,column);
         break;
     default:
         element.replaceWith(p);
@@ -129,12 +133,76 @@ function revealTile(element) {
 
 }
 
-function revealEmptyTiles(){
+function revealEmptyTiles(row,column){
+    let currentTile = [row, column];
+    let observedTile = currentTile;
 
+    //N
+    lookUp(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));
+    }
+
+    //NE
+    lookRight(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));            
+    }
+
+    //E
+    lookDown(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+    }
+
+    //SE
+    lookDown(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+    }
+    
+    //S
+    lookLeft(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+    }
+    
+    //SW
+    lookLeft(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+    }
+    
+    //W
+    lookUp(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+    }
+    
+    //NW
+    lookUp(observedTile);
+    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    {
+        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+    }
+
+    
+}
+
+function isNotMine(row,column)
+{
+    return playArea[row,column] != "x";
 }
 
 function gameOver() {
-    
+
 }
 
 /** Place mines in tiles where there are no mines present already */
@@ -266,6 +334,10 @@ function isInBounds(observedTile){
         return false;
     }
     if (observedTile[1] > playArea[0].length-1)
+    {
+        return false;
+    }
+    if (observedTile[1] < 0)
     {
         return false;
     }
