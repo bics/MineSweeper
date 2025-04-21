@@ -1,10 +1,14 @@
 function createField(dimensionRow, dimensionColumn) {
     
     console.clear();
+    //Remove previous playfield container
     clearField();
+    //Create interactable game field container
     createGameField();
-    let playArea = [];
 
+
+    let playArea = [];
+    //Create playarea variable
     for (let i=0;i<dimensionRow;i++)
     {
         let row = [];
@@ -15,8 +19,18 @@ function createField(dimensionRow, dimensionColumn) {
         playArea.push(row);
     }
     
+    //Place mines and create hints
     placeMines(12,playArea);
 
+    for (let i=0;i<dimensionRow;i++)
+    {
+        for (let j=0;j<dimensionColumn;j++)
+        {
+            placeHints(i,j,playArea);
+        }
+    }
+        
+    // Create actual game field
     for (let i=0;i<dimensionRow;i++)
     {
         createTileRow(i);
@@ -26,14 +40,6 @@ function createField(dimensionRow, dimensionColumn) {
         }
     }
 
-    for (let i=0;i<dimensionRow;i++)
-    {
-        for (let j=0;j<dimensionColumn;j++)
-        {
-            placeHints(i,j,playArea);
-        }
-    }
-    
     console.log(playArea);
 }
 
@@ -55,15 +61,7 @@ function createTile(rowNumber) {
 
 }
 
-/** Creating div container for field */
-function createGameField() {
-    let div = document.createElement("div");
-    div.id = "game-field";
-
-    document.getElementById("game-main").appendChild(div);    
-
-}
-
+/** Create container row for playfield */
 function createTileRow(rowNumber) {
 
     let div = document.createElement("div");
@@ -74,6 +72,15 @@ function createTileRow(rowNumber) {
 
     document.getElementById("game-field").appendChild(div);
 }
+
+/** Creating div container for field */
+function createGameField() {
+    let div = document.createElement("div");
+    div.id = "game-field";
+
+    document.getElementById("game-main").appendChild(div);
+}
+
 
 /** Left mouse click to interact with the game area
  * Radio button to enable flagging, otherwise reveal tiles
@@ -115,6 +122,7 @@ function placeMines(mineCount, playArea) {
 
 }
 
+/** Place hints on tiles with no mines */
 function placeHints(row,column,playArea) {
     if (playArea[row][column] == "x")
     {
@@ -134,6 +142,7 @@ function clearField() {
     }
 }
 
+/** Return mine count around tile */
 function lookAround(row,column,playArea) {
     let currentTile = [row, column];
     let observedTile = currentTile;
