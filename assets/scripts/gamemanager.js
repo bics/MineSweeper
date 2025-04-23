@@ -99,8 +99,8 @@ function tileClick(element) {
 }
 
 /** Replace interactive tile with non-iteractable */
-function revealTile(element) {
-    if (element?.classList.contains("revealed"))
+function revealTile(element, isGameOver = false) {
+    if (element?.classList.contains("revealed") && !isGameOver)
     {
         return;
     }
@@ -108,13 +108,14 @@ function revealTile(element) {
     let row = parseInt(position[0]);
     let column = parseInt(position[1]);
 
-    let p = document.createElement("p");
-    p.id = element.id;
-    let pNode = document.createTextNode(playArea[row][column]);
-    p.appendChild(pNode);
-    p.classList.add("tile");
-    p.classList.add("revealed");
+    let p = createPElement(row,column);
     
+    if (isGameOver)
+    {
+        element.replaceWith(p);
+        return;
+    }
+
     switch(playArea[row][column])
     {
     case "x":
@@ -129,6 +130,30 @@ function revealTile(element) {
         element.replaceWith(p);
         break;
     }
+
+}
+
+/** Reveal all tiles when game finished or stepped on mine */
+function revealAll() {
+    for (let row=0;row<playArea.length;row++)
+    {
+        for (let column=0;column<playArea[0].length;column++)
+        {
+            let element = document.getElementById(row+"-"+column);
+            revealTile(element, true);
+        }
+    }
+}
+
+function createPElement(row,column) {
+    let p = document.createElement("p");
+    p.id = row+"-"+column;
+    let pNode = document.createTextNode(playArea[row][column]);
+    p.appendChild(pNode);
+    p.classList.add("tile");
+    p.classList.add("revealed");
+
+    return p;
 
 }
 
@@ -204,7 +229,7 @@ function isNotMine(row,column)
 }
 
 function gameOver() {
-
+    revealAll();
 }
 
 /** Place mines in tiles where there are no mines present already */
