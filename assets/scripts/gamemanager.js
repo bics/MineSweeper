@@ -21,7 +21,7 @@ function createField(dimensionRow, dimensionColumn) {
     }
     
     //Place mines and create hints
-    placeMines(2);
+    placeMines(12);
 
     for (let i=0;i<dimensionRow;i++)
     {
@@ -90,8 +90,7 @@ function tileClick(element) {
 
     if (document.getElementById("flagbox").checked)
     {
-        element.innerHTML = "flag";
-        element.style.backgroundColor = "red";
+        flagTile(element);
     }
     else
     {
@@ -258,6 +257,21 @@ function clearField() {
         field.remove();
     }
     playArea = [];
+}
+
+/** Place or remove flag from element */
+function flagTile(element) {
+    if (element.classList.contains("flagged"))
+    {
+        element.innerHTML = "";
+        element.style.backgroundColor = "";
+        element.classList.remove("flagged");
+        return;
+    }
+
+    element.innerHTML = "flag";
+    element.style.backgroundColor = "red";
+    element.classList.add("flagged");
 }
 
 /** Return mine count around tile */
