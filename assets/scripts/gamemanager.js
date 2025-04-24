@@ -427,6 +427,17 @@ function isNotMine(row, column)
 function gameOver()
 {
     revealAll();
+    endGame("You lost!");
+}
+
+function endGame(message)
+{
+    let p = document.createElement("p");
+    let pNode = document.createTextNode(message);
+    p.id = "end-game-message";
+    p.appendChild(pNode);
+
+    document.getElementById("game-footer").appendChild(p);
 }
 
 /** Place mines in tiles where there are no mines present already */
@@ -480,6 +491,11 @@ function clearField()
     if (field)
     {
         field.remove();
+    }
+    let message = document.getElementById("end-game-message");
+    if (message)
+    {
+        message.remove();
     }
     playArea = [];
 }
