@@ -104,10 +104,125 @@ function tileClick(element)
     }
 }
 
+/** Reveal tiles neighbouring hints if there are as many flags as current hints */
+function hintClick(element)
+{
+    let position = element?.id?.split('-');
+    let row = parseInt(position[0]);
+    let column = parseInt(position[1]);
+    let hintCount = playArea[row][column];
+    let flaggedTilesCount = 0;
+
+    let currentTile = [row, column];
+    let observedTile = currentTile;
+
+    //N
+    lookUp(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+    //NE
+    lookRight(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+    //E
+    lookDown(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+    //SE
+    lookDown(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+    //S
+    lookLeft(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+    //SW
+    lookLeft(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+    //W
+    lookUp(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+    //NW
+    lookUp(observedTile);
+    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    {
+        flaggedTilesCount += 1;
+    }
+    if (flaggedTilesCount == hintCount)
+    {
+        revealNeighbourTiles(element);
+        return;
+    }
+
+
+}
+
 /** Replace interactive tile with non-iteractable */
 function revealTile(element, isGameOver = false)
 {
     if (element?.classList.contains("revealed") && !isGameOver)
+    {
+        return;
+    }
+    if (element?.classList.contains("flagged") && !isGameOver)
     {
         return;
     }
@@ -140,6 +255,73 @@ function revealTile(element, isGameOver = false)
 
 }
 
+function revealNeighbourTiles(element)
+{
+    let position = element?.id?.split('-');
+    let row = parseInt(position[0]);
+    let column = parseInt(position[1]);
+
+    let currentTile = [row, column];
+    let observedTile = currentTile;
+
+    //N
+    lookUp(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+    //NE
+    lookRight(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+    //E
+    lookDown(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+    //SE
+    lookDown(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+    //S
+    lookLeft(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+    //SW
+    lookLeft(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+    //W
+    lookUp(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+    //NW
+    lookUp(observedTile);
+    if (isInBounds(observedTile))
+    {
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+    }
+
+}
+
 /** Reveal all tiles when game finished or stepped on mine */
 function revealAll()
 {
@@ -161,6 +343,10 @@ function createPElement(row, column)
     p.appendChild(pNode);
     p.classList.add("tile");
     p.classList.add("revealed");
+
+    let onclickNode = document.createAttribute("onclick");
+    onclickNode.value = "hintClick(this)";
+    p.setAttributeNode(onclickNode);
 
     return p;
 
