@@ -48,6 +48,7 @@ function createField(dimensionRow, dimensionColumn)
 
     revealedCount = 0;
     flaggedCount = 0;
+    document.getElementById("flagbox").checked = false;
 
     console.log(playArea);
 }
