@@ -445,6 +445,7 @@ function isGameEnded()
     if (dimension == revealedCount + mines)
     {
         endGame("You won!");
+        flagRemaining();
         return true;
     }
 
@@ -453,7 +454,16 @@ function isGameEnded()
 
 function flagRemaining()
 {
-    
+    for (let row = 0; row < playArea.length; row++)
+    {
+        for (let column = 0; column < playArea[0].length; column++)
+        {
+            if (!document.getElementById(row + "-" + column).classList.contains("flagged") && !document.getElementById(row + "-" + column).classList.contains("revealed"))
+            {
+                flagTile(document.getElementById(row + "-" + column));
+            }
+        }
+    }
 }
 
 function endGame(message)
