@@ -1,4 +1,7 @@
 let playArea = [];
+let mines;
+let revealedCount;
+let flaggedCount;
 
 function createField(dimensionRow, dimensionColumn)
 {
@@ -42,6 +45,9 @@ function createField(dimensionRow, dimensionColumn)
             createTile(i, j);
         }
     }
+
+    revealedCount = 0;
+    flaggedCount = 0;
 
     console.log(playArea);
 }
@@ -253,6 +259,9 @@ function revealTile(element, isGameOver = false)
             break;
     }
 
+    revealedCount += 1;
+    isGameEnded();
+
 }
 
 function revealNeighbourTiles(element)
@@ -430,6 +439,23 @@ function gameOver()
     endGame("You lost!");
 }
 
+function isGameEnded() 
+{
+    let dimension = playArea[0].length * playArea.length;
+    if (dimension == revealedCount + mines)
+    {
+        endGame("You won!");
+        return true;
+    }
+
+    return false;
+}
+
+function flagRemaining()
+{
+    
+}
+
 function endGame(message)
 {
     let p = document.createElement("p");
@@ -443,7 +469,7 @@ function endGame(message)
 /** Place mines in tiles where there are no mines present already */
 function placeMines(mineCount)
 {
-
+    mines = mineCount;
     if (playArea)
     {
         for (let i = 0; i < mineCount; i++)
