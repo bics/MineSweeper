@@ -23,7 +23,7 @@ function createField(dimensionRow, dimensionColumn) {
     //Place mines and create hints
     placeMines(12);
 
-    for (let i=0;i<dimensionRow;i++)
+    for (let i = 0; i < dimensionRow; i++)
     {
         for (let j=0;j<dimensionColumn;j++)
         {
@@ -32,7 +32,7 @@ function createField(dimensionRow, dimensionColumn) {
     }
         
     // Create actual game field
-    for (let i=0;i<dimensionRow;i++)
+    for (let i = 0; i < dimensionRow; i++)
     {
         createTileRow(i);
         for (let j=0;j<dimensionColumn;j++)
@@ -137,7 +137,7 @@ function revealTile(element, isGameOver = false) {
 function revealAll() {
     for (let row=0;row<playArea.length;row++)
     {
-        for (let column=0;column<playArea[0].length;column++)
+        for (let column = 0; column < playArea[0].length; column++)
         {
             let element = document.getElementById(row+"-"+column);
             revealTile(element, true);
