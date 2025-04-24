@@ -1,7 +1,8 @@
 let playArea = [];
 
-function createField(dimensionRow, dimensionColumn) {
-    
+function createField(dimensionRow, dimensionColumn)
+{
+
     console.clear();
     //Remove previous playfield container
     clearField();
@@ -10,34 +11,35 @@ function createField(dimensionRow, dimensionColumn) {
 
 
     //Fill playarea variable
-    for (let i=0;i<dimensionRow;i++)
+    for (let i = 0; i < dimensionRow; i++)
     {
         let row = [];
-        for (let j=0;j<dimensionColumn;j++)
+        for (let j = 0; j < dimensionColumn; j++)
         {
             row[j] = "-1";
         }
         playArea.push(row);
     }
-    
+
     //Place mines and create hints
     placeMines(12);
 
+
     for (let i = 0; i < dimensionRow; i++)
     {
-        for (let j=0;j<dimensionColumn;j++)
+        for (let j = 0; j < dimensionColumn; j++)
         {
-            placeHints(i,j);
+            placeHints(i, j);
         }
     }
-        
+
     // Create actual game field
     for (let i = 0; i < dimensionRow; i++)
     {
         createTileRow(i);
-        for (let j=0;j<dimensionColumn;j++)
+        for (let j = 0; j < dimensionColumn; j++)
         {
-            createTile(i,j);
+            createTile(i, j);
         }
     }
 
@@ -47,7 +49,8 @@ function createField(dimensionRow, dimensionColumn) {
 /**Creating tiles for game area
  * p element as a background, button on face
  */
-function createTile(rowNumber,column) {
+function createTile(rowNumber, column)
+{
 
     let button = document.createElement("button");
     let buttonNode = document.createTextNode(" ");
@@ -64,7 +67,8 @@ function createTile(rowNumber,column) {
 }
 
 /** Create container row for playfield */
-function createTileRow(rowNumber) {
+function createTileRow(rowNumber)
+{
 
     let div = document.createElement("div");
 
@@ -75,7 +79,8 @@ function createTileRow(rowNumber) {
 }
 
 /** Creating div container for field */
-function createGameField() {
+function createGameField()
+{
     let div = document.createElement("div");
     div.id = "game-field";
 
@@ -86,7 +91,8 @@ function createGameField() {
 /** Left mouse click to interact with the game area
  * Radio button to enable flagging, otherwise reveal tiles
  */
-function tileClick(element) {
+function tileClick(element)
+{
 
     if (document.getElementById("flagbox").checked)
     {
@@ -99,7 +105,8 @@ function tileClick(element) {
 }
 
 /** Replace interactive tile with non-iteractable */
-function revealTile(element, isGameOver = false) {
+function revealTile(element, isGameOver = false)
+{
     if (element?.classList.contains("revealed") && !isGameOver)
     {
         return;
@@ -108,46 +115,48 @@ function revealTile(element, isGameOver = false) {
     let row = parseInt(position[0]);
     let column = parseInt(position[1]);
 
-    let p = createPElement(row,column);
-    
+    let p = createPElement(row, column);
+
     if (isGameOver)
     {
         element.replaceWith(p);
         return;
     }
 
-    switch(playArea[row][column])
+    switch (playArea[row][column])
     {
-    case "x":
-        element.replaceWith(p);
-        gameOver();
-        break;
-    case " ":
-        element.replaceWith(p);
-        revealEmptyTiles(row,column);
-        break;
-    default:
-        element.replaceWith(p);
-        break;
+        case "x":
+            element.replaceWith(p);
+            gameOver();
+            break;
+        case " ":
+            element.replaceWith(p);
+            revealEmptyTiles(row, column);
+            break;
+        default:
+            element.replaceWith(p);
+            break;
     }
 
 }
 
 /** Reveal all tiles when game finished or stepped on mine */
-function revealAll() {
-    for (let row=0;row<playArea.length;row++)
+function revealAll()
+{
+    for (let row = 0; row < playArea.length; row++)
     {
         for (let column = 0; column < playArea[0].length; column++)
         {
-            let element = document.getElementById(row+"-"+column);
+            let element = document.getElementById(row + "-" + column);
             revealTile(element, true);
         }
     }
 }
 
-function createPElement(row,column) {
+function createPElement(row, column)
+{
     let p = document.createElement("p");
-    p.id = row+"-"+column;
+    p.id = row + "-" + column;
     let pNode = document.createTextNode(playArea[row][column]);
     p.appendChild(pNode);
     p.classList.add("tile");
@@ -160,87 +169,90 @@ function createPElement(row,column) {
 /** Cycle through all neighbour tiles, and reveal recursively
  * Current limit with 2 mines is 62*62 with occasional overflow
  */
-function revealEmptyTiles(row,column){
+function revealEmptyTiles(row, column)
+{
     let currentTile = [row, column];
     let observedTile = currentTile;
 
     //N
     lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //NE
     lookRight(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));            
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //E
     lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //SE
     lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
-    
+
     //S
     lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
-    
+
     //SW
     lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
-    
+
     //W
     lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
-    
+
     //NW
     lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0],observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
     {
-        revealTile(document.getElementById(observedTile[0]+"-"+observedTile[1]));              
+        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
-    
+
 }
 
-function isNotMine(row,column)
+function isNotMine(row, column)
 {
-    return playArea[row,column] != "x";
+    return playArea[row, column] != "x";
 }
 
-function gameOver() {
+function gameOver()
+{
     revealAll();
 }
 
 /** Place mines in tiles where there are no mines present already */
-function placeMines(mineCount) {
+function placeMines(mineCount)
+{
 
     if (playArea)
     {
-        for (let i=0; i<mineCount;i++)
+        for (let i = 0; i < mineCount; i++)
         {
             let notPlaced = true;
-            while(notPlaced)
+            while (notPlaced)
             {
                 let randomRow = parseInt(Math.random() * (playArea.length));
                 let randomColumn = parseInt(Math.random() * (playArea[0].length));
@@ -257,13 +269,14 @@ function placeMines(mineCount) {
 }
 
 /** Place hints on tiles with no mines */
-function placeHints(row,column) {
+function placeHints(row, column)
+{
     if (playArea[row][column] == "x")
     {
         return;
     }
 
-    let hint = lookAround(row,column);
+    let hint = lookAround(row, column);
     if (hint == 0)
     {
         playArea[row][column] = " ";
@@ -275,7 +288,8 @@ function placeHints(row,column) {
 }
 
 /** Remove generated field */
-function clearField() {
+function clearField()
+{
     let field = document.getElementById("game-field");
     if (field)
     {
@@ -285,7 +299,8 @@ function clearField() {
 }
 
 /** Place or remove flag from element */
-function flagTile(element) {
+function flagTile(element)
+{
     if (element.classList.contains("flagged"))
     {
         element.innerHTML = "";
@@ -300,7 +315,8 @@ function flagTile(element) {
 }
 
 /** Return mine count around tile */
-function lookAround(row,column) {
+function lookAround(row, column)
+{
     let currentTile = [row, column];
     let observedTile = currentTile;
     let hintCount = 0;
@@ -319,7 +335,7 @@ function lookAround(row,column) {
     {
         hintCount += 1;
     }
-    
+
     //E
     lookDown(observedTile);
     if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
@@ -333,7 +349,7 @@ function lookAround(row,column) {
     {
         hintCount += 1;
     }
-    
+
     //S
     lookLeft(observedTile);
     if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
@@ -347,14 +363,14 @@ function lookAround(row,column) {
     {
         hintCount += 1;
     }
-    
+
     //W
     lookUp(observedTile);
     if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
     {
         hintCount += 1;
     }
-    
+
     //NW
     lookUp(observedTile);
     if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
@@ -366,16 +382,17 @@ function lookAround(row,column) {
 
 }
 
-function isInBounds(observedTile){
-    if (observedTile[0]<0)
+function isInBounds(observedTile)
+{
+    if (observedTile[0] < 0)
     {
         return false;
     }
-    if (observedTile[0]>playArea.length-1)
+    if (observedTile[0] > playArea.length - 1)
     {
         return false;
     }
-    if (observedTile[1] > playArea[0].length-1)
+    if (observedTile[1] > playArea[0].length - 1)
     {
         return false;
     }
@@ -387,21 +404,25 @@ function isInBounds(observedTile){
 }
 
 
-function lookUp(observedTile) {
-    observedTile[0] = observedTile[0]-1;
+function lookUp(observedTile)
+{
+    observedTile[0] = observedTile[0] - 1;
 }
 
-function lookDown(observedTile) {
-    observedTile[0] = observedTile[0]+1;
+function lookDown(observedTile)
+{
+    observedTile[0] = observedTile[0] + 1;
 
 }
 
-function lookLeft(observedTile) {
-    observedTile[1] = observedTile[1]-1;
+function lookLeft(observedTile)
+{
+    observedTile[1] = observedTile[1] - 1;
 }
 
-function lookRight(observedTile) {
-    observedTile[1] = observedTile[1]+1;    
+function lookRight(observedTile)
+{
+    observedTile[1] = observedTile[1] + 1;
 }
 
 
