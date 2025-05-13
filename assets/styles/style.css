@@ -32,6 +32,13 @@ hr {
     text-align: center;
 }
 
+.tile-mine {
+    background-image: url("../images/mine.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .game-row {
     display: flex;
 }

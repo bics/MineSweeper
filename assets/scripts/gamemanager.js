@@ -354,6 +354,13 @@ function createPElement(row, column)
     p.classList.add("tile");
     p.classList.add("revealed");
 
+    if (!isNotMine(row, column))
+    {
+        p.innerHTML = "";
+        p.classList.add("tile-mine");
+    }
+
+
     let onclickNode = document.createAttribute("onclick");
     onclickNode.value = "hintClick(this)";
     p.setAttributeNode(onclickNode);
@@ -431,7 +438,7 @@ function revealEmptyTiles(row, column)
 
 function isNotMine(row, column)
 {
-    return playArea[row, column] != "x";
+    return playArea[row][column] != "x";
 }
 
 function gameOver()
