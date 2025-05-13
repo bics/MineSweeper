@@ -39,6 +39,11 @@ hr {
     background-repeat: no-repeat;
 }
 
+.hit
+{
+    background-color: red;
+}
+
 .game-row {
     display: flex;
 }

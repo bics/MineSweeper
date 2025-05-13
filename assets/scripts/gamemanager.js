@@ -225,7 +225,7 @@ function hintClick(element)
 /** Replace interactive tile with non-iteractable */
 function revealTile(element, isGameOver = false)
 {
-    if (element?.classList.contains("revealed") && !isGameOver)
+    if (element?.classList.contains("revealed"))
     {
         return;
     }
@@ -248,6 +248,7 @@ function revealTile(element, isGameOver = false)
     switch (playArea[row][column])
     {
         case "x":
+            addHit(p);
             element.replaceWith(p);
             gameOver();
             break;
@@ -367,6 +368,14 @@ function createPElement(row, column)
 
     return p;
 
+}
+
+function addHit(element)
+{
+    if (element)
+    {
+        element.classList.add("hit");
+    }
 }
 
 /** Cycle through all neighbour tiles, and reveal recursively
