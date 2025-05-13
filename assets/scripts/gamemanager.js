@@ -241,6 +241,13 @@ function revealTile(element, isGameOver = false)
 
     if (isGameOver)
     {
+        if (!isNotMine(row, column))
+        {
+            if (element?.classList.contains("flagged"))
+            {
+                addCorrectFlag(p);
+            }
+        }
         element.replaceWith(p);
         return;
     }
@@ -375,6 +382,14 @@ function addHit(element)
     if (element)
     {
         element.classList.add("hit");
+    }
+}
+
+function addCorrectFlag(element)
+{
+    if (element)
+    {
+        element.classList.add("hit-correct");
     }
 }
 

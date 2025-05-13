@@ -44,6 +44,11 @@ hr {
     background-color: red;
 }
 
+.hit-correct
+{
+    background-color: green;
+}
+
 .game-row {
     display: flex;
 }
