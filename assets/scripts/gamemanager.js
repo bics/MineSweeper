@@ -69,7 +69,7 @@ function createTile(rowNumber, column)
 
     button.appendChild(buttonNode);
 
-    document.getElementById("row-" + rowNumber).appendChild(button);
+    document.getElementById("game-row-" + rowNumber).appendChild(button);
 
 }
 
@@ -79,8 +79,8 @@ function createTileRow(rowNumber)
 
     let div = document.createElement("div");
 
-    div.classList.add("row");
-    div.id = "row-" + rowNumber;
+    div.classList.add("game-row");
+    div.id = "game-row-" + rowNumber;
 
     document.getElementById("game-field").appendChild(div);
 }
