@@ -6,6 +6,7 @@ header {
 main {
     width: 90%;
     justify-self: center;
+    justify-items: center;
 }
 
 hr {
@@ -14,6 +15,7 @@ hr {
 }
 
 #game-area {
+    min-width: 100%;
     border: 2px solid #c0c0c0;
 }
 
