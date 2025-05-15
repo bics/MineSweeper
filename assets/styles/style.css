@@ -49,6 +49,13 @@ hr {
     background-color: green;
 }
 
+.flagged {
+    background-image: url("../images/redflag.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .game-row {
     display: flex;
 }

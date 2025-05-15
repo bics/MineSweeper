@@ -574,13 +574,10 @@ function flagTile(element)
     if (element.classList.contains("flagged"))
     {
         element.innerHTML = "";
-        element.style.backgroundColor = "";
         element.classList.remove("flagged");
         return;
     }
 
-    element.innerHTML = "flag";
-    element.style.backgroundColor = "red";
     element.classList.add("flagged");
 }
 
