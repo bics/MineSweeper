@@ -10,28 +10,32 @@
 </head>
 <body>
     <header>
-        <h1 class="text-center text-decoration-underline">Mine Sweeper</h1>
-        <div class="text-container text-center">
-            <p>Minesweeper is a logic puzzle video game genre generally played on personal computers. The game features a grid of clickable tiles, with hidden "mines"
-                (depicted as naval mines in the original game) dispersed throughout the board. The objective is to clear the board without detonating any mines,
-                with help from clues about the number of neighboring mines in each field. </p>
-            <p>Variants of Minesweeper have been made that expand on the basic concepts, such as Minesweeper X, Crossmines, and Minehunt. Minesweeper has been incorporated as a minigame
-                 in other games, such as RuneScape and Minecraft's 2015 April Fools update. </p>
-            <p>The origin of Minesweeper is unclear. According to TechRadar, the first version of the game was 1990's Microsoft Minesweeper,
-                but Eurogamer states Mined-Out (1983) by Ian Andrew was the first Minesweeper game. Curt Johnson, the creator of Microsoft Minesweeper,
-                acknowledges that his game's design was borrowed from another game, but denies that it was Mined-Out. 
-                <a class="link-info" href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)">Wikipedia article</a> </p>
+        <div class="text-center content-container">
+            <h1 class=" text-decoration-underline">Mine Sweeper</h1>
+            <div class="text-container">
+                <p>Minesweeper is a logic puzzle video game genre generally played on personal computers. The game features a grid of clickable tiles, with hidden "mines"
+                    (depicted as naval mines in the original game) dispersed throughout the board. The objective is to clear the board without detonating any mines,
+                    with help from clues about the number of neighboring mines in each field. </p>
+                <p>Variants of Minesweeper have been made that expand on the basic concepts, such as Minesweeper X, Crossmines, and Minehunt. Minesweeper has been incorporated as a minigame
+                     in other games, such as RuneScape and Minecraft's 2015 April Fools update. </p>
+                <p>The origin of Minesweeper is unclear. According to TechRadar, the first version of the game was 1990's Microsoft Minesweeper,
+                    but Eurogamer states Mined-Out (1983) by Ian Andrew was the first Minesweeper game. Curt Johnson, the creator of Microsoft Minesweeper,
+                    acknowledges that his game's design was borrowed from another game, but denies that it was Mined-Out.
+                    <a class="link-info" href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)">Wikipedia article</a> </p>
+            </div>
+            <hr>
         </div>
-        <hr>
 
-        <h2 class="text-center text-decoration-underline">How to play</h2>
-        <div class="text-container text-center">
-            <p>fill oout with rules</p>
+        <div class="text-center content-container">
+            <h2 class="text-decoration-underline">How to play</h2>
+            <div class="text-container">
+                <p>fill oout with rules</p>
+            </div>
+            <hr>
         </div>
-        <hr>
     </header>
     <main>
-        <div id="game-setup">
+        <div class="text-center content-container" id="game-setup">
             <h2 class="text-center text-decoration-underline">Let's play</h2>
             <div>
                 <section id="grid-section">
@@ -61,19 +65,20 @@
             <button class="btn btn-outline-secondary" onclick="createField()">Play</button><br>
         </div>
     
-        <div id="game-area">
-            <div id="game-header">
-                <p>remaining</p>
-                <p>reset</p>
-                <p>flagged</p>
-                <p>(?)</p>
-            </div>
-            <div id="game-main">
-
-            </div>
-            <div id="game-footer">
-                <label for="flagbox">Flag</label>
-                <input type="checkbox" name="flagbox" id="flagbox">
+        <div class="content-container">
+            <div id="game-area">
+                <div id="game-header">
+                    <p>remaining</p>
+                    <p>reset</p>
+                    <p>flagged</p>
+                    <p>(?)</p>
+                </div>
+                <div id="game-main">
+                </div>
+                <div id="game-footer">
+                    <label for="flagbox">Flag</label>
+                    <input type="checkbox" name="flagbox" id="flagbox">
+                </div>
             </div>
         </div>
     </main>
