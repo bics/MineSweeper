@@ -13,6 +13,7 @@
     --divider: 1rem;
 }
 
+/*Styles for page*/
 p {
     margin-bottom: var(--divider);
 }
@@ -41,6 +42,10 @@ hr {
     margin-bottom: var(--divider);
 }
 
+.content-container {
+    width: 100%;
+}
+
 #game-setup {
     border: 2px solid var(--silver);
 }
@@ -55,6 +60,7 @@ hr {
     justify-content: space-evenly;
 }
 
+/*Styles for field*/
 .tile {
     height: 25px;
     width: 25px;
