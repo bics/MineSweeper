@@ -1,9 +1,12 @@
+let dimensionRow;
+let dimensionColumn;
+
 let playArea = [];
 let mines;
 let revealedCount;
 let flaggedCount;
 
-function createField(dimensionRow, dimensionColumn)
+function createField()
 {
 
     console.clear();
@@ -12,6 +15,17 @@ function createField(dimensionRow, dimensionColumn)
     //Create interactable game field container
     createGameField();
 
+    let gridSelectors = document.getElementsByName("grid-selector");
+
+    for (let i = 0; i < gridSelectors.length; i++)
+    {
+        if (gridSelectors[i].checked)
+        {
+            let grid = gridSelectors[i].value.split("*");
+            dimensionRow = grid[0];
+            dimensionColumn = grid[1];
+        }
+    }
 
     //Fill playarea variable
     for (let i = 0; i < dimensionRow; i++)
@@ -24,9 +38,17 @@ function createField(dimensionRow, dimensionColumn)
         playArea.push(row);
     }
 
-    //Place mines and create hints
-    placeMines(12);
+    let mineSelectors = document.getElementsByName("mine-count-selector");
 
+    for (let i = 0; i < mineSelectors.length; i++)
+    {
+        if (mineSelectors[i].checked)
+        {
+            //Place mines and create hints
+            placeMines(parseInt(dimensionRow * dimensionColumn * mineSelectors[i].value));
+            //console.log(parseInt(dimensionRow * dimensionColumn * mineSelectors[i].value));
+        }
+    }
 
     for (let i = 0; i < dimensionRow; i++)
     {
