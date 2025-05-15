@@ -35,14 +35,9 @@ main {
 hr {
     border: 1px solid var(--silver);
     opacity: 1;
-    margin-bottom: var(--divider);
 }
 
-section {
-    margin-bottom: var(--divider);
-}
-
-.content-container {    
+.divider {    
     margin-bottom: var(--divider);
 }
 
