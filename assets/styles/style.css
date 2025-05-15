@@ -38,6 +38,10 @@ hr {
     margin-bottom: var(--divider);
 }
 
+section {
+    margin-bottom: var(--divider);
+}
+
 .content-container {    
     margin-bottom: var(--divider);
 }
