@@ -9,6 +9,16 @@
     --hint-8: gray;    
 
     --silver: #c0c0c0;
+
+    --divider: 1rem;
+}
+
+p {
+    margin-bottom: var(--divider);
+}
+
+h1,h2 {
+    margin-bottom: var(--divider);
 }
 
 header {
@@ -25,6 +35,11 @@ main {
 hr {
     border: 1px solid var(--silver);
     opacity: 1;
+    margin-bottom: var(--divider);
+}
+
+.content-container {    
+    margin-bottom: var(--divider);
 }
 
 #game-setup {
