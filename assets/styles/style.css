@@ -46,10 +46,6 @@ hr {
     width: 100%;
 }
 
-#game-setup {
-    border: 2px solid var(--silver);
-}
-
 #game-area {
     min-width: 100%;
     border: 2px solid var(--silver);
@@ -58,6 +54,15 @@ hr {
 #game-header {
     display: flex;
     justify-content: space-evenly;
+}
+
+#reset-button {
+    height: 25px;
+    width: 25px;
+    background-image: url("../images/game-face.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /*Styles for field*/
