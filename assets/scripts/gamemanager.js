@@ -362,6 +362,11 @@ function createPElement(row, column)
     p.classList.add("tile");
     p.classList.add("revealed");
 
+    if (isNotMine(row, column) && playArea[row][column] != " ")
+    {
+        p.classList.add("hint-" + playArea[row][column]);
+    }
+
     if (!isNotMine(row, column))
     {
         p.innerHTML = "";

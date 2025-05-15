@@ -1,3 +1,14 @@
+:root {
+    --hint-1 : blue;
+    --hint-2 : green;
+    --hint-3: red;
+    --hint-4: darkblue;
+    --hint-5: darkred;
+    --hint-6: teal;
+    --hint-7: black;
+    --hint-8: gray;    
+}
+
 header {
     width: 90%;
     justify-self: center;
@@ -58,4 +69,36 @@ hr {
 
 .game-row {
     display: flex;
+}
+
+.hint-1 {
+    color: var(--hint-1);
+}
+
+.hint-2 {
+    color: var(--hint-2);    
+}
+
+.hint-3 {
+    color: var(--hint-3);    
+}
+
+.hint-4 {
+    color: var(--hint-4);    
+}
+
+.hint-5 {
+    color: var(--hint-5);    
+}
+
+.hint-6 {
+    color: var(--hint-6);    
+}
+
+.hint-7 {
+    color: var(--hint-7);    
+}
+
+.hint-8 {
+    color: var(--hint-8);    
 }
