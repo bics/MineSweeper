@@ -495,6 +495,7 @@ function isNotMine(row, column)
 function gameOver()
 {
     revealAll();
+    document.getElementById("reset-button").style.backgroundImage = "url('assets/images/lose-face.png')";
     endGame("You lost!");
 }
 
@@ -504,6 +505,7 @@ function isGameEnded()
     if (dimension == revealedCount + mines)
     {
         endGame("You won!");
+        document.getElementById("reset-button").style.backgroundImage = "url('assets/images/win-face.png')";
         flagRemaining();
         return true;
     }
@@ -592,6 +594,9 @@ function clearField()
     {
         message.remove();
     }
+    
+    document.getElementById("reset-button").style.backgroundImage = "url('assets/images/game-face.png')";
+
     playArea = [];
 }
 
