@@ -31,7 +31,35 @@
         <hr>
     </header>
     <main>
-        <button class="btn btn-outline-secondary" onclick="createField(15,15)">Play</button><br>
+        <div>
+            <h2 class="text-center text-decoration-underline">Let's play</h2>
+            <div>
+                <section id="grid-section">
+                    <p>Grid size</p>
+                    <input class="form-check-input" type="radio" name="grid-selector" id="grid-small" value="10*10">
+                    <label for="grid-small">Small: 10*10</label>
+                    <input class="form-check-input" type="radio" name="grid-selector" id="grid-medium" value="15*15">
+                    <label for="grid-medium">Medium: 15*15</label>
+                    <input class="form-check-input" type="radio" name="grid-selector" id="grid-large" value="25*25">
+                    <label for="grid-large">Large: 25*25</label>
+                    <input class="form-check-input" type="radio" name="grid-selector" id="grid-xlarge" value="40*40">
+                    <label for="grid-xlarge">XLarge: 40*40</label>
+                </section>
+            
+                <section id="mine-section">
+                    <p>Mine count</p>
+                    <input class="form-check-input" type="radio" name="mine-count-selector" id="easy" value="0.1">
+                    <label for="easy">Easy</label>
+                    <input class="form-check-input" type="radio" name="mine-count-selector" id="normal" value="0.25">
+                    <label for="normal">Normal</label>
+                    <input class="form-check-input" type="radio" name="mine-count-selector" id="hard" value="0.50">
+                    <label for="hard">Hard</label>
+                    <input class="form-check-input" type="radio" name="mine-count-selector" id="extreme" value="0.75">
+                    <label for="extreme">Extreme</label>
+                </section>
+            </div>
+            <button class="btn btn-outline-secondary" onclick="createField()">Play</button><br>
+        </div>
     
         <div id="game-area">
             <div id="game-header">
