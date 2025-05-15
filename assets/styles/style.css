@@ -7,6 +7,8 @@
     --hint-6: teal;
     --hint-7: black;
     --hint-8: gray;    
+
+    --silver: #c0c0c0;
 }
 
 header {
@@ -21,13 +23,17 @@ main {
 }
 
 hr {
-    border: 1px solid #c0c0c0;
+    border: 1px solid var(--silver);
     opacity: 1;
+}
+
+#game-setup {
+    border: 2px solid var(--silver);
 }
 
 #game-area {
     min-width: 100%;
-    border: 2px solid #c0c0c0;
+    border: 2px solid var(--silver);
 }
 
 #game-header {
@@ -39,7 +45,7 @@ hr {
     height: 25px;
     width: 25px;
     margin: 0;
-    background-color: #c0c0c0;
+    background-color: var(--silver);
     text-align: center;
 }
 
