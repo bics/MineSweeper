@@ -87,6 +87,7 @@ function createTile(rowNumber, column)
     let onclickNode = document.createAttribute("onclick");
     onclickNode.value = "tileClick(this)";
     button.classList.add("tile");
+    button.classList.add("tile-button");
     button.setAttributeNode(onclickNode);
     button.id = rowNumber + "-" + column;
 
