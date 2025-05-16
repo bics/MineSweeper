@@ -46,9 +46,10 @@ function createField()
         {
             //Place mines and create hints
             placeMines(parseInt(dimensionRow * dimensionColumn * mineSelectors[i].value));
-            //console.log(parseInt(dimensionRow * dimensionColumn * mineSelectors[i].value));
         }
     }
+    
+    document.getElementById("remaining").innerHTML = parseInt(mines);
 
     for (let i = 0; i < dimensionRow; i++)
     {
@@ -607,10 +608,27 @@ function flagTile(element)
     {
         element.innerHTML = "";
         element.classList.remove("flagged");
+        flaggedCount--;
+        updateRemaining();
         return;
     }
 
-    element.classList.add("flagged");
+    if (hasFlags())
+    {
+        flaggedCount++;
+        element.classList.add("flagged");
+        updateRemaining();
+    }
+}
+
+function updateRemaining()
+{
+    document.getElementById("remaining").innerHTML = parseInt(mines - flaggedCount);
+}
+
+function hasFlags()
+{
+    return (mines - flaggedCount) > 0;
 }
 
 /** Return mine count around tile */
