@@ -649,6 +649,7 @@ function isGameEnded()
     if (dimension == revealedCount + mines)
     {
         endGame("You won!");
+        revealAll();
         document.getElementById("reset-button").style.backgroundImage = "url('assets/images/win-face.png')";
         flagRemaining();
         return true;
