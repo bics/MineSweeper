@@ -78,6 +78,10 @@ hr {
     background-color: gray;
 }
 
+.tile-hover{
+    background-color: gray;
+}
+
 .tile-mine {
     background-image: url("../images/mine.png");
     background-position: center;

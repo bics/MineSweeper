@@ -246,6 +246,143 @@ function hintClick(element)
 
 }
 
+/* When pointing at hints, hover neighbour tiles*/
+function hoverTiles(element) 
+{
+    let position = element.id.split("-");
+    let observedTile = [parseInt(position[0]),parseInt(position[1])];
+
+    //N
+    lookUp(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+    //NE
+    lookRight(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+    //E
+    lookDown(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+    //SE
+    lookDown(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+    //S
+    lookLeft(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+    //SW
+    lookLeft(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+    //W
+    lookUp(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+    //NW
+    lookUp(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
+    }
+
+}
+
+function deHoverTiles(element)
+{
+    let position = element.id.split("-");
+    let observedTile = [parseInt(position[0]),parseInt(position[1])];
+
+    //N
+    lookUp(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+    //NE
+    lookRight(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+    //E
+    lookDown(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+    //SE
+    lookDown(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+    //S
+    lookLeft(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+    //SW
+    lookLeft(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+    //W
+    lookUp(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+    //NW
+    lookUp(observedTile)
+    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    {
+        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+    }
+
+}
+
+function isFlagged(position)
+{
+    return document.getElementById(position[0] + "-" + position[1]).classList.contains("flagged");
+}
+
+function isRevealed(position)
+{
+    return document.getElementById(position[0] + "-" + position[1]).classList.contains("revealed");
+}
+
 /** Replace interactive tile with non-iteractable */
 function revealTile(element, isGameOver = false)
 {
@@ -389,6 +526,12 @@ function createPElement(row, column)
     if (isNotMine(row, column) && playArea[row][column] != " ")
     {
         p.classList.add("hint-" + playArea[row][column]);
+        let onMouseOver = document.createAttribute("onmouseover");
+        onMouseOver.value = "hoverTiles(this)";
+        p.setAttributeNode(onMouseOver);
+        let onMouseLeave = document.createAttribute("onmouseleave");
+        onMouseLeave.value = "deHoverTiles(this)";
+        p.setAttributeNode(onMouseLeave);
     }
 
     if (!isNotMine(row, column))
@@ -396,7 +539,6 @@ function createPElement(row, column)
         p.innerHTML = "";
         p.classList.add("tile-mine");
     }
-
 
     let onclickNode = document.createAttribute("onclick");
     onclickNode.value = "hintClick(this)";
