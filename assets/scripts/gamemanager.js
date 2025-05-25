@@ -257,7 +257,7 @@ function hintClick(element)
     let position = element?.id?.split('-');
     let row = parseInt(position[0]);
     let column = parseInt(position[1]);
-    let hintCount = playArea[row][column];
+    let hintCount = gameField.PlayArea[row][column];
     let flaggedTilesCount = 0;
 
     let currentTile = [row, column];
