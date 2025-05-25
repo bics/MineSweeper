@@ -1,63 +1,4 @@
-
-let gameField;
-
-function createField()
-{
-
-    console.clear();
-    //Remove previous playfield container
-    clearField();
-    //Create interactable game field container
-    createGameField();
-
-
-    let gridSelectors = document.getElementsByName("grid-selector");
-
-    for (let i = 0; i < gridSelectors.length; i++)
-    {
-        if (gridSelectors[i].checked)
-        {
-            let grid = gridSelectors[i].value.split("*");
-            gameField = new GameField(grid[0], grid[1]);
-        }
-    }
-
-
-    gameField.fillPlayArea();
-
-    let mineSelectors = document.getElementsByName("mine-count-selector");
-
-    for (let i = 0; i < mineSelectors.length; i++)
-    {
-        if (mineSelectors[i].checked)
-        {
-            //Place mines and create hints
-            gameField.placeMines(mineSelectors[i].value)
-        }
-    }
-    
-    document.getElementById("remaining").innerHTML = parseInt(gameField.Mines);
-
-
-    gameField.placeHints();
-
-    console.log(gameField.PlayArea);
-
-    // Create actual game field
-    for (let i = 0; i < gameField.DimensionRow; i++)
-    {
-        createTileRow(i);
-        for (let j = 0; j < gameField.DimensionColumn; j++)
-        {
-            let tile = new Tile(i,j);
-            tile.createTile();
-        }
-    }
-
-    revealedCount = 0;
-    flaggedCount = 0;
-    document.getElementById("flagbox").checked = false;
-}
+import { Tile } from './tile.js';
 
 class GameField
 {
@@ -211,6 +152,69 @@ class GameField
         return (this.Mines - this.FlaggedCount) > 0;
     }
 
+}
+
+let gameField;
+
+const playButton = document.getElementById("playButton");
+playButton.addEventListener("click", createField);
+
+function createField()
+{
+
+    console.clear();
+    //Remove previous playfield container
+    clearField();
+    //Create interactable game field container
+    createGameField();
+
+
+    let gridSelectors = document.getElementsByName("grid-selector");
+
+    for (let i = 0; i < gridSelectors.length; i++)
+    {
+        if (gridSelectors[i].checked)
+        {
+            let grid = gridSelectors[i].value.split("*");
+            gameField = new GameField(grid[0], grid[1]);
+        }
+    }
+
+
+    gameField.fillPlayArea();
+
+    let mineSelectors = document.getElementsByName("mine-count-selector");
+
+    for (let i = 0; i < mineSelectors.length; i++)
+    {
+        if (mineSelectors[i].checked)
+        {
+            //Place mines and create hints
+            gameField.placeMines(mineSelectors[i].value)
+        }
+    }
+    
+    document.getElementById("remaining").innerHTML = parseInt(gameField.Mines);
+
+
+    gameField.placeHints();
+
+    console.log(gameField.PlayArea);
+
+    // Create actual game field
+    for (let i = 0; i < gameField.DimensionRow; i++)
+    {
+        createTileRow(i);
+        for (let j = 0; j < gameField.DimensionColumn; j++)
+        {
+            let tile = new Tile(i,j);
+            tile.createTile();
+        }
+    }
+
+    revealedCount = 0;
+    flaggedCount = 0;
+    document.getElementById("flagbox").checked = false;
 }
 
 /** Create container row for playfield */
@@ -813,8 +817,6 @@ function clearField()
     }
     
     document.getElementById("reset-button").style.backgroundImage = "url('assets/images/game-face.png')";
-
-    playArea = [];
 }
 
 /** Place or remove flag from element */
@@ -886,38 +888,3 @@ function lookRight(observedTile)
 {
     observedTile[1] = observedTile[1] + 1;
 }
-
-class Tile
-{
-    constructor(row, column)
-    {
-        this.row = row;
-        this.column = column;
-        this.Tile = row + "-" + column;
-    }
-
-    /**Creating tiles for game area
-    * p element as a background, button on face
-    */
-    createTile()
-    {
-
-        let button = document.createElement("button");
-        let buttonNode = document.createTextNode(" ");
-        let onclickNode = document.createAttribute("onclick");
-        onclickNode.value = "tileClick(this)";
-        button.classList.add("tile");
-        button.classList.add("tile-button");
-        button.setAttributeNode(onclickNode);
-        button.id = this.Tile;
-
-        button.appendChild(buttonNode);
-
-        document.getElementById("game-row-" + this.row).appendChild(button);
-
-    }
-}
-
-
-
-
