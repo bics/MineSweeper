@@ -78,6 +78,84 @@ function createField()
     console.log(playArea);
 }
 
+class GameField
+{
+    constructor(row,column)
+    {
+        let dimensionRow = row;
+        let dimensionColumn = column;
+
+        let playArea = [];
+        let mines = 0;
+        let revealedCount = 0;
+        let flaggedCount = 0;
+    }
+
+    fillPlayArea()
+    {
+        for (let i = 0; i < dimensionRow; i++)
+        {
+            let row = [];
+            for (let j = 0; j < dimensionColumn; j++)
+            {
+                row[j] = "-1";
+            }
+            playArea.push(row);
+        }
+    }
+
+    /** Place mines in tiles where there are no mines present already */
+    placeMines(mineCount)
+    {
+        mines = mineCount;
+        placeMines(parseInt(dimensionRow * dimensionColumn * mineCount));
+        if (playArea)
+        {
+            for (let i = 0; i < mineCount; i++)
+            {
+                let notPlaced = true;
+                while (notPlaced)
+                {
+                    let randomRow = parseInt(Math.random() * (playArea.length));
+                    let randomColumn = parseInt(Math.random() * (playArea[0].length));
+                    if (playArea[randomRow][randomColumn] < 0) 
+                    {
+                        playArea[randomRow][randomColumn] = "x";
+                        notPlaced = false
+                    }
+                }
+            }
+
+        }
+    }
+
+    /** Place hints on tiles with no mines */
+    placeHints()
+    {
+        for (let row = 0; row < dimensionRow; row++)
+        {
+            for (let column = 0; column < dimensionColumn; column++)
+            {
+                if (playArea[row][column] == "x")
+                {
+                    return;
+                }
+
+                let hint = lookAround(row, column);
+                if (hint == 0)
+                {
+                    playArea[row][column] = " ";
+                }
+                else
+                {
+                    playArea[row][column] = hint;
+                }
+            }
+        }
+    }
+
+}
+
 /**Creating tiles for game area
  * p element as a background, button on face
  */
