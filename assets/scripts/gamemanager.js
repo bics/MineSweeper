@@ -1,11 +1,11 @@
 
-let dimensionRow;
+/*let dimensionRow;
 let dimensionColumn;
 
 let playArea = [];
 let mines;
 let revealedCount;
-let flaggedCount;
+let flaggedCount;*/
 
 function createField()
 {
@@ -16,6 +16,8 @@ function createField()
     //Create interactable game field container
     createGameField();
 
+    let gameField;
+
     let gridSelectors = document.getElementsByName("grid-selector");
 
     for (let i = 0; i < gridSelectors.length; i++)
@@ -23,21 +25,12 @@ function createField()
         if (gridSelectors[i].checked)
         {
             let grid = gridSelectors[i].value.split("*");
-            dimensionRow = grid[0];
-            dimensionColumn = grid[1];
+            gameField = new GameField(grid[0], grid[1]);
         }
     }
 
-    //Fill playarea variable
-    for (let i = 0; i < dimensionRow; i++)
-    {
-        let row = [];
-        for (let j = 0; j < dimensionColumn; j++)
-        {
-            row[j] = "-1";
-        }
-        playArea.push(row);
-    }
+
+    gameField.fillPlayArea();
 
     let mineSelectors = document.getElementsByName("mine-count-selector");
 
@@ -46,25 +39,22 @@ function createField()
         if (mineSelectors[i].checked)
         {
             //Place mines and create hints
-            placeMines(parseInt(dimensionRow * dimensionColumn * mineSelectors[i].value));
+            gameField.placeMines(mineSelectors[i].value)
         }
     }
     
-    document.getElementById("remaining").innerHTML = parseInt(mines);
+    document.getElementById("remaining").innerHTML = parseInt(gameField.Mines);
 
-    for (let i = 0; i < dimensionRow; i++)
-    {
-        for (let j = 0; j < dimensionColumn; j++)
-        {
-            placeHints(i, j);
-        }
-    }
+
+    gameField.placeHints();
+
+    console.log(gameField.PlayArea);
 
     // Create actual game field
-    for (let i = 0; i < dimensionRow; i++)
+    for (let i = 0; i < gameField.DimensionRow; i++)
     {
         createTileRow(i);
-        for (let j = 0; j < dimensionColumn; j++)
+        for (let j = 0; j < gameField.DimensionColumn; j++)
         {
             let tile = new Tile(i,j);
             tile.createTile();
@@ -74,53 +64,57 @@ function createField()
     revealedCount = 0;
     flaggedCount = 0;
     document.getElementById("flagbox").checked = false;
-
-    console.log(playArea);
 }
 
 class GameField
 {
+    DimensionRow;
+    DimensionColumn;
+
+    PlayArea = [];
+    Mines;
+    revealedCount;
+    flaggedCount;
+
     constructor(row,column)
     {
-        let dimensionRow = row;
-        let dimensionColumn = column;
+        this.DimensionRow = row;
+        this.DimensionColumn = column;
 
-        let playArea = [];
-        let mines = 0;
-        let revealedCount = 0;
-        let flaggedCount = 0;
+        this.Mines = 0;
+        this.revealedCount = 0;
+        this.flaggedCount = 0;
     }
 
     fillPlayArea()
     {
-        for (let i = 0; i < dimensionRow; i++)
+        for (let i = 0; i < this.DimensionRow; i++)
         {
             let row = [];
-            for (let j = 0; j < dimensionColumn; j++)
+            for (let j = 0; j < this.DimensionColumn; j++)
             {
                 row[j] = "-1";
             }
-            playArea.push(row);
+            this.PlayArea.push(row);
         }
     }
 
     /** Place mines in tiles where there are no mines present already */
     placeMines(mineCount)
     {
-        mines = mineCount;
-        placeMines(parseInt(dimensionRow * dimensionColumn * mineCount));
-        if (playArea)
+        this.Mines = parseInt(this.DimensionRow * this.DimensionColumn * mineCount);
+        if (this.PlayArea)
         {
             for (let i = 0; i < mineCount; i++)
             {
                 let notPlaced = true;
                 while (notPlaced)
                 {
-                    let randomRow = parseInt(Math.random() * (playArea.length));
-                    let randomColumn = parseInt(Math.random() * (playArea[0].length));
-                    if (playArea[randomRow][randomColumn] < 0) 
+                    let randomRow = parseInt(Math.random() * (this.PlayArea.length));
+                    let randomColumn = parseInt(Math.random() * (this.PlayArea[0].length));
+                    if (this.PlayArea[randomRow][randomColumn] < 0) 
                     {
-                        playArea[randomRow][randomColumn] = "x";
+                        this.PlayArea[randomRow][randomColumn] = "x";
                         notPlaced = false
                     }
                 }
@@ -132,50 +126,96 @@ class GameField
     /** Place hints on tiles with no mines */
     placeHints()
     {
-        for (let row = 0; row < dimensionRow; row++)
+        for (let row = 0; row < this.DimensionRow; row++)
         {
-            for (let column = 0; column < dimensionColumn; column++)
+            for (let column = 0; column < this.DimensionColumn; column++)
             {
-                if (playArea[row][column] == "x")
+                if (this.PlayArea[row][column] == "x")
                 {
                     return;
                 }
 
-                let hint = lookAround(row, column);
+                let hint = this.lookAround(row, column);
                 if (hint == 0)
                 {
-                    playArea[row][column] = " ";
+                    this.PlayArea[row][column] = " ";
                 }
                 else
                 {
-                    playArea[row][column] = hint;
+                    this.PlayArea[row][column] = hint;
                 }
             }
         }
     }
 
+    /** Return mine count around tile */
+    lookAround(row, column)
+    {
+        let currentTile = [row, column];
+        let observedTile = currentTile;
+        let hintCount = 0;
+
+        /* Look around clockwise relative from position*/
+        //N
+        lookUp(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        //NE
+        lookRight(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        //E
+        lookDown(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        //SE
+        lookDown(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        //S
+        lookLeft(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        //SW
+        lookLeft(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        //W
+        lookUp(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        //NW
+        lookUp(observedTile);
+        if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
+        {
+            hintCount += 1;
+        }
+
+        return hintCount;
+    }
+
 }
-
-/**Creating tiles for game area
- * p element as a background, button on face
- */
-/*function createTile(rowNumber, column)
-{
-
-    let button = document.createElement("button");
-    let buttonNode = document.createTextNode(" ");
-    let onclickNode = document.createAttribute("onclick");
-    onclickNode.value = "tileClick(this)";
-    button.classList.add("tile");
-    button.classList.add("tile-button");
-    button.setAttributeNode(onclickNode);
-    button.id = rowNumber + "-" + column;
-
-    button.appendChild(buttonNode);
-
-    document.getElementById("game-row-" + rowNumber).appendChild(button);
-
-}*/
 
 /** Create container row for playfield */
 function createTileRow(rowNumber)
@@ -762,50 +802,6 @@ function endGame(message)
     document.getElementById("game-footer").appendChild(p);
 }
 
-/** Place mines in tiles where there are no mines present already */
-function placeMines(mineCount)
-{
-    mines = mineCount;
-    if (playArea)
-    {
-        for (let i = 0; i < mineCount; i++)
-        {
-            let notPlaced = true;
-            while (notPlaced)
-            {
-                let randomRow = parseInt(Math.random() * (playArea.length));
-                let randomColumn = parseInt(Math.random() * (playArea[0].length));
-                if (playArea[randomRow][randomColumn] < 0) 
-                {
-                    playArea[randomRow][randomColumn] = "x";
-                    notPlaced = false
-                }
-            }
-        }
-
-    }
-
-}
-
-/** Place hints on tiles with no mines */
-function placeHints(row, column)
-{
-    if (playArea[row][column] == "x")
-    {
-        return;
-    }
-
-    let hint = lookAround(row, column);
-    if (hint == 0)
-    {
-        playArea[row][column] = " ";
-    }
-    else
-    {
-        playArea[row][column] = hint;
-    }
-}
-
 /** Remove generated field */
 function clearField()
 {
@@ -853,74 +849,6 @@ function updateRemaining()
 function hasFlags()
 {
     return (mines - flaggedCount) > 0;
-}
-
-/** Return mine count around tile */
-function lookAround(row, column)
-{
-    let currentTile = [row, column];
-    let observedTile = currentTile;
-    let hintCount = 0;
-
-    /* Look around clockwise relative from position*/
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    return hintCount;
-
 }
 
 function isInBounds(observedTile)
