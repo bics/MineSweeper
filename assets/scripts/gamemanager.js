@@ -1,3 +1,4 @@
+
 let dimensionRow;
 let dimensionColumn;
 
@@ -65,7 +66,8 @@ function createField()
         createTileRow(i);
         for (let j = 0; j < dimensionColumn; j++)
         {
-            createTile(i, j);
+            let tile = new Tile(i,j);
+            tile.createTile();
         }
     }
 
@@ -79,7 +81,7 @@ function createField()
 /**Creating tiles for game area
  * p element as a background, button on face
  */
-function createTile(rowNumber, column)
+/*function createTile(rowNumber, column)
 {
 
     let button = document.createElement("button");
@@ -95,7 +97,7 @@ function createTile(rowNumber, column)
 
     document.getElementById("game-row-" + rowNumber).appendChild(button);
 
-}
+}*/
 
 /** Create container row for playfield */
 function createTileRow(rowNumber)
@@ -884,6 +886,37 @@ function lookLeft(observedTile)
 function lookRight(observedTile)
 {
     observedTile[1] = observedTile[1] + 1;
+}
+
+class Tile
+{
+    constructor(row, column)
+    {
+        this.row = row;
+        this.column = column;
+        this.Tile = row + "-" + column;
+    }
+
+    /**Creating tiles for game area
+    * p element as a background, button on face
+    */
+    createTile()
+    {
+
+        let button = document.createElement("button");
+        let buttonNode = document.createTextNode(" ");
+        let onclickNode = document.createAttribute("onclick");
+        onclickNode.value = "tileClick(this)";
+        button.classList.add("tile");
+        button.classList.add("tile-button");
+        button.setAttributeNode(onclickNode);
+        button.id = this.Tile;
+
+        button.appendChild(buttonNode);
+
+        document.getElementById("game-row-" + this.row).appendChild(button);
+
+    }
 }
 
 
