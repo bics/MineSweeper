@@ -47,6 +47,7 @@ export class Tile
         let pNode = document.createTextNode(textNode);
         p.classList.add("tile");
         p.classList.add("revealed");
+        p.tileInstance = this;
 
         switch (textNode)
         {
@@ -65,6 +66,11 @@ export class Tile
     addToClassList(element, classText)
     {
         element.classList.add(classText);
+    }
+
+    removeFromClassList(element, classText)
+    {
+        element.classList.remove(classText);
     }
 }
 
