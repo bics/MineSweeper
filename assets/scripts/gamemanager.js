@@ -261,6 +261,51 @@ function tileClick(event)
     }
 }
 
+/** Replace interactive tile with non-iteractable */
+function revealTile(element, isGameOver = false)
+{
+    if (element?.classList.contains("revealed"))
+    {
+        return;
+    }
+    if (element?.classList.contains("flagged") && !isGameOver)
+    {
+        return;
+    }
+    
+    let position = element.id.split("-");
+    element.tileInstance.createTilePElement(element, gameField.PlayArea[position[0]][position[1]]);
+    
+    if (isGameOver)
+    {
+        if (!isNotMine(position))
+        {
+            if (element?.classList.contains("flagged"))
+            {
+                element.tileInstance.addToClassList(element, "hit-correct");
+            }
+        }
+        return;
+    }
+
+    switch (gameField.PlayArea[position[0]][position[1]])
+    {
+        case "x":
+            element.tileInstance.addToClassList(element, "hit");
+            gameOver();
+            break;
+        case " ":
+            revealEmptyTiles(parseInt(position[0]),parseInt(position[1]));
+            break;
+        default:
+            break;
+    }
+
+    gameField.revealedCount += 1;
+    isGameEnded();
+
+}
+
 /** Reveal tiles neighbouring hints if there are as many flags as current hints */
 function hintClick(element)
 {
@@ -509,56 +554,7 @@ function isRevealed(position)
     return document.getElementById(position[0] + "-" + position[1]).classList.contains("revealed");
 }
 
-/** Replace interactive tile with non-iteractable */
-function revealTile(element, isGameOver = false)
-{
-    if (element?.classList.contains("revealed"))
-    {
-        return;
-    }
-    if (element?.classList.contains("flagged") && !isGameOver)
-    {
-        return;
-    }
-    let position = element?.id?.split('-');
-    let row = parseInt(position[0]);
-    let column = parseInt(position[1]);
 
-    let p = createPElement(row, column);
-
-    if (isGameOver)
-    {
-        if (!isNotMine(row, column))
-        {
-            if (element?.classList.contains("flagged"))
-            {
-                addCorrectFlag(p);
-            }
-        }
-        element.replaceWith(p);
-        return;
-    }
-
-    switch (gameField.PlayArea[row][column])
-    {
-        case "x":
-            addHit(p);
-            element.replaceWith(p);
-            gameOver();
-            break;
-        case " ":
-            element.replaceWith(p);
-            revealEmptyTiles(row, column);
-            break;
-        default:
-            element.replaceWith(p);
-            break;
-    }
-
-    gameField.revealedCount += 1;
-    isGameEnded();
-
-}
 
 function revealNeighbourTiles(element)
 {
@@ -640,7 +636,7 @@ function revealAll()
     }
 }
 
-function createPElement(row, column)
+/*function createPElement(row, column)
 {
     let p = document.createElement("p");
     p.id = row + "-" + column;
@@ -672,23 +668,7 @@ function createPElement(row, column)
 
     return p;
 
-}
-
-function addHit(element)
-{
-    if (element)
-    {
-        element.classList.add("hit");
-    }
-}
-
-function addCorrectFlag(element)
-{
-    if (element)
-    {
-        element.classList.add("hit-correct");
-    }
-}
+}*/
 
 /** Cycle through all neighbour tiles, and reveal recursively
  * Current limit with 2 mines is 62*62 with occasional overflow
@@ -700,56 +680,56 @@ function revealEmptyTiles(row, column)
 
     //N
     lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //NE
     lookRight(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //E
     lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //SE
     lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //S
     lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //SW
     lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //W
     lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
 
     //NW
     lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    if (isInBounds(observedTile) && isNotMine(observedTile))
     {
         revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
     }
@@ -757,9 +737,9 @@ function revealEmptyTiles(row, column)
 
 }
 
-function isNotMine(row, column)
+function isNotMine(position)
 {
-    return gameField.PlayArea[row][column] != "x";
+    return gameField.PlayArea[position[0]][position[1]] != "x";
 }
 
 function gameOver()
@@ -771,7 +751,7 @@ function gameOver()
 
 function isGameEnded() 
 {
-    let dimension = gameField.PlayArea[0].length * playArea.length;
+    let dimension = gameField.PlayArea[0].length * gameField.PlayArea.length;
     if (dimension == gameField.revealedCount + gameField.Mines)
     {
         endGame("You won!");
