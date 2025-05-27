@@ -301,6 +301,8 @@ function revealTile(element, isGameOver = false)
             break;
     }
 
+    document.getElementById(element.id).addEventListener("mouseover", hoverTiles);
+    document.getElementById(element.id).addEventListener("mouseleave", deHoverTiles);
     gameField.revealedCount += 1;
     isGameEnded();
 
@@ -418,8 +420,9 @@ function hintClick(element)
 }
 
 /* When pointing at hints, hover neighbour tiles*/
-function hoverTiles(element) 
+function hoverTiles() 
 {
+    let element = event.target;
     let position = element.id.split("-");
     let observedTile = [parseInt(position[0]),parseInt(position[1])];
 
@@ -481,8 +484,9 @@ function hoverTiles(element)
 
 }
 
-function deHoverTiles(element)
+function deHoverTiles()
 {
+    let element = event.target;
     let position = element.id.split("-");
     let observedTile = [parseInt(position[0]),parseInt(position[1])];
 
