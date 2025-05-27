@@ -642,40 +642,6 @@ function revealAll()
     }
 }
 
-/*function createPElement(row, column)
-{
-    let p = document.createElement("p");
-    p.id = row + "-" + column;
-    let pNode = document.createTextNode(gameField.PlayArea[row][column]);
-    p.appendChild(pNode);
-    p.classList.add("tile");
-    p.classList.add("revealed");
-
-    if (isNotMine(row, column) && gameField.PlayArea[row][column] != " ")
-    {
-        p.classList.add("hint-" + gameField.PlayArea[row][column]);
-        let onMouseOver = document.createAttribute("onmouseover");
-        onMouseOver.value = "hoverTiles(this)";
-        p.setAttributeNode(onMouseOver);
-        let onMouseLeave = document.createAttribute("onmouseleave");
-        onMouseLeave.value = "deHoverTiles(this)";
-        p.setAttributeNode(onMouseLeave);
-    }
-
-    if (!isNotMine(row, column))
-    {
-        p.innerHTML = "";
-        p.classList.add("tile-mine");
-    }
-
-    let onclickNode = document.createAttribute("onclick");
-    onclickNode.value = "hintClick(this)";
-    p.setAttributeNode(onclickNode);
-
-    return p;
-
-}*/
-
 /** Cycle through all neighbour tiles, and reveal recursively
  * Current limit with 2 mines is 62*62 with occasional overflow
  */
