@@ -234,6 +234,7 @@ function createGameField()
 {
     let div = document.createElement("div");
     div.id = "game-field";
+    div.addEventListener("click", tileClick);
 
     document.getElementById("game-main").appendChild(div);
 }
@@ -242,9 +243,11 @@ function createGameField()
 /** Left mouse click to interact with the game area
  * Radio button to enable flagging, otherwise reveal tiles
  */
-function tileClick(element)
+function tileClick(event)
 {
-
+    console.log(event.target.id);
+    console.log(event.target);
+    let element = event.target;
     if (document.getElementById("flagbox").checked)
     {
         flagTile(element);
