@@ -247,7 +247,7 @@ function tileClick(event)
     let element = event.target;
     if (document.getElementById("flagbox").checked)
     {
-        if (gameField.hasFlags())
+        if (gameField.hasFlags() && element.classList.contains("tile-button"))
         {
             let flagCount = element.tileInstance.flagTile(element);
             gameField.FlaggedCount += flagCount;
@@ -303,14 +303,16 @@ function revealTile(element, isGameOver = false)
 
     document.getElementById(element.id).addEventListener("mouseover", hoverTiles);
     document.getElementById(element.id).addEventListener("mouseleave", deHoverTiles);
+    document.getElementById(element.id).addEventListener("click", hintClick);
     gameField.revealedCount += 1;
     isGameEnded();
 
 }
 
 /** Reveal tiles neighbouring hints if there are as many flags as current hints */
-function hintClick(element)
+function hintClick()
 {
+    let element = event.target;
     let position = element?.id?.split('-');
     let row = parseInt(position[0]);
     let column = parseInt(position[1]);
