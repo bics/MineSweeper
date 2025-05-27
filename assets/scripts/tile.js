@@ -95,17 +95,17 @@ export class Tile
         let p = document.createElement("p");
         p.id = element.id;
         let pNode = document.createTextNode(textNode);
-        p.appendChild(pNode);
         p.classList.add("tile");
         p.classList.add("revealed");
 
         switch (textNode)
         {
-            case "x": p.classList.add("tile-mine");  
+            case "x": p.classList.add("tile-mine");
                 break;
             case " ": break;
             default: p.classList.add("hint-" + textNode);
-                break;                
+                p.appendChild(pNode);
+                break;
         }
 
         element.replaceWith(p);
