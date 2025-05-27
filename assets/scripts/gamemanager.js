@@ -626,9 +626,9 @@ function revealNeighbourTiles(element)
 /** Reveal all tiles when game finished or stepped on mine */
 function revealAll()
 {
-    for (let row = 0; row < playArea.length; row++)
+    for (let row = 0; row < gameField.PlayArea.length; row++)
     {
-        for (let column = 0; column < playArea[0].length; column++)
+        for (let column = 0; column < gameField.PlayArea[0].length; column++)
         {
             let element = document.getElementById(row + "-" + column);
             revealTile(element, true);
