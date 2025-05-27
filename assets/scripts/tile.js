@@ -5,6 +5,7 @@ export class Tile
         this.row = row;
         this.column = column;
         this.Tile = row + "-" + column;
+        this.instance = this;
     }
 
     /**Creating tiles for game area
@@ -17,11 +18,25 @@ export class Tile
         button.classList.add("tile");
         button.classList.add("tile-button");
         button.id = this.Tile;
+        button.tileInstance = this;
 
         button.appendChild(buttonNode);
 
         document.getElementById("game-row-" + this.row).appendChild(button);
 
+    }
+
+    /** Place or remove flag from element */
+    flagTile(element)
+    {
+        if (element.classList.contains("flagged"))
+        {
+            element.innerHTML = "";
+            element.classList.remove("flagged");
+            return -1;
+        }
+        element.classList.add("flagged");
+        return +1;
     }
 }
 

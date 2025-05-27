@@ -244,12 +244,16 @@ function createGameField()
  */
 function tileClick(event)
 {
-    console.log(event.target.id);
-    console.log(event.target);
     let element = event.target;
     if (document.getElementById("flagbox").checked)
     {
-        flagTile(element);
+        if (gameField.hasFlags())
+        {
+            let flagCount = element.tileInstance.flagTile(element);
+            gameField.FlaggedCount += flagCount;
+            updateRemaining();
+            return;
+        }
     }
     else
     {
@@ -821,25 +825,7 @@ function clearField()
     document.getElementById("reset-button").style.backgroundImage = "url('assets/images/game-face.png')";
 }
 
-/** Place or remove flag from element */
-function flagTile(element)
-{
-    if (element.classList.contains("flagged"))
-    {
-        element.innerHTML = "";
-        element.classList.remove("flagged");
-        flaggedCount--;
-        updateRemaining();
-        return;
-    }
 
-    if (gameField.hasFlags())
-    {
-        gameField.FlaggedCount++;
-        element.classList.add("flagged");
-        updateRemaining();
-    }
-}
 
 function updateRemaining()
 {
