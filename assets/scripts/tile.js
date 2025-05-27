@@ -60,6 +60,7 @@ export class Tile
         }
 
         element.replaceWith(p);
+        return p;
 
     }
 

@@ -274,7 +274,7 @@ function revealTile(element, isGameOver = false)
     }
     
     let position = element.id.split("-");
-    element.tileInstance.createTilePElement(element, gameField.PlayArea[position[0]][position[1]]);
+    let pElement = element.tileInstance.createTilePElement(element, gameField.PlayArea[position[0]][position[1]]);
     
     if (isGameOver)
     {
@@ -282,7 +282,7 @@ function revealTile(element, isGameOver = false)
         {
             if (element?.classList.contains("flagged"))
             {
-                element.tileInstance.addToClassList(element, "hit-correct");
+                pElement.tileInstance.addToClassList(pElement, "hit-correct");
             }
         }
         return;
@@ -291,7 +291,7 @@ function revealTile(element, isGameOver = false)
     switch (gameField.PlayArea[position[0]][position[1]])
     {
         case "x":
-            element.tileInstance.addToClassList(element, "hit");
+            pElement.tileInstance.addToClassList(pElement, "hit");
             gameOver();
             break;
         case " ":
