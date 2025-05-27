@@ -212,8 +212,7 @@ function createField()
         }
     }
 
-    revealedCount = 0;
-    flaggedCount = 0;
+    gameField.revealedCount = 0;
     document.getElementById("flagbox").checked = false;
 }
 
@@ -552,7 +551,7 @@ function revealTile(element, isGameOver = false)
             break;
     }
 
-    revealedCount += 1;
+    gameField.revealedCount += 1;
     isGameEnded();
 
 }

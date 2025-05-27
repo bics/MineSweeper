@@ -14,11 +14,8 @@ export class Tile
     {
         let button = document.createElement("button");
         let buttonNode = document.createTextNode(" ");
-        let onclickNode = document.createAttribute("onclick");
-        onclickNode.value = "tileClick(this)";
         button.classList.add("tile");
         button.classList.add("tile-button");
-        button.setAttributeNode(onclickNode);
         button.id = this.Tile;
 
         button.appendChild(buttonNode);
