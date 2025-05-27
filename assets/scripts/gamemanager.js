@@ -727,9 +727,9 @@ function isGameEnded()
     if (dimension == gameField.revealedCount + gameField.Mines)
     {
         endGame("You won!");
+        flagRemaining();
         revealAll();
         document.getElementById("reset-button").style.backgroundImage = "url('assets/images/win-face.png')";
-        flagRemaining();
         return true;
     }
 
@@ -738,13 +738,13 @@ function isGameEnded()
 
 function flagRemaining()
 {
-    for (let row = 0; row < playArea.length; row++)
+    for (let row = 0; row < gameField.PlayArea.length; row++)
     {
-        for (let column = 0; column < playArea[0].length; column++)
+        for (let column = 0; column < gameField.PlayArea[0].length; column++)
         {
             if (!document.getElementById(row + "-" + column).classList.contains("flagged") && !document.getElementById(row + "-" + column).classList.contains("revealed"))
             {
-                flagTile(document.getElementById(row + "-" + column));
+                document.getElementById(row + "-" + column).classList.add("flagged");
             }
         }
     }
