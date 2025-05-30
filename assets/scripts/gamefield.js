@@ -84,60 +84,60 @@ export class GameField
         let currentTile = [row, column];
         let observedTile = currentTile;
         let hintCount = 0;
-
+        this.getNeighbourTiles(currentTile);
         /* Look around clockwise relative from position*/
         //N
-        lookUp(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookUp(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
 
         //NE
-        lookRight(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookRight(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
 
         //E
-        lookDown(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookDown(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
 
         //SE
-        lookDown(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookDown(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
 
         //S
-        lookLeft(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookLeft(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
 
         //SW
-        lookLeft(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookLeft(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
 
         //W
-        lookUp(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookUp(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
 
         //NW
-        lookUp(observedTile);
-        if (isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
+        this.lookUp(observedTile);
+        if (this.isInBounds(observedTile) && this.PlayArea[observedTile[0]][observedTile[1]] == "x")
         {
             hintCount += 1;
         }
@@ -148,6 +148,114 @@ export class GameField
     hasFlags()
     {
         return (this.Mines - this.FlaggedCount) > 0;
+    }
+
+    getNeighbourTiles(position)
+    {
+        let initialPosition = position;
+        let observedTile = position;
+        let neighbourPositions = [];
+
+        /* Look around clockwise relative from position*/
+        //N
+        this.lookUp(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+
+        //NE
+        this.lookRight(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+
+        //E
+        this.lookDown(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+
+        //SE
+        this.lookDown(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+
+        //S
+        this.lookLeft(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+
+        //SW
+        this.lookLeft(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+
+        //W
+        this.lookUp(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+
+        //NW
+        this.lookUp(observedTile);
+        if (this.isInBounds(observedTile))
+        {
+            neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
+        }
+        console.log(neighbourPositions);
+
+    }
+
+    isInBounds(observedTile)
+    {
+        if (observedTile[0] < 0)
+        {
+            return false;
+        }
+        if (observedTile[0] > this.PlayArea.length - 1)
+        {
+            return false;
+        }
+        if (observedTile[1] > this.PlayArea[0].length - 1)
+        {
+            return false;
+        }
+        if (observedTile[1] < 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    lookUp(observedTile)
+    {
+        observedTile[0] = observedTile[0] - 1;
+    }
+
+    lookDown(observedTile)
+    {
+        observedTile[0] = observedTile[0] + 1;
+
+    }
+
+    lookLeft(observedTile)
+    {
+        observedTile[1] = observedTile[1] - 1;
+    }
+
+    lookRight(observedTile)
+    {
+        observedTile[1] = observedTile[1] + 1;
     }
 
 }
