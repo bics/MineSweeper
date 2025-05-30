@@ -64,7 +64,7 @@ export class GameField
             {
                 if (this.PlayArea[row][column] != "x")
                 {
-                    let hint = this.lookAround(row, column);
+                    let hint = this.returnHintAmount(row, column);
                     if (hint == 0)
                     {
                         this.PlayArea[row][column] = " ";
@@ -79,7 +79,7 @@ export class GameField
     }
 
     /** Return mine count around tile */
-    lookAround(row, column)
+    returnHintAmount(row, column)
     {
         let hintCount = 0;
         let neighbourValues = this.getNeighbourTiles([row, column]);
@@ -101,7 +101,6 @@ export class GameField
 
     getNeighbourTiles(position)
     {
-        let initialPosition = position;
         let observedTile = position;
         let neighbourTiles = [];
 
