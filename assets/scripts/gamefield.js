@@ -101,7 +101,9 @@ export class GameField
 
     getNeighbourTiles(position)
     {
-        let observedTile = position;
+        let row = parseInt(position[0]);
+        let column = parseInt(position[1]);
+        let observedTile = [row,column];
         let neighbourTiles = [];
 
         /* Look around clockwise relative from position*/
