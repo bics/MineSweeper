@@ -84,7 +84,6 @@ export class GameField
         let currentTile = [row, column];
         let observedTile = currentTile;
         let hintCount = 0;
-        this.getNeighbourTiles(currentTile);
         /* Look around clockwise relative from position*/
         //N
         this.lookUp(observedTile);
@@ -212,7 +211,8 @@ export class GameField
         {
             neighbourPositions.push(this.PlayArea[observedTile[0]][observedTile[1]]);
         }
-        console.log(neighbourPositions);
+        
+        return neighbourPositions;
 
     }
 
