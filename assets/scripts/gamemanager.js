@@ -166,106 +166,22 @@ function hintClick()
     let hintCount = gameField.PlayArea[row][column];
     let flaggedTilesCount = 0;
 
-    let currentTile = [row, column];
-    let observedTile = currentTile;
+    let neighbourTiles = gameField.getNeighbourTiles(position);
 
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
+    for (let i = 0; i < neighbourTiles.length; i++)
     {
-        flaggedTilesCount += 1;
+        let neighbourPosition = neighbourTiles[i][0].split('-');
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        if (neighbourTile.classList.contains("flagged"))
+        {
+            flaggedTilesCount += 1;
+        }
     }
-    if (flaggedTilesCount == hintCount)
+    
+    if (flaggedTilesCount >= hintCount)
     {
         revealNeighbourTiles(element);
-        return;
     }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-
 }
 
 /* When pointing at hints, hover neighbour tiles*/
