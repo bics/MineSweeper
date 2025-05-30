@@ -7,7 +7,7 @@ class GameField
 
     PlayArea = [];
     Mines;
-    revealedCount;
+    RevealedCount;
     FlaggedCount;
 
     constructor(row,column)
@@ -16,7 +16,7 @@ class GameField
         this.DimensionColumn = column;
 
         this.Mines = 0;
-        this.revealedCount = 0;
+        this.RevealedCount = 0;
         this.FlaggedCount = 0;
     }
 
@@ -212,7 +212,7 @@ function createField()
         }
     }
 
-    gameField.revealedCount = 0;
+    gameField.RevealedCount = 0;
     document.getElementById("flagbox").checked = false;
 }
 
@@ -304,7 +304,7 @@ function revealTile(element, isGameOver = false)
     document.getElementById(element.id).addEventListener("mouseover", hoverTiles);
     document.getElementById(element.id).addEventListener("mouseleave", deHoverTiles);
     document.getElementById(element.id).addEventListener("click", hintClick);
-    gameField.revealedCount += 1;
+    gameField.RevealedCount += 1;
     isGameEnded();
 
 }
@@ -724,7 +724,7 @@ function gameOver()
 function isGameEnded() 
 {
     let dimension = gameField.PlayArea[0].length * gameField.PlayArea.length;
-    if (dimension == gameField.revealedCount + gameField.Mines)
+    if (dimension == gameField.RevealedCount + gameField.Mines)
     {
         endGame("You won!");
         flagRemaining();
