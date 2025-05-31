@@ -207,64 +207,19 @@ function deHoverTiles()
 {
     let element = event.target;
     let position = element.id.split("-");
-    let observedTile = [parseInt(position[0]),parseInt(position[1])];
+    
+    let neighbourTiles = gameField.getNeighbourTiles(position);
 
-    //N
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
+    for (let i = 0; i < neighbourTiles.length; i++)
     {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        let neighbourPosition = neighbourTile.id.split("-");
+        position = [parseInt(neighbourPosition[0]), parseInt(neighbourPosition[1])];
+        if (!isFlagged(position) && !isRevealed(position))
+        {
+            neighbourTile.tileInstance.removeFromClassList(neighbourTile, "tile-hover");
+        }
     }
-
-    //NE
-    lookRight(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //E
-    lookDown(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //SE
-    lookDown(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //S
-    lookLeft(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //SW
-    lookLeft(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //W
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //NW
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
 }
 
 function isFlagged(position)
