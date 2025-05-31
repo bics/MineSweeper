@@ -237,68 +237,14 @@ function isRevealed(position)
 function revealNeighbourTiles(element)
 {
     let position = element?.id?.split('-');
-    let row = parseInt(position[0]);
-    let column = parseInt(position[1]);
 
-    let currentTile = [row, column];
-    let observedTile = currentTile;
+    let neighbourTiles = gameField.getNeighbourTiles(position);
 
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile))
+    for (let i = 0; i < neighbourTiles.length; i++)
     {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        revealTile(neighbourTile);
     }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
 }
 
 /** Reveal all tiles when game finished or stepped on mine */
