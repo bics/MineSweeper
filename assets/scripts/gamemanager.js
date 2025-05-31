@@ -170,7 +170,6 @@ function hintClick()
 
     for (let i = 0; i < neighbourTiles.length; i++)
     {
-        let neighbourPosition = neighbourTiles[i][0].split('-');
         let neighbourTile = document.getElementById(neighbourTiles[i][0]);
         if (neighbourTile.classList.contains("flagged"))
         {
