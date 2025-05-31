@@ -142,7 +142,7 @@ function revealTile(element, isGameOver = false)
             gameOver();
             break;
         case " ":
-            revealEmptyTiles(parseInt(position[0]),parseInt(position[1]));
+            revealEmptyTiles(element);
             break;
         default:
             break;
@@ -263,68 +263,17 @@ function revealAll()
 /** Cycle through all neighbour tiles, and reveal recursively
  * Current limit with 2 mines is 62*62 with occasional overflow
  */
-function revealEmptyTiles(row, column)
+function revealEmptyTiles(element)
 {
-    let currentTile = [row, column];
-    let observedTile = currentTile;
+    let position = element?.id?.split('-');
 
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
+    let neighbourTiles = gameField.getNeighbourTiles(position);
+
+    for (let i = 0; i < neighbourTiles.length; i++)
     {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        revealTile(neighbourTile);
     }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-
 }
 
 function isNotMine(position)
