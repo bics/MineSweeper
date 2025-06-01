@@ -39,7 +39,7 @@ export class Tile
         return +1;
     }
 
-    /** Replace interactive tile with non-iteractable */
+    /** Replace and return button to p element */
     createTilePElement(element, textNode)
     {
         let p = document.createElement("p");

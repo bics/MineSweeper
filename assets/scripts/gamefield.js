@@ -94,11 +94,13 @@ export class GameField
         return hintCount;
     }
 
+    /** Check if player has flags */
     hasFlags()
     {
         return (this.Mines - this.FlaggedCount) > 0;
     }
 
+    /** Return all available tiles around current tile */
     getNeighbourTiles(position)
     {
         let row = parseInt(position[0]);
@@ -167,6 +169,7 @@ export class GameField
 
     }
 
+    /** Check if position is in the playarea */
     isInBounds(observedTile)
     {
         if (observedTile[0] < 0)

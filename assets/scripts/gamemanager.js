@@ -183,7 +183,7 @@ function hintClick()
     }
 }
 
-/* When pointing at hints, hover neighbour tiles*/
+/** When pointing at hints, hover neighbour tiles */
 function hoverTiles() 
 {
     let element = event.target;
@@ -203,6 +203,7 @@ function hoverTiles()
     }
 }
 
+/** Remove hover effect from tiles */
 function deHoverTiles()
 {
     let element = event.target;
@@ -232,8 +233,7 @@ function isRevealed(position)
     return document.getElementById(position[0] + "-" + position[1]).classList.contains("revealed");
 }
 
-
-
+/** Reveal all neighbouring tiles */
 function revealNeighbourTiles(element)
 {
     let position = element?.id?.split('-');
@@ -343,8 +343,6 @@ function clearField()
     
     document.getElementById("reset-button").style.backgroundImage = "url('assets/images/game-face.png')";
 }
-
-
 
 function updateRemaining()
 {
