@@ -8,7 +8,7 @@ export class GameField
     RevealedCount;
     FlaggedCount;
 
-    constructor(row,column)
+    constructor(row,column, mines)
     {
         this.DimensionRow = row;
         this.DimensionColumn = column;
@@ -16,6 +16,10 @@ export class GameField
         this.Mines = 0;
         this.RevealedCount = 0;
         this.FlaggedCount = 0;
+
+        this.fillPlayArea();
+        this.placeMines(mines);
+        this.placeHints();
     }
 
     fillPlayArea()

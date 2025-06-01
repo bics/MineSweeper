@@ -15,36 +15,12 @@ function createField()
     //Create interactable game field container
     createGameField();
 
+    let grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
+    let mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
 
-    let gridSelectors = document.getElementsByName("grid-selector");
-
-    for (let i = 0; i < gridSelectors.length; i++)
-    {
-        if (gridSelectors[i].checked)
-        {
-            let grid = gridSelectors[i].value.split("*");
-            gameField = new GameField(grid[0], grid[1]);
-        }
-    }
-
-
-    gameField.fillPlayArea();
-
-    let mineSelectors = document.getElementsByName("mine-count-selector");
-
-    for (let i = 0; i < mineSelectors.length; i++)
-    {
-        if (mineSelectors[i].checked)
-        {
-            //Place mines and create hints
-            gameField.placeMines(mineSelectors[i].value)
-        }
-    }
+    gameField = new GameField(grid[0], grid[1], mines);
     
-    document.getElementById("remaining").innerHTML = parseInt(gameField.Mines);
-
-
-    gameField.placeHints();
+    updateRemaining();
 
     console.log(gameField.PlayArea);
 
@@ -59,7 +35,6 @@ function createField()
         }
     }
 
-    gameField.RevealedCount = 0;
     document.getElementById("flagbox").checked = false;
 }
 
