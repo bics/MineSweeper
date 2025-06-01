@@ -139,7 +139,7 @@ function revealTile(element, isGameOver = false)
     {
         case "x":
             pElement.tileInstance.addToClassList(pElement, "hit");
-            gameOver();
+            isGameEnded(true);
             break;
         case " ":
             revealEmptyTiles(element);
@@ -281,15 +281,16 @@ function isNotMine(position)
     return gameField.PlayArea[position[0]][position[1]] != "x";
 }
 
-function gameOver()
+function isGameEnded(hitMine = false) 
 {
-    revealAll();
-    document.getElementById("reset-button").style.backgroundImage = "url('assets/images/lose-face.png')";
-    endGame("You lost!");
-}
+    if (hitMine)
+    {
+        endGame("You lost!");
+        revealAll();
+        document.getElementById("reset-button").style.backgroundImage = "url('assets/images/lose-face.png')";
+        return true;
+    }
 
-function isGameEnded() 
-{
     let dimension = gameField.PlayArea[0].length * gameField.PlayArea.length;
     if (dimension == gameField.RevealedCount + gameField.Mines)
     {
@@ -317,6 +318,7 @@ function flagRemaining()
     }
 }
 
+/** Replace with bootstrap toast */
 function endGame(message)
 {
     let p = document.createElement("p");
