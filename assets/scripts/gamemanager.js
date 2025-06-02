@@ -41,6 +41,7 @@ function createField()
     }
 
     document.getElementById("flagbox").checked = false;
+    document.getElementById("game-area-container").style.display = "block";
 }
 
 /** Create container row for playfield */

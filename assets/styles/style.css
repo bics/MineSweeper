@@ -46,8 +46,8 @@ hr {
     width: 100%;
 }
 
-.game-content-container {
-
+#game-area-container{
+    display: none;
 }
 
 #game-area {
