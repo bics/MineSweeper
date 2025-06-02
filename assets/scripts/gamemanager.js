@@ -69,7 +69,7 @@ function tileClick(event)
     let element = event.target;
     if (document.getElementById("flagbox").checked)
     {
-        if (gameField.hasFlags() && element.classList.contains("tile-button"))
+        if (gameField.hasFlags() && element.classList.contains("tile-button") || element.classList.contains("flagged"))
         {
             let flagCount = element.tileInstance.flagTile(element);
             gameField.FlaggedCount += flagCount;

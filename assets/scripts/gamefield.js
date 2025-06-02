@@ -51,7 +51,7 @@ export class GameField
                     if (this.PlayArea[randomRow][randomColumn] < 0) 
                     {
                         this.PlayArea[randomRow][randomColumn] = "x";
-                        notPlaced = false
+                        notPlaced = false;
                     }
                 }
             }
