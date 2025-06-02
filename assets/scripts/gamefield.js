@@ -46,8 +46,8 @@ export class GameField
                 let notPlaced = true;
                 while (notPlaced)
                 {
-                    let randomRow = parseInt(Math.random() * (this.PlayArea.length));
-                    let randomColumn = parseInt(Math.random() * (this.PlayArea[0].length));
+                    const randomRow = parseInt(Math.random() * (this.PlayArea.length));
+                    const randomColumn = parseInt(Math.random() * (this.PlayArea[0].length));
                     if (this.PlayArea[randomRow][randomColumn] < 0) 
                     {
                         this.PlayArea[randomRow][randomColumn] = "x";
@@ -68,7 +68,7 @@ export class GameField
             {
                 if (this.PlayArea[row][column] != "x")
                 {
-                    let hint = this.returnHintAmount(row, column);
+                    const hint = this.returnHintAmount(row, column);
                     if (hint == 0)
                     {
                         this.PlayArea[row][column] = " ";
@@ -86,7 +86,7 @@ export class GameField
     returnHintAmount(row, column)
     {
         let hintCount = 0;
-        let neighbourValues = this.getNeighbourTiles([row, column]);
+        const neighbourValues = this.getNeighbourTiles([row, column]);
         for (let i = 0; i < neighbourValues.length; i++)
         {
             if (neighbourValues[i][1] == "x")
@@ -107,8 +107,8 @@ export class GameField
     /** Return all available tiles around current tile */
     getNeighbourTiles(position)
     {
-        let row = parseInt(position[0]);
-        let column = parseInt(position[1]);
+        const row = parseInt(position[0]);
+        const column = parseInt(position[1]);
         let observedTile = [row,column];
         let neighbourTiles = [];
 
