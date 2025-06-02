@@ -54,6 +54,8 @@ export class Tile
         let pNode = document.createTextNode(textNode);
         p.classList.add(classTile);
         p.classList.add(classRevealed);
+
+        /* Code snippet taken from ChatGPT*/
         p.tileInstance = this;
 
         switch (textNode)

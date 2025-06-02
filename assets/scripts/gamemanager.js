@@ -18,7 +18,8 @@ function createField()
     clearField();
     //Create interactable game field container
     createGameField();
-
+    
+    /* Code snippet taken and modified from ChatGPT*/
     const grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
     const mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
 
@@ -100,6 +101,9 @@ function revealTile(element, isGameOver = false)
     }
     
     const position = element.id.split("-");
+
+    
+    /* Code snippet and future occurrences taken and modified from ChatGPT*/
     let pElement = element.tileInstance.createTilePElement(element, gameField.PlayArea[position[0]][position[1]]);
     
     if (isGameOver)
@@ -303,12 +307,13 @@ function flagRemaining()
 /** Replace with bootstrap toast */
 function endGame(message)
 {
-    let p = document.createElement("p");
-    let pNode = document.createTextNode(message);
-    p.id = "end-game-message";
-    p.appendChild(pNode);
-
-    document.getElementById("game-footer").appendChild(p);
+    let toast = document.getElementById("endGame-toast-body");
+    toast.innerHTML = message;
+    
+    /* Code snippet taken from ChatGTP*/
+    const toastEl = document.getElementById("endGame-toast");
+    toast = new bootstrap.Toast(toastEl);
+    toast.show();
 }
 
 /** Remove generated field */

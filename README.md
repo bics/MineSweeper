@@ -15,3 +15,7 @@ game-face: https://pixabay.com/vectors/smile-emoji-happy-happiness-5840910/
 win-face: https://pixabay.com/vectors/smile-emoji-happy-happiness-5865208/
 
 lose-face: https://pixabay.com/vectors/smile-emoji-sad-sullen-sad-face-5872116/
+
+Code snippet:
+Toast snippet from official Bootstrap docs
+Multiple js from ChatGPT
