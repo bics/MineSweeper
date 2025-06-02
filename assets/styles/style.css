@@ -46,9 +46,14 @@ hr {
     width: 100%;
 }
 
+.game-content-container {
+
+}
+
 #game-area {
     min-width: 100%;
     border: 2px solid var(--silver);
+    padding: 0 var(--divider);
 }
 
 #game-header {
