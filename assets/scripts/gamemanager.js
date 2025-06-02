@@ -13,9 +13,6 @@ playButton.addEventListener("click", createField);
 const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", createField);
 
-const reSelectButton = document.getElementById("re-select-button");
-reSelectButton.addEventListener("click", switchMainContent);
-
 function createField()
 {
 
@@ -47,8 +44,6 @@ function createField()
     }
 
     document.getElementById("flagbox").checked = false;
-    document.getElementById("game-setup").style.display = "none";
-    document.getElementById("game-area-container").style.display = "block";
 }
 
 /** Create container row for playfield */
@@ -344,10 +339,4 @@ function clearField()
 function updateRemaining()
 {
     document.getElementById("remaining").innerHTML = parseInt(gameField.Mines - gameField.FlaggedCount);
-}
-
-function switchMainContent()
-{
-    document.getElementById("game-setup").style.display = "block";
-    document.getElementById("game-area-container").style.display = "none";
 }

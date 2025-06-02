@@ -37,75 +37,87 @@
         </div>
     </header>
     <main>
-        <div class="text-center content-container divider" id="game-setup">
-            <h2 class="text-center text-decoration-underline">Let's play</h2>
-            <div>
-                <section class="divider" id="grid-section">
-                    <p>Grid size</p>
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-small" value="10*10" checked>
-                            <label for="grid-small">Small: 10*10</label>
-                        </div>
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-medium" value="15*15">
-                            <label for="grid-medium">Medium: 15*15</label>
-                        </div>
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-large" value="25*25">
-                            <label for="grid-large">Large: 25*25</label>
-                        </div>
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-xlarge" value="40*40">
-                            <label for="grid-xlarge">XLarge: 40*40</label>
-                        </div>
-                    </div>
-                </section>
+        <div class="carousel slide content-container" data-bs-interval="false" id="main-carousel">
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="text-center content-container divider" id="game-setup">
+                        <h2 class="text-center text-decoration-underline">Let's play</h2>
+                        <div>
+                            <section class="divider" id="grid-section">
+                                <p>Grid size</p>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-small" value="10*10" checked>
+                                        <label for="grid-small">Small: 10*10</label>
+                                    </div>
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-medium" value="15*15">
+                                        <label for="grid-medium">Medium: 15*15</label>
+                                    </div>
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-large" value="25*25">
+                                        <label for="grid-large">Large: 25*25</label>
+                                    </div>
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-xlarge" value="40*40">
+                                        <label for="grid-xlarge">XLarge: 40*40</label>
+                                    </div>
+                                </div>
+                            </section>
             
-                <section class="divider" id="mine-section">
-                    <p>Mine count</p>
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="mine-count-selector" id="easy" value="0.1" checked>
-                            <label for="easy">Easy</label>
+                            <section class="divider" id="mine-section">
+                                <p>Mine count</p>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="easy" value="0.1" checked>
+                                        <label for="easy">Easy</label>
+                                    </div>
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="normal" value="0.15">
+                                        <label for="normal">Normal</label>
+                                    </div>
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="hard" value="0.20">
+                                        <label for="hard">Hard</label>
+                                    </div>
+                                    <div class="col-12 col-lg-2 col-xl-1">
+                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="extreme" value="0.25">
+                                        <label for="extreme">Extreme</label>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="mine-count-selector" id="normal" value="0.15">
-                            <label for="normal">Normal</label>
-                        </div>
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="mine-count-selector" id="hard" value="0.20">
-                            <label for="hard">Hard</label>
-                        </div>
-                        <div class="col-12 col-lg-2 col-xl-1">
-                            <input class="form-check-input" type="radio" name="mine-count-selector" id="extreme" value="0.25">
-                            <label for="extreme">Extreme</label>
+                        <button class="btn btn-outline-secondary divider" data-bs-slide="next" data-bs-target="#main-carousel" id="playButton">Play</button><br>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="game-content-container divider" id="game-area-container">
+                        <div id="game-area">
+                            <div class="row d-flex justify-content-center" id="game-header">
+                                <p class="col-3 text-center" id="remaining">Remaining</p>
+                                <p class="col-3 text-center"><button id="reset-button" class="btn"></button></p>
+                                <p class="col-3 text-center">(?)</p>
+                            </div>
+                            <div class="d-flex justify-content-center divider" id="game-main">
+                            </div>
+                            <div class="d-flex justify-content-center gap-2 divider" id="game-footer">
+                                <label for="flagbox">Flag</label>
+                                <input type="checkbox" name="flagbox" id="flagbox">
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-outline-secondary justify-content-center" data-bs-slide="prev" data-bs-target="#main-carousel" id="re-select-button">Reselect</button>
+                            </div>
+                            <br>
                         </div>
                     </div>
-                </section>
+                </div>
+            
             </div>
-            <button class="btn btn-outline-secondary divider" id="playButton">Play</button><br>
         </div>
     
-        <div class="game-content-container divider" id="game-area-container">
-            <div id="game-area">
-                <div class="row d-flex justify-content-center" id="game-header">
-                    <p class="col-3 text-center" id="remaining">Remaining</p>
-                    <p class="col-3 text-center"><button id="reset-button" class="btn"></button></p>                    
-                    <p class="col-3 text-center">(?)</p>
-                </div>
-                <div class="d-flex justify-content-center divider" id="game-main">
-                </div>
-                <div class="d-flex justify-content-center gap-2 divider" id="game-footer">
-                    <label for="flagbox">Flag</label>
-                    <input type="checkbox" name="flagbox" id="flagbox">
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-outline-secondary justify-content-center" id="re-select-button">Reselect</button>
-                </div>
-                <br>
-            </div>
-        </div>
+        
     </main>
 
     <!-- Toast (alert) for endgame message 
