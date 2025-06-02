@@ -10,8 +10,8 @@ export class Tile
 {
     constructor(row, column)
     {
-        this.row = row;
-        this.column = column;
+        this.Row = row;
+        this.Column = column;
         this.Tile = row + "-" + column;
     }
 
@@ -29,7 +29,7 @@ export class Tile
 
         button.appendChild(buttonNode);
 
-        document.getElementById("game-row-" + this.row).appendChild(button);
+        document.getElementById("game-row-" + this.Row).appendChild(button);
 
     }
 
@@ -58,10 +58,13 @@ export class Tile
 
         switch (textNode)
         {
-            case "x": p.classList.add(classTileMine);
+            case "x":                
+                p.classList.add(classTileMine);
+                break;            
+            case " ":
                 break;
-            case " ": break;
-            default: p.classList.add(classHint+ "-" + textNode);
+            default:
+                p.classList.add(classHint + "-" + textNode);
                 p.appendChild(pNode);
                 break;
         }
