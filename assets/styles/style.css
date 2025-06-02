@@ -47,7 +47,6 @@ hr {
 }
 
 #game-area {
-    min-width: 100%;
     border: 2px solid var(--silver);
     padding: 0 var(--divider);
 }
