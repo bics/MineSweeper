@@ -1,10 +1,14 @@
-let dimensionRow;
-let dimensionColumn;
+import { Tile } from './tile.js';
+import { GameField } from './gamefield.js'
 
-let playArea = [];
-let mines;
-let revealedCount;
-let flaggedCount;
+let gameField;
+const classFlagged = "flagged";
+const classTileButton = "tile-button";
+const classRevealed = "revealed";
+const classHover = "tile-hover";
+
+const playButton = document.getElementById("playButton");
+playButton.addEventListener("click", createField);
 
 function createField()
 {
@@ -15,86 +19,27 @@ function createField()
     //Create interactable game field container
     createGameField();
 
-    let gridSelectors = document.getElementsByName("grid-selector");
+    const grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
+    const mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
 
-    for (let i = 0; i < gridSelectors.length; i++)
-    {
-        if (gridSelectors[i].checked)
-        {
-            let grid = gridSelectors[i].value.split("*");
-            dimensionRow = grid[0];
-            dimensionColumn = grid[1];
-        }
-    }
-
-    //Fill playarea variable
-    for (let i = 0; i < dimensionRow; i++)
-    {
-        let row = [];
-        for (let j = 0; j < dimensionColumn; j++)
-        {
-            row[j] = "-1";
-        }
-        playArea.push(row);
-    }
-
-    let mineSelectors = document.getElementsByName("mine-count-selector");
-
-    for (let i = 0; i < mineSelectors.length; i++)
-    {
-        if (mineSelectors[i].checked)
-        {
-            //Place mines and create hints
-            placeMines(parseInt(dimensionRow * dimensionColumn * mineSelectors[i].value));
-        }
-    }
+    gameField = new GameField(grid[0], grid[1], mines);
     
-    document.getElementById("remaining").innerHTML = parseInt(mines);
+    updateRemaining();
 
-    for (let i = 0; i < dimensionRow; i++)
-    {
-        for (let j = 0; j < dimensionColumn; j++)
-        {
-            placeHints(i, j);
-        }
-    }
+    console.log(gameField.PlayArea);
 
     // Create actual game field
-    for (let i = 0; i < dimensionRow; i++)
+    for (let i = 0; i < gameField.DimensionRow; i++)
     {
         createTileRow(i);
-        for (let j = 0; j < dimensionColumn; j++)
+        for (let j = 0; j < gameField.DimensionColumn; j++)
         {
-            createTile(i, j);
+            let tile = new Tile(i,j);
+            tile.createTile();
         }
     }
 
-    revealedCount = 0;
-    flaggedCount = 0;
     document.getElementById("flagbox").checked = false;
-
-    console.log(playArea);
-}
-
-/**Creating tiles for game area
- * p element as a background, button on face
- */
-function createTile(rowNumber, column)
-{
-
-    let button = document.createElement("button");
-    let buttonNode = document.createTextNode(" ");
-    let onclickNode = document.createAttribute("onclick");
-    onclickNode.value = "tileClick(this)";
-    button.classList.add("tile");
-    button.classList.add("tile-button");
-    button.setAttributeNode(onclickNode);
-    button.id = rowNumber + "-" + column;
-
-    button.appendChild(buttonNode);
-
-    document.getElementById("game-row-" + rowNumber).appendChild(button);
-
 }
 
 /** Create container row for playfield */
@@ -114,6 +59,7 @@ function createGameField()
 {
     let div = document.createElement("div");
     div.id = "game-field";
+    div.addEventListener("click", tileClick);
 
     document.getElementById("game-main").appendChild(div);
 }
@@ -122,12 +68,18 @@ function createGameField()
 /** Left mouse click to interact with the game area
  * Radio button to enable flagging, otherwise reveal tiles
  */
-function tileClick(element)
+function tileClick(event)
 {
-
+    let element = event.target;
     if (document.getElementById("flagbox").checked)
     {
-        flagTile(element);
+        if (gameField.hasFlags() && element.classList.contains(classTileButton) || element.classList.contains(classFlagged))
+        {
+            const flagCount = element.tileInstance.flagTile(element);
+            gameField.FlaggedCount += flagCount;
+            updateRemaining();
+            return;
+        }
     }
     else
     {
@@ -135,523 +87,196 @@ function tileClick(element)
     }
 }
 
-/** Reveal tiles neighbouring hints if there are as many flags as current hints */
-function hintClick(element)
-{
-    let position = element?.id?.split('-');
-    let row = parseInt(position[0]);
-    let column = parseInt(position[1]);
-    let hintCount = playArea[row][column];
-    let flaggedTilesCount = 0;
-
-    let currentTile = [row, column];
-    let observedTile = currentTile;
-
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.contains("flagged"))
-    {
-        flaggedTilesCount += 1;
-    }
-    if (flaggedTilesCount == hintCount)
-    {
-        revealNeighbourTiles(element);
-        return;
-    }
-
-
-}
-
-/* When pointing at hints, hover neighbour tiles*/
-function hoverTiles(element) 
-{
-    let position = element.id.split("-");
-    let observedTile = [parseInt(position[0]),parseInt(position[1])];
-
-    //N
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-    //NE
-    lookRight(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-    //E
-    lookDown(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-    //SE
-    lookDown(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-    //S
-    lookLeft(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-    //SW
-    lookLeft(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-    //W
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-    //NW
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.add("tile-hover");
-    }
-
-}
-
-function deHoverTiles(element)
-{
-    let position = element.id.split("-");
-    let observedTile = [parseInt(position[0]),parseInt(position[1])];
-
-    //N
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //NE
-    lookRight(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //E
-    lookDown(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //SE
-    lookDown(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //S
-    lookLeft(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //SW
-    lookLeft(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //W
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-    //NW
-    lookUp(observedTile)
-    if (isInBounds(observedTile) && !isFlagged(observedTile) && !isRevealed(observedTile))
-    {
-        document.getElementById(observedTile[0] + "-" + observedTile[1]).classList.remove("tile-hover");
-    }
-
-}
-
-function isFlagged(position)
-{
-    return document.getElementById(position[0] + "-" + position[1]).classList.contains("flagged");
-}
-
-function isRevealed(position)
-{
-    return document.getElementById(position[0] + "-" + position[1]).classList.contains("revealed");
-}
-
 /** Replace interactive tile with non-iteractable */
 function revealTile(element, isGameOver = false)
 {
-    if (element?.classList.contains("revealed"))
+    if (element?.classList.contains(classRevealed))
     {
         return;
     }
-    if (element?.classList.contains("flagged") && !isGameOver)
+    if (element?.classList.contains(classFlagged) && !isGameOver)
     {
         return;
     }
-    let position = element?.id?.split('-');
-    let row = parseInt(position[0]);
-    let column = parseInt(position[1]);
-
-    let p = createPElement(row, column);
-
+    
+    const position = element.id.split("-");
+    let pElement = element.tileInstance.createTilePElement(element, gameField.PlayArea[position[0]][position[1]]);
+    
     if (isGameOver)
     {
-        if (!isNotMine(row, column))
+        if (!isNotMine(position))
         {
-            if (element?.classList.contains("flagged"))
+            if (element?.classList.contains(classFlagged))
             {
-                addCorrectFlag(p);
+                pElement.tileInstance.addToClassList(pElement, "hit-correct");
             }
         }
-        element.replaceWith(p);
         return;
     }
 
-    switch (playArea[row][column])
+    switch (gameField.PlayArea[position[0]][position[1]])
     {
         case "x":
-            addHit(p);
-            element.replaceWith(p);
-            gameOver();
+            pElement.tileInstance.addToClassList(pElement, "hit");
+            isGameEnded(true);
             break;
         case " ":
-            element.replaceWith(p);
-            revealEmptyTiles(row, column);
+            revealEmptyTiles(element);
             break;
         default:
-            element.replaceWith(p);
             break;
     }
 
-    revealedCount += 1;
+    pElement.addEventListener("mouseover", hoverTiles);
+    pElement.addEventListener("mouseleave", deHoverTiles);
+    pElement.addEventListener("click", hintClick);
+    gameField.RevealedCount += 1;
     isGameEnded();
 
 }
 
+/** Reveal tiles neighbouring hints if there are as many flags as current hints */
+function hintClick()
+{
+    const element = event.target;
+    const position = element?.id?.split('-');
+    const row = parseInt(position[0]);
+    const column = parseInt(position[1]);
+    const hintCount = gameField.PlayArea[row][column];
+    let flaggedTilesCount = 0;
+
+    const neighbourTiles = gameField.getNeighbourTiles(position);
+
+    for (let i = 0; i < neighbourTiles.length; i++)
+    {
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        if (neighbourTile.classList.contains(classFlagged))
+        {
+            flaggedTilesCount += 1;
+        }
+    }
+    
+    if (flaggedTilesCount >= hintCount)
+    {
+        revealNeighbourTiles(element);
+    }
+}
+
+/** When pointing at hints, hover neighbour tiles */
+function hoverTiles() 
+{
+    const element = event.target;
+    let position = element.id.split("-");
+    
+    const neighbourTiles = gameField.getNeighbourTiles(position);
+
+    for (let i = 0; i < neighbourTiles.length; i++)
+    {
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        let neighbourPosition = neighbourTile.id.split("-");
+        position = [parseInt(neighbourPosition[0]), parseInt(neighbourPosition[1])];
+        if (!isFlagged(position) && !isRevealed(position))
+        {
+            neighbourTile.tileInstance.addToClassList(neighbourTile, classHover);
+        }
+    }
+}
+
+/** Remove hover effect from tiles */
+function deHoverTiles()
+{
+    const element = event.target;
+    let position = element.id.split("-");
+    
+    const neighbourTiles = gameField.getNeighbourTiles(position);
+
+    for (let i = 0; i < neighbourTiles.length; i++)
+    {
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        let neighbourPosition = neighbourTile.id.split("-");
+        position = [parseInt(neighbourPosition[0]), parseInt(neighbourPosition[1])];
+        if (!isFlagged(position) && !isRevealed(position))
+        {
+            neighbourTile.tileInstance.removeFromClassList(neighbourTile, classHover);
+        }
+    }
+}
+
+function isFlagged(position)
+{
+    return document.getElementById(position[0] + "-" + position[1]).classList.contains(classFlagged);
+}
+
+function isRevealed(position)
+{
+    return document.getElementById(position[0] + "-" + position[1]).classList.contains(classRevealed);
+}
+
+/** Reveal all neighbouring tiles */
 function revealNeighbourTiles(element)
 {
-    let position = element?.id?.split('-');
-    let row = parseInt(position[0]);
-    let column = parseInt(position[1]);
+    const position = element?.id?.split('-');
 
-    let currentTile = [row, column];
-    let observedTile = currentTile;
+    const neighbourTiles = gameField.getNeighbourTiles(position);
 
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile))
+    for (let i = 0; i < neighbourTiles.length; i++)
     {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        revealTile(neighbourTile);
     }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
 }
 
 /** Reveal all tiles when game finished or stepped on mine */
 function revealAll()
 {
-    for (let row = 0; row < playArea.length; row++)
+    for (let row = 0; row < gameField.PlayArea.length; row++)
     {
-        for (let column = 0; column < playArea[0].length; column++)
+        for (let column = 0; column < gameField.PlayArea[0].length; column++)
         {
-            let element = document.getElementById(row + "-" + column);
+            const element = document.getElementById(row + "-" + column);
             revealTile(element, true);
         }
     }
 }
 
-function createPElement(row, column)
-{
-    let p = document.createElement("p");
-    p.id = row + "-" + column;
-    let pNode = document.createTextNode(playArea[row][column]);
-    p.appendChild(pNode);
-    p.classList.add("tile");
-    p.classList.add("revealed");
-
-    if (isNotMine(row, column) && playArea[row][column] != " ")
-    {
-        p.classList.add("hint-" + playArea[row][column]);
-        let onMouseOver = document.createAttribute("onmouseover");
-        onMouseOver.value = "hoverTiles(this)";
-        p.setAttributeNode(onMouseOver);
-        let onMouseLeave = document.createAttribute("onmouseleave");
-        onMouseLeave.value = "deHoverTiles(this)";
-        p.setAttributeNode(onMouseLeave);
-    }
-
-    if (!isNotMine(row, column))
-    {
-        p.innerHTML = "";
-        p.classList.add("tile-mine");
-    }
-
-    let onclickNode = document.createAttribute("onclick");
-    onclickNode.value = "hintClick(this)";
-    p.setAttributeNode(onclickNode);
-
-    return p;
-
-}
-
-function addHit(element)
-{
-    if (element)
-    {
-        element.classList.add("hit");
-    }
-}
-
-function addCorrectFlag(element)
-{
-    if (element)
-    {
-        element.classList.add("hit-correct");
-    }
-}
-
 /** Cycle through all neighbour tiles, and reveal recursively
- * Current limit with 2 mines is 62*62 with occasional overflow
+ * Current limit with 2 mines is 67*67 with occasional overflow
  */
-function revealEmptyTiles(row, column)
+function revealEmptyTiles(element)
 {
-    let currentTile = [row, column];
-    let observedTile = currentTile;
+    const position = element?.id?.split('-');
 
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
+    const neighbourTiles = gameField.getNeighbourTiles(position);
+
+    for (let i = 0; i < neighbourTiles.length; i++)
     {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
+        const neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        revealTile(neighbourTile);
     }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && isNotMine(observedTile[0], observedTile[1]))
-    {
-        revealTile(document.getElementById(observedTile[0] + "-" + observedTile[1]));
-    }
-
-
 }
 
-function isNotMine(row, column)
+function isNotMine(position)
 {
-    return playArea[row][column] != "x";
+    return gameField.PlayArea[position[0]][position[1]] != "x";
 }
 
-function gameOver()
+function isGameEnded(hitMine = false) 
 {
-    revealAll();
-    document.getElementById("reset-button").style.backgroundImage = "url('assets/images/lose-face.png')";
-    endGame("You lost!");
-}
+    if (hitMine)
+    {
+        endGame("You lost!");
+        revealAll();
+        document.getElementById("reset-button").style.backgroundImage = "url('assets/images/lose-face.png')";
+        return true;
+    }
 
-function isGameEnded() 
-{
-    let dimension = playArea[0].length * playArea.length;
-    if (dimension == revealedCount + mines)
+    const dimension = gameField.PlayArea[0].length * gameField.PlayArea.length;
+    if (dimension == gameField.RevealedCount + gameField.Mines)
     {
         endGame("You won!");
+        flagRemaining();
         revealAll();
         document.getElementById("reset-button").style.backgroundImage = "url('assets/images/win-face.png')";
-        flagRemaining();
         return true;
     }
 
@@ -660,18 +285,20 @@ function isGameEnded()
 
 function flagRemaining()
 {
-    for (let row = 0; row < playArea.length; row++)
+    for (let row = 0; row < gameField.PlayArea.length; row++)
     {
-        for (let column = 0; column < playArea[0].length; column++)
+        for (let column = 0; column < gameField.PlayArea[0].length; column++)
         {
-            if (!document.getElementById(row + "-" + column).classList.contains("flagged") && !document.getElementById(row + "-" + column).classList.contains("revealed"))
+            let element = document.getElementById(row + "-" + column);
+            if (!element.classList.contains(classFlagged) && !element.classList.contains(classRevealed))
             {
-                flagTile(document.getElementById(row + "-" + column));
+                element.classList.add(classFlagged);
             }
         }
     }
 }
 
+/** Replace with bootstrap toast */
 function endGame(message)
 {
     let p = document.createElement("p");
@@ -680,50 +307,6 @@ function endGame(message)
     p.appendChild(pNode);
 
     document.getElementById("game-footer").appendChild(p);
-}
-
-/** Place mines in tiles where there are no mines present already */
-function placeMines(mineCount)
-{
-    mines = mineCount;
-    if (playArea)
-    {
-        for (let i = 0; i < mineCount; i++)
-        {
-            let notPlaced = true;
-            while (notPlaced)
-            {
-                let randomRow = parseInt(Math.random() * (playArea.length));
-                let randomColumn = parseInt(Math.random() * (playArea[0].length));
-                if (playArea[randomRow][randomColumn] < 0) 
-                {
-                    playArea[randomRow][randomColumn] = "x";
-                    notPlaced = false
-                }
-            }
-        }
-
-    }
-
-}
-
-/** Place hints on tiles with no mines */
-function placeHints(row, column)
-{
-    if (playArea[row][column] == "x")
-    {
-        return;
-    }
-
-    let hint = lookAround(row, column);
-    if (hint == 0)
-    {
-        playArea[row][column] = " ";
-    }
-    else
-    {
-        playArea[row][column] = hint;
-    }
 }
 
 /** Remove generated field */
@@ -741,151 +324,9 @@ function clearField()
     }
     
     document.getElementById("reset-button").style.backgroundImage = "url('assets/images/game-face.png')";
-
-    playArea = [];
-}
-
-/** Place or remove flag from element */
-function flagTile(element)
-{
-    if (element.classList.contains("flagged"))
-    {
-        element.innerHTML = "";
-        element.classList.remove("flagged");
-        flaggedCount--;
-        updateRemaining();
-        return;
-    }
-
-    if (hasFlags())
-    {
-        flaggedCount++;
-        element.classList.add("flagged");
-        updateRemaining();
-    }
 }
 
 function updateRemaining()
 {
-    document.getElementById("remaining").innerHTML = parseInt(mines - flaggedCount);
+    document.getElementById("remaining").innerHTML = parseInt(gameField.Mines - gameField.FlaggedCount);
 }
-
-function hasFlags()
-{
-    return (mines - flaggedCount) > 0;
-}
-
-/** Return mine count around tile */
-function lookAround(row, column)
-{
-    let currentTile = [row, column];
-    let observedTile = currentTile;
-    let hintCount = 0;
-
-    /* Look around clockwise relative from position*/
-    //N
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //NE
-    lookRight(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //E
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //SE
-    lookDown(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //S
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //SW
-    lookLeft(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //W
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    //NW
-    lookUp(observedTile);
-    if (isInBounds(observedTile) && playArea[observedTile[0]][observedTile[1]] == "x")
-    {
-        hintCount += 1;
-    }
-
-    return hintCount;
-
-}
-
-function isInBounds(observedTile)
-{
-    if (observedTile[0] < 0)
-    {
-        return false;
-    }
-    if (observedTile[0] > playArea.length - 1)
-    {
-        return false;
-    }
-    if (observedTile[1] > playArea[0].length - 1)
-    {
-        return false;
-    }
-    if (observedTile[1] < 0)
-    {
-        return false;
-    }
-    return true;
-}
-
-
-function lookUp(observedTile)
-{
-    observedTile[0] = observedTile[0] - 1;
-}
-
-function lookDown(observedTile)
-{
-    observedTile[0] = observedTile[0] + 1;
-
-}
-
-function lookLeft(observedTile)
-{
-    observedTile[1] = observedTile[1] - 1;
-}
-
-function lookRight(observedTile)
-{
-    observedTile[1] = observedTile[1] + 1;
-}
-
-
-
-

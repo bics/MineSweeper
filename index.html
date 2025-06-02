@@ -84,14 +84,14 @@
                     </div>
                 </section>
             </div>
-            <button class="btn btn-outline-secondary divider" onclick="createField()">Play</button><br>
+            <button class="btn btn-outline-secondary divider" id="playButton">Play</button><br>
         </div>
     
         <div class="content-container divider">
             <div id="game-area">
                 <div class="row d-flex justify-content-center" id="game-header">
                     <p class="col-3 text-center" id="remaining">Remaining</p>
-                    <p class="col-3 text-center"><button id="reset-button" class="btn" onclick="createField()"></button></p>                    
+                    <p class="col-3 text-center"><button id="reset-button" class="btn"></button></p>                    
                     <p class="col-3 text-center">(?)</p>
                 </div>
                 <div class="d-flex justify-content-center divider" id="game-main">
@@ -105,6 +105,6 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-    <script src="assets/scripts/gamemanager.js"></script>
+    <script type="module" src="assets/scripts/gamemanager.js"></script>
 </body>
 </html>
