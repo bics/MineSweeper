@@ -127,9 +127,9 @@ function revealTile(element, isGameOver = false)
             break;
     }
 
-    document.getElementById(element.id).addEventListener("mouseover", hoverTiles);
-    document.getElementById(element.id).addEventListener("mouseleave", deHoverTiles);
-    document.getElementById(element.id).addEventListener("click", hintClick);
+    pElement.addEventListener("mouseover", hoverTiles);
+    pElement.addEventListener("mouseleave", deHoverTiles);
+    pElement.addEventListener("click", hintClick);
     gameField.RevealedCount += 1;
     isGameEnded();
 
@@ -289,9 +289,10 @@ function flagRemaining()
     {
         for (let column = 0; column < gameField.PlayArea[0].length; column++)
         {
-            if (!document.getElementById(row + "-" + column).classList.contains(classFlagged) && !document.getElementById(row + "-" + column).classList.contains(classRevealed))
+            let element = document.getElementById(row + "-" + column);
+            if (!element.classList.contains(classFlagged) && !element.classList.contains(classRevealed))
             {
-                document.getElementById(row + "-" + column).classList.add(classFlagged);
+                element.classList.add(classFlagged);
             }
         }
     }
