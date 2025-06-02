@@ -1,3 +1,11 @@
+const emptyNode = " ";
+const classFlagged = "flagged";
+const classTile = "tile";
+const classTileButton = "tile-button";
+const classRevealed = "revealed";
+const classTileMine = "tile-mine"
+const classHint = "hint";
+
 export class Tile
 {
     constructor(row, column)
@@ -5,7 +13,6 @@ export class Tile
         this.row = row;
         this.column = column;
         this.Tile = row + "-" + column;
-        this.instance = this;
     }
 
     /**Creating tiles for game area
@@ -14,9 +21,9 @@ export class Tile
     createTile()
     {
         let button = document.createElement("button");
-        let buttonNode = document.createTextNode(" ");
-        button.classList.add("tile");
-        button.classList.add("tile-button");
+        let buttonNode = document.createTextNode(emptyNode);
+        button.classList.add(classTile);
+        button.classList.add(classTileButton);
         button.id = this.Tile;
         button.tileInstance = this;
 
@@ -29,13 +36,13 @@ export class Tile
     /** Place or remove flag from element */
     flagTile(element)
     {
-        if (element.classList.contains("flagged"))
+        if (element.classList.contains(classFlagged))
         {
-            element.innerHTML = "";
-            element.classList.remove("flagged");
+            element.innerHTML = emptyNode;
+            element.classList.remove(classFlagged);
             return -1;
         }
-        element.classList.add("flagged");
+        element.classList.add(classFlagged);
         return +1;
     }
 
@@ -45,16 +52,16 @@ export class Tile
         let p = document.createElement("p");
         p.id = element.id;
         let pNode = document.createTextNode(textNode);
-        p.classList.add("tile");
-        p.classList.add("revealed");
+        p.classList.add(classTile);
+        p.classList.add(classRevealed);
         p.tileInstance = this;
 
         switch (textNode)
         {
-            case "x": p.classList.add("tile-mine");
+            case "x": p.classList.add(classTileMine);
                 break;
             case " ": break;
-            default: p.classList.add("hint-" + textNode);
+            default: p.classList.add(classHint+ "-" + textNode);
                 p.appendChild(pNode);
                 break;
         }
