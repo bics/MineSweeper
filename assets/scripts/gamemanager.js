@@ -114,11 +114,13 @@ function revealTile(element, isGameOver = false)
         return;
     }
 
+    let isGameLost = false;
+
     switch (gameField.PlayArea[position[0]][position[1]])
     {
         case "x":
             pElement.tileInstance.addToClassList(pElement, "hit");
-            isGameEnded(true);
+            isGameLost = true;
             break;
         case " ":
             revealEmptyTiles(element);
@@ -131,7 +133,7 @@ function revealTile(element, isGameOver = false)
     pElement.addEventListener("mouseleave", deHoverTiles);
     pElement.addEventListener("click", hintClick);
     gameField.RevealedCount += 1;
-    isGameEnded();
+    isGameEnded(isGameLost);
 
 }
 
