@@ -2,6 +2,10 @@ import { Tile } from './tile.js';
 import { GameField } from './gamefield.js'
 
 let gameField;
+const classFlagged = "flagged";
+const classTileButton = "tile-button";
+const classRevealed = "revealed";
+const classHover = "tile-hover";
 
 const playButton = document.getElementById("playButton");
 playButton.addEventListener("click", createField);
@@ -15,8 +19,8 @@ function createField()
     //Create interactable game field container
     createGameField();
 
-    let grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
-    let mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
+    const grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
+    const mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
 
     gameField = new GameField(grid[0], grid[1], mines);
     
@@ -69,9 +73,9 @@ function tileClick(event)
     let element = event.target;
     if (document.getElementById("flagbox").checked)
     {
-        if (gameField.hasFlags() && element.classList.contains("tile-button") || element.classList.contains("flagged"))
+        if (gameField.hasFlags() && element.classList.contains(classTileButton) || element.classList.contains(classFlagged))
         {
-            let flagCount = element.tileInstance.flagTile(element);
+            const flagCount = element.tileInstance.flagTile(element);
             gameField.FlaggedCount += flagCount;
             updateRemaining();
             return;
@@ -86,23 +90,23 @@ function tileClick(event)
 /** Replace interactive tile with non-iteractable */
 function revealTile(element, isGameOver = false)
 {
-    if (element?.classList.contains("revealed"))
+    if (element?.classList.contains(classRevealed))
     {
         return;
     }
-    if (element?.classList.contains("flagged") && !isGameOver)
+    if (element?.classList.contains(classFlagged) && !isGameOver)
     {
         return;
     }
     
-    let position = element.id.split("-");
+    const position = element.id.split("-");
     let pElement = element.tileInstance.createTilePElement(element, gameField.PlayArea[position[0]][position[1]]);
     
     if (isGameOver)
     {
         if (!isNotMine(position))
         {
-            if (element?.classList.contains("flagged"))
+            if (element?.classList.contains(classFlagged))
             {
                 pElement.tileInstance.addToClassList(pElement, "hit-correct");
             }
@@ -134,19 +138,19 @@ function revealTile(element, isGameOver = false)
 /** Reveal tiles neighbouring hints if there are as many flags as current hints */
 function hintClick()
 {
-    let element = event.target;
-    let position = element?.id?.split('-');
-    let row = parseInt(position[0]);
-    let column = parseInt(position[1]);
-    let hintCount = gameField.PlayArea[row][column];
+    const element = event.target;
+    const position = element?.id?.split('-');
+    const row = parseInt(position[0]);
+    const column = parseInt(position[1]);
+    const hintCount = gameField.PlayArea[row][column];
     let flaggedTilesCount = 0;
 
-    let neighbourTiles = gameField.getNeighbourTiles(position);
+    const neighbourTiles = gameField.getNeighbourTiles(position);
 
     for (let i = 0; i < neighbourTiles.length; i++)
     {
         let neighbourTile = document.getElementById(neighbourTiles[i][0]);
-        if (neighbourTile.classList.contains("flagged"))
+        if (neighbourTile.classList.contains(classFlagged))
         {
             flaggedTilesCount += 1;
         }
@@ -161,10 +165,10 @@ function hintClick()
 /** When pointing at hints, hover neighbour tiles */
 function hoverTiles() 
 {
-    let element = event.target;
+    const element = event.target;
     let position = element.id.split("-");
     
-    let neighbourTiles = gameField.getNeighbourTiles(position);
+    const neighbourTiles = gameField.getNeighbourTiles(position);
 
     for (let i = 0; i < neighbourTiles.length; i++)
     {
@@ -173,7 +177,7 @@ function hoverTiles()
         position = [parseInt(neighbourPosition[0]), parseInt(neighbourPosition[1])];
         if (!isFlagged(position) && !isRevealed(position))
         {
-            neighbourTile.tileInstance.addToClassList(neighbourTile, "tile-hover");
+            neighbourTile.tileInstance.addToClassList(neighbourTile, classHover);
         }
     }
 }
@@ -181,10 +185,10 @@ function hoverTiles()
 /** Remove hover effect from tiles */
 function deHoverTiles()
 {
-    let element = event.target;
+    const element = event.target;
     let position = element.id.split("-");
     
-    let neighbourTiles = gameField.getNeighbourTiles(position);
+    const neighbourTiles = gameField.getNeighbourTiles(position);
 
     for (let i = 0; i < neighbourTiles.length; i++)
     {
@@ -193,27 +197,27 @@ function deHoverTiles()
         position = [parseInt(neighbourPosition[0]), parseInt(neighbourPosition[1])];
         if (!isFlagged(position) && !isRevealed(position))
         {
-            neighbourTile.tileInstance.removeFromClassList(neighbourTile, "tile-hover");
+            neighbourTile.tileInstance.removeFromClassList(neighbourTile, classHover);
         }
     }
 }
 
 function isFlagged(position)
 {
-    return document.getElementById(position[0] + "-" + position[1]).classList.contains("flagged");
+    return document.getElementById(position[0] + "-" + position[1]).classList.contains(classFlagged);
 }
 
 function isRevealed(position)
 {
-    return document.getElementById(position[0] + "-" + position[1]).classList.contains("revealed");
+    return document.getElementById(position[0] + "-" + position[1]).classList.contains(classRevealed);
 }
 
 /** Reveal all neighbouring tiles */
 function revealNeighbourTiles(element)
 {
-    let position = element?.id?.split('-');
+    const position = element?.id?.split('-');
 
-    let neighbourTiles = gameField.getNeighbourTiles(position);
+    const neighbourTiles = gameField.getNeighbourTiles(position);
 
     for (let i = 0; i < neighbourTiles.length; i++)
     {
@@ -229,7 +233,7 @@ function revealAll()
     {
         for (let column = 0; column < gameField.PlayArea[0].length; column++)
         {
-            let element = document.getElementById(row + "-" + column);
+            const element = document.getElementById(row + "-" + column);
             revealTile(element, true);
         }
     }
@@ -240,13 +244,13 @@ function revealAll()
  */
 function revealEmptyTiles(element)
 {
-    let position = element?.id?.split('-');
+    const position = element?.id?.split('-');
 
-    let neighbourTiles = gameField.getNeighbourTiles(position);
+    const neighbourTiles = gameField.getNeighbourTiles(position);
 
     for (let i = 0; i < neighbourTiles.length; i++)
     {
-        let neighbourTile = document.getElementById(neighbourTiles[i][0]);
+        const neighbourTile = document.getElementById(neighbourTiles[i][0]);
         revealTile(neighbourTile);
     }
 }
@@ -266,7 +270,7 @@ function isGameEnded(hitMine = false)
         return true;
     }
 
-    let dimension = gameField.PlayArea[0].length * gameField.PlayArea.length;
+    const dimension = gameField.PlayArea[0].length * gameField.PlayArea.length;
     if (dimension == gameField.RevealedCount + gameField.Mines)
     {
         endGame("You won!");
@@ -285,9 +289,9 @@ function flagRemaining()
     {
         for (let column = 0; column < gameField.PlayArea[0].length; column++)
         {
-            if (!document.getElementById(row + "-" + column).classList.contains("flagged") && !document.getElementById(row + "-" + column).classList.contains("revealed"))
+            if (!document.getElementById(row + "-" + column).classList.contains(classFlagged) && !document.getElementById(row + "-" + column).classList.contains(classRevealed))
             {
-                document.getElementById(row + "-" + column).classList.add("flagged");
+                document.getElementById(row + "-" + column).classList.add(classFlagged);
             }
         }
     }
