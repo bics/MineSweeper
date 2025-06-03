@@ -77,6 +77,20 @@ hr {
     background-color: var(--dominant-background-color);
 }
 
+.modal-content{
+    background-color: var(--dominant-background-color);
+}
+
+.help-button {
+    padding: 0;
+    color: var(--text-color);
+}
+
+/* Code snippet taken from ChatGPT*/
+.btn-close {
+  filter: brightness(0) saturate(100%) invert(85%) sepia(0%) saturate(0%) hue-rotate(163deg) brightness(95%) contrast(92%);
+}
+
 #reset-button {
     height: 25px;
     width: 25px;

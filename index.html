@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,88 +8,112 @@
 
     <link rel="icon" href="assets/images/mine.png" sizes="16x16" type="image/x-icon">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
+
 <body>
     <header>
         <div class="text-center content-container divider">
             <h1 class=" text-decoration-underline color-silver">Minesweeper</h1>
+        </div>
+    </header>
+    <main>
+        <div class="text-center content-container divider">
+            <h2 class="color-silver">About</h2>
             <div class="text-container">
-                <p>Minesweeper is a logic puzzle video game genre generally played on personal computers. The game features a grid of clickable tiles, with hidden "mines"
-                    (depicted as naval mines in the original game) dispersed throughout the board. The objective is to clear the board without detonating any mines,
+                <p>Minesweeper is a logic puzzle video game genre generally played on personal computers. The game
+                    features a
+                    grid
+                    of clickable tiles, with hidden "mines"
+                    (depicted as naval mines in the original game) dispersed throughout the board. The objective is to
+                    clear the
+                    board without detonating any mines,
                     with help from clues about the number of neighboring mines in each field. </p>
-                <p>Variants of Minesweeper have been made that expand on the basic concepts, such as Minesweeper X, Crossmines, and Minehunt. Minesweeper has been incorporated as a minigame
-                     in other games, such as RuneScape and Minecraft's 2015 April Fools update. </p>
-                <p>The origin of Minesweeper is unclear. According to TechRadar, the first version of the game was 1990's Microsoft Minesweeper,
-                    but Eurogamer states Mined-Out (1983) by Ian Andrew was the first Minesweeper game. Curt Johnson, the creator of Microsoft Minesweeper,
-                    acknowledges that his game's design was borrowed from another game, but denies that it was Mined-Out.
-                    <a class="link-info" href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)">Wikipedia article</a> </p>
+                <p>Variants of Minesweeper have been made that expand on the basic concepts, such as Minesweeper X,
+                    Crossmines,
+                    and
+                    Minehunt. Minesweeper has been incorporated as a minigame
+                    in other games, such as RuneScape and Minecraft's 2015 April Fools update. </p>
+                <p>The origin of Minesweeper is unclear. According to TechRadar, the first version of the game was
+                    1990's
+                    Microsoft
+                    Minesweeper,
+                    but Eurogamer states Mined-Out (1983) by Ian Andrew was the first Minesweeper game. Curt Johnson,
+                    the
+                    creator of
+                    Microsoft Minesweeper,
+                    acknowledges that his game's design was borrowed from another game, but denies that it was
+                    Mined-Out.
+                    <a class="link-info" href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)">Wikipedia
+                        article</a>
+                </p>
             </div>
             <hr class="divider">
         </div>
 
-        <div class="text-center content-container divider">
-            <h2 class="text-decoration-underline color-silver">How to play</h2>
-            <div class="text-container">
-                <p>fill oout with rules</p>
-            </div>
-            <hr class="divider">
-        </div>
-    </header>
-    <main>
         <div class="carousel slide content-container" data-bs-interval="false" id="main-carousel">
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
                     <div class="text-center content-container divider" id="game-setup">
-                        <h2 class="text-center text-decoration-underline color-silver">Let's play</h2>
+                        <h2 class="text-center color-silver">Let's play</h2>
                         <div>
                             <section class="divider" id="grid-section">
                                 <p>Grid size</p>
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-small" value="10*10" checked>
+                                        <input class="form-check-input" type="radio" name="grid-selector"
+                                            id="grid-small" value="10*10" checked>
                                         <label for="grid-small">Small: 10*10</label>
                                     </div>
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-medium" value="15*15">
+                                        <input class="form-check-input" type="radio" name="grid-selector"
+                                            id="grid-medium" value="15*15">
                                         <label for="grid-medium">Medium: 15*15</label>
                                     </div>
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-large" value="25*25">
+                                        <input class="form-check-input" type="radio" name="grid-selector"
+                                            id="grid-large" value="25*25">
                                         <label for="grid-large">Large: 25*25</label>
                                     </div>
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="grid-selector" id="grid-xlarge" value="40*40">
+                                        <input class="form-check-input" type="radio" name="grid-selector"
+                                            id="grid-xlarge" value="40*40">
                                         <label for="grid-xlarge">XLarge: 40*40</label>
                                     </div>
                                 </div>
                             </section>
-            
+
                             <section class="divider" id="mine-section">
                                 <p>Mine count</p>
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="easy" value="0.1" checked>
+                                        <input class="form-check-input" type="radio" name="mine-count-selector"
+                                            id="easy" value="0.1" checked>
                                         <label for="easy">Easy</label>
                                     </div>
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="normal" value="0.15">
+                                        <input class="form-check-input" type="radio" name="mine-count-selector"
+                                            id="normal" value="0.15">
                                         <label for="normal">Normal</label>
                                     </div>
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="hard" value="0.20">
+                                        <input class="form-check-input" type="radio" name="mine-count-selector"
+                                            id="hard" value="0.20">
                                         <label for="hard">Hard</label>
                                     </div>
                                     <div class="col-12 col-lg-2 col-xl-1">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector" id="extreme" value="0.25">
+                                        <input class="form-check-input" type="radio" name="mine-count-selector"
+                                            id="extreme" value="0.25">
                                         <label for="extreme">Extreme</label>
                                     </div>
                                 </div>
                             </section>
                         </div>
-                        <button class="btn btn-secondary divider" data-bs-slide="next" data-bs-target="#main-carousel" id="playButton">Play</button><br>
+                        <button class="btn btn-secondary divider" data-bs-slide="next" data-bs-target="#main-carousel"
+                            id="playButton">Play</button><br>
                     </div>
                 </div>
 
@@ -98,7 +123,7 @@
                             <div class="row d-flex justify-content-center" id="game-header">
                                 <p class="col-3 text-center" id="remaining">Remaining</p>
                                 <p class="col-3 text-center"><button id="reset-button" class="btn"></button></p>
-                                <p class="col-3 text-center">(?)</p>
+                                <p class="col-3 text-center"><button class="btn help-button" data-bs-toggle="modal" data-bs-target="#howToModal">?</button><br></p>
                             </div>
                             <div class="d-flex justify-content-center divider" id="game-main">
                             </div>
@@ -107,18 +132,42 @@
                                 <input type="checkbox" name="flagbox" id="flagbox">
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button class="btn btn-secondary justify-content-center" data-bs-slide="prev" data-bs-target="#main-carousel" id="re-select-button">Reselect</button>
+                                <button class="btn btn-secondary justify-content-center" data-bs-slide="prev"
+                                    data-bs-target="#main-carousel" id="re-select-button">Reselect</button>
                             </div>
                             <br>
                         </div>
                     </div>
                 </div>
-            
+
             </div>
         </div>
-    
-        
+
+
     </main>
+    
+    <!-- Modal for how to
+        Code snippets taken from official Bootstrap docs
+    -->
+    <div class="modal fade" id="howToModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title color-silver">How to play</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+    
+                <div class="modal-body text-center content-container divider">
+                    <div class="text-container">
+                        <p>fill oout with rules</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Toast (alert) for endgame message 
         Code snippets taken from official Bootstrap docs
@@ -137,16 +186,23 @@
     <!-- Footer 
         Code block taken and modified from previous BestBarber project 
     -->
-    <footer class="nav justify-content-evenly border-top">        
-        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook homepage"><i class="fa-brands fa-facebook color-silver"></i></a>
-        <a href="https://www.x.com/" target="_blank" aria-label="X homepage"><i class="fa-solid fa-x color-silver"></i></a>
-        <a href="https://www.google.com/" target="_blank" aria-label="Google homepage"><i class="fa-brands fa-google color-silver"></i></a>
-        <a href="https://github.com/bics/" target="_blank" aria-label="Github homepage"><i class="fa-brands fa-github color-silver"></i></a>
-    </footer>   
+    <footer class="nav justify-content-evenly border-top">
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook homepage"><i
+                class="fa-brands fa-facebook color-silver"></i></a>
+        <a href="https://www.x.com/" target="_blank" aria-label="X homepage"><i
+                class="fa-solid fa-x color-silver"></i></a>
+        <a href="https://www.google.com/" target="_blank" aria-label="Google homepage"><i
+                class="fa-brands fa-google color-silver"></i></a>
+        <a href="https://github.com/bics/" target="_blank" aria-label="Github homepage"><i
+                class="fa-brands fa-github color-silver"></i></a>
+    </footer>
     <script src="https://kit.fontawesome.com/3b20d96fa9.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="assets/scripts/uiscripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
     <script type="module" src="assets/scripts/gamemanager.js"></script>
 </body>
+
 </html>
