@@ -21,3 +21,4 @@ tile-background: https://www.freepik.com/free-vector/decorative-premium-upholste
 Code snippet:
 Toast snippet from official Bootstrap docs
 Multiple js from ChatGPT
+Enums by stackoverflow: https://stackoverflow.com/questions/44447847/enums-in-javascript-with-es6
