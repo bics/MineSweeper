@@ -9,8 +9,14 @@
     --hint-8: gray;    
 
     --silver: #c0c0c0;
+    --dominant-background-color: #161616;
+    --text-color: #85C1D5;
 
     --divider: 1rem;
+}
+
+* {
+    color: var(--text-color);
 }
 
 /*Styles for page*/
@@ -31,6 +37,11 @@ main {
     width: 90%;
     justify-self: center;
     justify-items: center;
+}
+
+body{
+    background-color: lightslategray;
+    background-image: url("/assets/images/tile-background.jpg");
 }
 
 hr {
@@ -56,6 +67,14 @@ hr {
     justify-content: space-evenly;
 }
 
+.color-silver{
+    color: var(--silver);
+}
+
+.toast{
+    background-color: var(--dominant-background-color);
+}
+
 #reset-button {
     height: 25px;
     width: 25px;
@@ -63,6 +82,10 @@ hr {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+#main-carousel {
+    color: var(--text-color);
 }
 
 /*Styles for field*/

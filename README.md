@@ -16,6 +16,8 @@ win-face: https://pixabay.com/vectors/smile-emoji-happy-happiness-5865208/
 
 lose-face: https://pixabay.com/vectors/smile-emoji-sad-sullen-sad-face-5872116/
 
+tile-background: https://www.freepik.com/free-vector/decorative-premium-upholstery-sofa-pattern-dark-background-design_151611884.htm#fromView=search&page=2&position=23&uuid=ec661338-070e-4bf7-8d14-e9ad4dc0506c&query=dark+tile
+
 Code snippet:
 Toast snippet from official Bootstrap docs
 Multiple js from ChatGPT
