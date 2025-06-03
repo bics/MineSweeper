@@ -24,3 +24,4 @@ Multiple js from ChatGPT
 Enums by stackoverflow: https://stackoverflow.com/questions/44447847/enums-in-javascript-with-es6
 Modal: https://getbootstrap.com/docs/5.3/components/modal/
 Close button recolor from ChatGPT
+Tooltip code: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_bottom

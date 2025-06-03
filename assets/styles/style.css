@@ -86,6 +86,37 @@ hr {
     color: var(--text-color);
 }
 
+.pointer{    
+    cursor: pointer;
+}
+
+/* Code blocks taken and modified from W3schools*/
+.w3tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.w3tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--dominant-background-color);
+  color: var(--text-color);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.w3tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 /* Code snippet taken from ChatGPT*/
 .btn-close {
   filter: brightness(0) saturate(100%) invert(85%) sepia(0%) saturate(0%) hue-rotate(163deg) brightness(95%) contrast(92%);

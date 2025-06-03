@@ -6,6 +6,7 @@ const classFlagged = "flagged";
 const classTileButton = "tile-button";
 const classRevealed = "revealed";
 const classHover = "tile-hover";
+const tooltipNode = "<span class='tooltiptext'>Remaining mines</span>";
 
 const playButton = document.getElementById("playButton");
 playButton.addEventListener("click", createField);
@@ -338,5 +339,5 @@ function clearField()
 
 function updateRemaining()
 {
-    document.getElementById("remaining").innerHTML = parseInt(gameField.Mines - gameField.FlaggedCount);
+    document.getElementById("remaining").innerHTML = parseInt(gameField.Mines - gameField.FlaggedCount) + tooltipNode;
 }
