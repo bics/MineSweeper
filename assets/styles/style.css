@@ -113,6 +113,10 @@ hr {
     text-align: center;
 }
 
+.revealed{
+    border: 0.1px ridge #d0d0d0 ;
+}
+
 .tile-button:hover {    
     background-color: gray;
 }
