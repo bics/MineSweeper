@@ -126,6 +126,10 @@ hr {
   filter: brightness(0) saturate(100%) invert(85%) sepia(0%) saturate(0%) hue-rotate(163deg) brightness(95%) contrast(92%);
 }
 
+.flag-checkbox:checked{
+    background-image: url("../images/redflag.png");
+}
+
 #reset-button {
     height: 25px;
     width: 25px;
