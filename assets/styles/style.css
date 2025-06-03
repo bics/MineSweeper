@@ -115,6 +115,7 @@ hr {
 
 .revealed{
     border: 0.1px ridge #d0d0d0 ;
+    cursor: pointer;
 }
 
 .tile-button:hover {    
