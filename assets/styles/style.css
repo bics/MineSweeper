@@ -43,6 +43,7 @@ body{
     background-color: lightslategray;
     background-image: url("/assets/images/tile-background.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 hr {
