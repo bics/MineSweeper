@@ -62,6 +62,10 @@ hr {
 #game-area {
     border: 2px solid var(--silver);
     padding: 0 var(--divider);
+    
+    /*Code snippet taken and modifed from transparenttextures*/
+    background-color: #161616;
+    background-image: url("../images/bright-squares.png");
 }
 
 #game-header {
