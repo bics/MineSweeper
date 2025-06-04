@@ -18,9 +18,17 @@ describe("Tile tests", () =>
         {
             expect(() => new Tile()).toThrowError();
         })
-        test("Given incorrect", () =>
+        test("Given both incorrect", () =>
         {
             expect(() => new Tile("a","b")).toThrowError();
+        })
+        test("Given incorrect", () =>
+        {
+            expect(() => new Tile(1,"b")).toThrowError();
+        })
+        test("Given correct", () =>
+        {
+            expect(() => new Tile(1,1)).toBe(new Tile());
         })
     })
 

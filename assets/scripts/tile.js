@@ -1,4 +1,4 @@
-import { Helper } from "./helperfunctions";
+import { Helper } from "./helperfunctions.js";
 
 const emptyNode = " ";
 const classFlagged = "flagged";
