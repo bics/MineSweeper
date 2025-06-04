@@ -1,3 +1,5 @@
+import { Helper } from "./helperfunctions";
+
 const emptyNode = " ";
 const classFlagged = "flagged";
 const classTile = "tile";
@@ -5,12 +7,13 @@ const classTileButton = "tile-button";
 const classRevealed = "revealed";
 const classTileMine = "tile-mine"
 const classHint = "hint";
+const helper = new Helper();
 
 export class Tile
 {
     constructor(row, column)
     {
-        if (row == null || column == null)
+        if (helper.isNull(row,column) || helper.isNumber(row,column))
         {
             throw `Received null value(s): row:${row}, column:${column}`;
         }
