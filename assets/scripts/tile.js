@@ -10,6 +10,10 @@ export class Tile
 {
     constructor(row, column)
     {
+        if (row == null || column == null)
+        {
+            throw `Received null value(s): row:${row}, column:${column}`;
+        }
         this.Row = row;
         this.Column = column;
         this.Tile = row + "-" + column;
