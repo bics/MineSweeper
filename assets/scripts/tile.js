@@ -15,7 +15,7 @@ export class Tile
     {
         if (helper.isNull(row,column) || helper.isNumber(row,column))
         {
-            throw `Received null value(s): row:${row}, column:${column}`;
+            throw `Received incorrect value(s): row:${row}, column:${column}`;
         }
         this.Row = row;
         this.Column = column;
