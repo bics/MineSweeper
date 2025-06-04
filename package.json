@@ -1,0 +1,12 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0",
+    "vitest": "^3.2.1"
+  }
+}
