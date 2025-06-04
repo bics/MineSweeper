@@ -5,6 +5,8 @@ expect(value).toBe(expected);             // strict equality (===)
 expect(value).toEqual(expected);          // deep equality
 expect(value).not.toBe(expected);         // negation
 
+expect(value).toStrictEqual(expected); 
+
 // 🔹 Truthiness
 expect(value).toBeTruthy();
 expect(value).toBeFalsy();

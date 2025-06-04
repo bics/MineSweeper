@@ -28,17 +28,42 @@ describe("Tile tests", () =>
         })
         test("Given correct", () =>
         {
-            expect(() => new Tile(1,1)).toBe(new Tile());
+            expect(() => new Tile(1,1)).not.toThrowError();
         })
     })
 
     describe("Flag function tests", () =>
     {
-        test("flagging", () =>
+        test("Flagging tile", () =>
         {
             const tile = new Tile(0, 0);
             const button = document.createElement("button");
             const result = tile.flagTile(button);
+            expect(result).toBe(1);
+        })
+        test("Deflagging tile", () =>
+        {
+            const tile = new Tile(0, 0);
+            let button = document.createElement("button");
+            button.classList.add("flagged");
+            const result = tile.flagTile(button);
+            expect(result).toBe(-1);
+        })
+        test("Given null element", () =>
+        {
+            const tile = new Tile(0, 0);
+            expect(()=> tile.flagTile(null)).toThrowError();
+        })        
+        test("Given empty", () =>
+        {
+            const tile = new Tile(0, 0);
+            expect(()=> tile.flagTile("")).toThrowError();
+        })
+        test("Given any element", () =>
+        {
+            const tile = new Tile(0, 0);
+            const element = document.createElement("span");
+            const result = tile.flagTile(element);
             expect(result).toBe(1);
         })
     })
