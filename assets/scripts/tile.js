@@ -85,11 +85,19 @@ export class Tile
 
     addToClassList(element, classText)
     {
+        if (helper.isNull(classText))
+        {
+            throw `Received null value: classText:${classText}`;
+        }
         element.classList.add(classText);
     }
 
     removeFromClassList(element, classText)
     {
+        if (helper.isNull(classText))
+        {
+            throw `Received null value: classText:${classText}`;
+        }
         element.classList.remove(classText);
     }
 }

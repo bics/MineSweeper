@@ -34,16 +34,15 @@ describe("Tile tests", () =>
 
     describe("Flag function tests", () =>
     {
+        const tile = new Tile(0, 0);
         test("Flagging tile", () =>
         {
-            const tile = new Tile(0, 0);
             const button = document.createElement("button");
             const result = tile.flagTile(button);
             expect(result).toBe(1);
         })
         test("Deflagging tile", () =>
         {
-            const tile = new Tile(0, 0);
             let button = document.createElement("button");
             button.classList.add("flagged");
             const result = tile.flagTile(button);
@@ -51,20 +50,81 @@ describe("Tile tests", () =>
         })
         test("Given null element", () =>
         {
-            const tile = new Tile(0, 0);
             expect(()=> tile.flagTile(null)).toThrowError();
         })        
         test("Given empty", () =>
         {
-            const tile = new Tile(0, 0);
             expect(()=> tile.flagTile("")).toThrowError();
         })
         test("Given any element", () =>
         {
-            const tile = new Tile(0, 0);
             const element = document.createElement("span");
             const result = tile.flagTile(element);
             expect(result).toBe(1);
+        })
+        test("Given incorrect", () =>
+        {
+            expect(()=> tile.flagTile("a")).toThrowError();
+        })
+        test("Given incorrect", () =>
+        {
+            expect(()=> tile.flagTile(1)).toThrowError();
+        })
+    })
+
+    describe("Element classlist changes tests", () =>
+    {
+        const tile = new Tile(0, 0);
+        test("Correct addon", () =>
+        {
+            let element = document.createElement("button");
+            const text = "text;"
+            tile.addToClassList(element, text);
+            expect(element.classList).toContain(text);
+        })
+        test("Correct addon", () =>
+        {
+            let element = document.createElement("span");
+            const text = "text;"
+            tile.addToClassList(element, text);
+            expect(element.classList).toContain(text);
+        })
+        test("Correct addon", () =>
+        {
+            let element = document.createElement("span");
+            const text = "text;"
+            tile.addToClassList(element, text);
+            expect(element.classList).toContain(text);
+        })
+        test("Correct addon", () =>
+        {
+            let element = document.createElement("span");
+            const text = "different;"
+            tile.addToClassList(element, text);
+            expect(element.classList).toContain(text);
+        })
+        test("Correct removal", () =>
+        {
+            let element = document.createElement("button");
+            const text = "text;"
+            tile.addToClassList(element, text);
+            tile.removeFromClassList(element, text);
+            expect(element.classList).not.toContain(text);            
+        })
+        test("Given null", () =>
+        {
+            expect(() => tile.addToClassList(null)).toThrowError();
+        })
+        test("Given null element", () =>
+        {
+            const text = "text;"
+            expect(() => tile.addToClassList(null, text)).toThrowError();
+        })
+        test("Given null text", () =>
+        {
+            let element = document.createElement("button");
+            expect(() => tile.addToClassList(element, null)).toThrowError();
+            expect(() => tile.removeFromClassList(element, null)).toThrowError();
         })
     })
 })
