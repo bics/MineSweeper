@@ -39,6 +39,10 @@ main {
     justify-items: center;
 }
 
+footer{
+    width: 100%;
+}
+
 body{
     background-color: var(--dominant-background-color);
     background-image: url("../images/tile-background.jpg");
