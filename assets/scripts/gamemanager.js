@@ -22,7 +22,7 @@ function createField()
     clearField();
     //Create interactable game field container
     createGameField();
-    
+
     /* Code snippet taken and modified from ChatGPT*/
     const grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
     const mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
@@ -37,8 +37,6 @@ function createField()
     {
         console.log(error.message);
     }
-    
-
 
     // Create actual game field
     try
