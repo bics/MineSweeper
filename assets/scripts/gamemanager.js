@@ -32,15 +32,8 @@ function createField()
         gameField = new GameField(grid[0], grid[1], mines);
         updateRemaining();
         console.log(gameField.PlayArea);
-    }
-    catch (error)
-    {
-        console.log(error.message);
-    }
 
-    // Create actual game field
-    try
-    {
+        // Create actual game field
         for (let i = 0; i < gameField.DimensionRow; i++)
         {
             createTileRow(i);
