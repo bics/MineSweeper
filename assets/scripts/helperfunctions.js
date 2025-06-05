@@ -6,7 +6,7 @@ export class Helper
         return value.some(v => v == null);
     }
 
-    isNumber(...value)
+    isNotNumber(...value)
     {
         return value.some(v => isNaN(v));
     }

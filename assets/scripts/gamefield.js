@@ -14,7 +14,7 @@ export class GameField
 
     constructor(row,column, mines)
     {
-        if (helper.isNull(row, column, mines) || helper.isNumber(row, column, mines))
+        if (helper.isNull(row, column, mines) || helper.isNotNumber(row, column, mines))
         {
             throw new Error(`Incorrect value(s) received: row:${row}, column:${column}, mines:${mines}`);
         }

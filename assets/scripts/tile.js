@@ -13,7 +13,7 @@ export class Tile
 {
     constructor(row, column)
     {
-        if (helper.isNull(row,column) || helper.isNumber(row,column))
+        if (helper.isNull(row,column) || helper.isNotNumber(row,column))
         {
             throw new Error(`Received incorrect value(s): row:${row}, column:${column}`);
         }
