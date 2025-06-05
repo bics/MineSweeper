@@ -157,9 +157,60 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
     
+                <!-- Rules semi-generated and formatted using ChatGPT-->
                 <div class="modal-body text-center content-container divider">
                     <div class="text-container">
-                        <p>fill oout with rules</p>
+                        <h3>Choose Your Game Style</h3>
+                        <p>Select the grid size you'd like to challenge yourself with.</p>
+                        <p>Select the difficulty level. Each level increases the number of mines by 5%, starting at 10% on Easy.</p>
+                
+                        <h3>User Interface</h3>
+                        <p>At the top of the field, you will see:</p>
+                        <ul>
+                            <li>The remaining number of mines (mines will disappear from the count after being flagged).</li>
+                            <li>A button to reset the field or restart the game using the current difficulty.</li>
+                            <li>A help button in case you need a reminder.</li>
+                        </ul>
+                
+                        <p>At the bottom of the field:</p>
+                        <ul>
+                            <li>You can enable flagging. To remove flags, this must be toggled on again.</li>
+                            <li>A button to reselect the game's difficulty.</li>
+                        </ul>
+
+                        <h3>The Goal</h3>
+                        <p>Reveal all non-mine tiles without clicking on a mine.
+                            Use numbers as clues: each number indicates how many mines are adjacent to that tile.
+                            You can right-click (or use flag mode) to mark suspected mines. Marking all mines is not required to win —
+                            but
+                            revealing all safe tiles is!</p>
+                
+                        <h3>How to Play</h3>
+                        <p>The game board is a grid of covered tiles.</p>
+                        <p>Click any tile to begin.</p>
+                        <p>A number on a tile tells you how many mines are in the surrounding eight tiles, including diagonals.
+                            For example, a tile showing "3" means there are exactly three mines nearby.</p>
+                        <p>You can mark tiles you believe contain a mine by placing a flag.
+                            This helps prevent accidental clicks.
+                            Flagging is optional. You win by clearing all non-mine tiles, not by flagging all mines.</p>
+                        <p>If you click on a revealed number tile and the correct number of adjacent flags are placed around it, the
+                            game will
+                            automatically reveal all neighboring tiles that are not flagged.
+                            This feature helps speed up gameplay but requires that flags are used correctly.
+                            If incorrect flags are placed, a hint click may reveal a mine and end the game.</p>
+                        <p>Use logic to deduce which tiles are safe.
+                            Reveal all the safe tiles to win.
+                            Clicking a mine ends the game.</p>
+                
+                        <h4>Tips for Success</h4>
+                        <p>
+                            Corners and edges are usually a good place to start.
+                            A blank tile with no number means there are no mines nearby and often reveals a large area.
+                            Use process of elimination to identify safe tiles.
+                            Avoid random guessing whenever possible — one wrong click can end the game.
+                            Keep track of the remaining number of mines to assist your decisions.
+                            Use flags to mark obvious mine locations, especially near higher-numbered tiles.
+                        </p>
                     </div>
                 </div>
                 <div class="modal-footer">
