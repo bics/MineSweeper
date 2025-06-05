@@ -7,6 +7,18 @@
   },
   "devDependencies": {
     "jsdom": "^26.1.0",
-    "vitest": "^3.2.1"
-  }
+    "vitest": "^3.2.2"
+  },
+  "description": "Bootsrap: https://getbootstrap.com\r Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)",
+  "main": "vitest.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bics/MineSweeper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bics/MineSweeper/issues"
+  },
+  "homepage": "https://github.com/bics/MineSweeper#readme"
 }
