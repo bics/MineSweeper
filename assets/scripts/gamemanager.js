@@ -34,14 +34,21 @@ function createField()
     console.log(gameField.PlayArea);
 
     // Create actual game field
-    for (let i = 0; i < gameField.DimensionRow; i++)
+    try
     {
-        createTileRow(i);
-        for (let j = 0; j < gameField.DimensionColumn; j++)
+        for (let i = 0; i < gameField.DimensionRow; i++)
         {
-            let tile = new Tile(i,j);
-            tile.createTile();
+            createTileRow(i);
+            for (let j = 0; j < gameField.DimensionColumn; j++)
+            {
+                let tile = new Tile(i, j);
+                tile.createTile();
+            }
         }
+    }
+    catch (error)
+    {
+        console.log(error);
     }
 
     document.getElementById("flagbox").checked = false;

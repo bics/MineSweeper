@@ -15,7 +15,7 @@ export class Tile
     {
         if (helper.isNull(row,column) || helper.isNumber(row,column))
         {
-            throw `Received incorrect value(s): row:${row}, column:${column}`;
+            throw new Error(`Received incorrect value(s): row:${row}, column:${column}`);
         }
         this.Row = row;
         this.Column = column;
@@ -87,7 +87,7 @@ export class Tile
     {
         if (helper.isNull(classText))
         {
-            throw `Received null value: classText:${classText}`;
+            throw new Error(`Received null value: classText:${classText}`);
         }
         element.classList.add(classText);
     }
@@ -96,7 +96,7 @@ export class Tile
     {
         if (helper.isNull(classText))
         {
-            throw `Received null value: classText:${classText}`;
+            throw new Error(`Received null value: classText:${classText}`);
         }
         element.classList.remove(classText);
     }
