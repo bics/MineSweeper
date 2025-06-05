@@ -1,3 +1,7 @@
+import { Helper } from "./helperfunctions";
+
+const helper = new Helper();
+
 export class GameField
 {
     DimensionRow;
@@ -10,6 +14,10 @@ export class GameField
 
     constructor(row,column, mines)
     {
+        if (helper.isNull(row, column, mines) || helper.isNumber(row, column, mines))
+        {
+            throw new Error(`Incorrect value(s) received: row:${row}, column:${column}, mines:${mines}`);
+        }
         this.DimensionRow = row;
         this.DimensionColumn = column;
 
