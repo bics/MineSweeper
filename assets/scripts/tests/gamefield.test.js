@@ -66,17 +66,17 @@ describe("Gamefield tests", () =>
         const gameField = new GameField(row, column, mines);
         test("Has flag test, flagged none", () =>
         {
-            expect(gameField.hasFlags()).toBe(true);
+            expect(gameField.hasFlags()).toBeTruthy();
         })
         test("Has flag test, flagged 2", () =>
         {
             gameField.FlaggedCount = 2;
-            expect(gameField.hasFlags()).toBe(true);
+            expect(gameField.hasFlags()).toBeTruthy();
         })
         test("Has flag test, flagged all", () =>
         {
             gameField.FlaggedCount = 6;
-            expect(gameField.hasFlags()).toBe(false);
+            expect(gameField.hasFlags()).toBeFalsy();
         })
         test("Return correct amount of neighbours", () =>
         {
@@ -90,12 +90,12 @@ describe("Gamefield tests", () =>
         })
         test("Boundary tests", () =>
         {
-            expect(gameField.isInBounds([0, 0])).toBe(true);
-            expect(gameField.isInBounds([1, 1])).toBe(true);
-            expect(gameField.isInBounds([2, 1])).toBe(true);
-            expect(gameField.isInBounds([-1, 0])).toBe(false);
-            expect(gameField.isInBounds([6, 0])).toBe(false);
-            expect(gameField.isInBounds([1, 9])).toBe(false);
+            expect(gameField.isInBounds([0, 0])).toBeTruthy();
+            expect(gameField.isInBounds([1, 1])).toBeTruthy();
+            expect(gameField.isInBounds([2, 1])).toBeTruthy();
+            expect(gameField.isInBounds([-1, 0])).toBeFalsy();
+            expect(gameField.isInBounds([6, 0])).toBeFalsy();
+            expect(gameField.isInBounds([1, 9])).toBeFalsy();
         })
         test("Directional tests, North", () =>
         {
