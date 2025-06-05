@@ -22,26 +22,31 @@ function createField()
     clearField();
     //Create interactable game field container
     createGameField();
-    
+
     /* Code snippet taken and modified from ChatGPT*/
     const grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
     const mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
 
-    gameField = new GameField(grid[0], grid[1], mines);
-    
-    updateRemaining();
-
-    console.log(gameField.PlayArea);
-
-    // Create actual game field
-    for (let i = 0; i < gameField.DimensionRow; i++)
+    try
     {
-        createTileRow(i);
-        for (let j = 0; j < gameField.DimensionColumn; j++)
+        gameField = new GameField(grid[0], grid[1], mines);
+        updateRemaining();
+        console.log(gameField.PlayArea);
+
+        // Create actual game field
+        for (let i = 0; i < gameField.DimensionRow; i++)
         {
-            let tile = new Tile(i,j);
-            tile.createTile();
+            createTileRow(i);
+            for (let j = 0; j < gameField.DimensionColumn; j++)
+            {
+                let tile = new Tile(i, j);
+                tile.createTile();
+            }
         }
+    }
+    catch (error)
+    {
+        console.log(error.message);
     }
 
     document.getElementById("flagbox").checked = false;

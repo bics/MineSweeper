@@ -28,3 +28,6 @@ Modal: https://getbootstrap.com/docs/5.3/components/modal/
 Close button recolor from ChatGPT
 Tooltip code: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_bottom
 Tile background from https://www.transparenttextures.com
+
+package.json was created using the official vitest guide and ChatGPT
+vitest.config.js file was generated in ChatGPT

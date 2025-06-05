@@ -1,3 +1,5 @@
+import { Helper } from "./helperfunctions.js";
+
 const emptyNode = " ";
 const classFlagged = "flagged";
 const classTile = "tile";
@@ -5,11 +7,16 @@ const classTileButton = "tile-button";
 const classRevealed = "revealed";
 const classTileMine = "tile-mine"
 const classHint = "hint";
+const helper = new Helper();
 
 export class Tile
 {
     constructor(row, column)
     {
+        if (helper.isNull(row,column) || helper.isNotNumber(row,column))
+        {
+            throw new Error(`Received incorrect value(s): row:${row}, column:${column}`);
+        }
         this.Row = row;
         this.Column = column;
         this.Tile = row + "-" + column;
@@ -78,11 +85,19 @@ export class Tile
 
     addToClassList(element, classText)
     {
+        if (helper.isNull(classText))
+        {
+            throw new Error(`Received null value: classText:${classText}`);
+        }
         element.classList.add(classText);
     }
 
     removeFromClassList(element, classText)
     {
+        if (helper.isNull(classText))
+        {
+            throw new Error(`Received null value: classText:${classText}`);
+        }
         element.classList.remove(classText);
     }
 }
