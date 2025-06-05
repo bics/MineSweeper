@@ -27,11 +27,18 @@ function createField()
     const grid = document.querySelector('input[name="grid-selector"]:checked').value.split("*");
     const mines = document.querySelector('input[name="mine-count-selector"]:checked').value;
 
-    gameField = new GameField(grid[0], grid[1], mines);
+    try
+    {
+        gameField = new GameField(grid[0], grid[1], mines);
+        updateRemaining();
+        console.log(gameField.PlayArea);
+    }
+    catch (error)
+    {
+        console.log(error.message);
+    }
     
-    updateRemaining();
 
-    console.log(gameField.PlayArea);
 
     // Create actual game field
     try
@@ -48,7 +55,7 @@ function createField()
     }
     catch (error)
     {
-        console.log(error);
+        console.log(error.message);
     }
 
     document.getElementById("flagbox").checked = false;
