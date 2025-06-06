@@ -20,48 +20,19 @@
         </div>
     </header>
     <main>
-        <div class="text-center content-container divider">
-            <h2 class="color-silver">About</h2>
-            <div class="text-container">
-                <p>Minesweeper is a logic puzzle video game genre generally played on personal computers. The game
-                    features a
-                    grid
-                    of clickable tiles, with hidden "mines"
-                    (depicted as naval mines in the original game) dispersed throughout the board. The objective is to
-                    clear the
-                    board without detonating any mines,
-                    with help from clues about the number of neighboring mines in each field. </p>
-                <p>Variants of Minesweeper have been made that expand on the basic concepts, such as Minesweeper X,
-                    Crossmines,
-                    and
-                    Minehunt. Minesweeper has been incorporated as a minigame
-                    in other games, such as RuneScape and Minecraft's 2015 April Fools update. </p>
-                <p>The origin of Minesweeper is unclear. According to TechRadar, the first version of the game was
-                    1990's
-                    Microsoft
-                    Minesweeper,
-                    but Eurogamer states Mined-Out (1983) by Ian Andrew was the first Minesweeper game. Curt Johnson,
-                    the
-                    creator of
-                    Microsoft Minesweeper,
-                    acknowledges that his game's design was borrowed from another game, but denies that it was
-                    Mined-Out.
-                    <a class="link-info" href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)" target="_blank">Wikipedia
-                        article</a>
-                </p>
-            </div>
-            <hr class="divider">
-        </div>
-
         <div class="carousel slide content-container" data-bs-interval="false" id="main-carousel">
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
                     <div class="text-center content-container divider" id="game-setup">
-                        <h2 class="text-center color-silver">Let's play<button class="btn w3tooltip color-silver" data-bs-toggle="modal" data-bs-target="#howToModal">?<span class="tooltiptext">Help</span></button></h2>
+                        <div class="row d-flex justify-content-center">
+                            <h2 class="color-silver col-12 col-lg-2 col-xxl-1 text-nowrap">About<button class="btn w3tooltip color-silver" data-bs-toggle="modal" data-bs-target="#aboutModal">?<span class="tooltiptext">About</span></button></h2>
+                            <h2 class="text-center color-silver col-12 col-lg-2 col-xxl-1 text-nowrap">Let's play<button class="btn w3tooltip color-silver" data-bs-toggle="modal" data-bs-target="#howToModal">?<span class="tooltiptext">Help</span></button></h2>                            
+                        </div>
                         <div>
                             <section class="divider" id="grid-section">
-                                <p>Grid size</p>
+                                <h4>Grid Size</h4>
+                        <hr class="divider">
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-12 col-lg-2 text-nowrap">
                                         <input class="form-check-input" type="radio" name="grid-selector"
@@ -87,7 +58,8 @@
                             </section>
 
                             <section class="divider" id="mine-section">
-                                <p>Mine count</p>
+                                <h4>Mine count</h4>
+                        <hr class="divider">
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-12 col-lg-2 text-nowrap">
                                         <input class="form-check-input" type="radio" name="mine-count-selector"
@@ -149,7 +121,7 @@
     <!-- Modal for how to
         Code snippets taken from official Bootstrap docs
     -->
-    <div class="modal fade" id="howToModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="howToModal" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -210,6 +182,55 @@
                             Avoid random guessing whenever possible — one wrong click can end the game.
                             Keep track of the remaining number of mines to assist your decisions.
                             Use flags to mark obvious mine locations, especially near higher-numbered tiles.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for about -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title color-silver">About</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body text-center content-container divider">
+                    <div class="text-container">
+                        <p>Minesweeper is a logic puzzle video game genre generally played on personal computers. The game
+                            features a
+                            grid
+                            of clickable tiles, with hidden "mines"
+                            (depicted as naval mines in the original game) dispersed throughout the board. The objective is
+                            to
+                            clear the
+                            board without detonating any mines,
+                            with help from clues about the number of neighboring mines in each field. </p>
+                        <p>Variants of Minesweeper have been made that expand on the basic concepts, such as Minesweeper X,
+                            Crossmines,
+                            and
+                            Minehunt. Minesweeper has been incorporated as a minigame
+                            in other games, such as RuneScape and Minecraft's 2015 April Fools update. </p>
+                        <p>The origin of Minesweeper is unclear. According to TechRadar, the first version of the game was
+                            1990's
+                            Microsoft
+                            Minesweeper,
+                            but Eurogamer states Mined-Out (1983) by Ian Andrew was the first Minesweeper game. Curt
+                            Johnson,
+                            the
+                            creator of
+                            Microsoft Minesweeper,
+                            acknowledges that his game's design was borrowed from another game, but denies that it was
+                            Mined-Out.
+                            <a class="link-info" href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)"
+                                target="_blank">Wikipedia
+                                article</a>
                         </p>
                     </div>
                 </div>
