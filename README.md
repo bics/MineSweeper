@@ -1,5 +1,50 @@
 # MineSweeper
 
+Minesweeper is an interactive website where users can play a classic puzzle game.
+
+[Deployed site](https://bics.github.io/MineSweeper/)
+
+# Table of contents    
+
+1. [UX](#ux)
+2. [Features](#features)
+    1. [Existing Features](#existing-features)
+    2. [Future Features Consideration](#future-features-consideration)
+3. [Technologies used](#technologies-used)
+4. [Testing](#testing)
+    1. [Manual Testing](#manual-testing)
+    2. [Automated Testing](#automated-testing)
+5. [Deployment](#deployment)
+6. [Credits](#credits)
+7. [Acknowledgements](#acknowledgements)
+
+# UX
+
+### User stories
+* First Time Visitor Goals
+    * First time users should be able to understand the purpose of the site.
+    * They should be able to navigate the site without any issue.
+    * The site should encourage users to interact with it.
+
+* Returning Visitor Goals
+    * Returning visitors should be able to notice any changes on the website.
+    * The site should still encourage users to interact with it.
+
+* Frequent User Goals
+    * Frequent users should be able to take a break and challenge themselves with a cozy little game.
+    * They should be able to dwelve into the history of the game.
+    * They may spend some time solving the larger and harder puzzles.
+
+### Design
+
+Colour Scheme
+
+Main colours used on the website\
+![Color palette](/assets/images/Color_Palette_hex.png)
+
+Typography
+* 
+
 Bootsrap: https://getbootstrap.com
 Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
 
@@ -31,3 +76,6 @@ Tile background from https://www.transparenttextures.com
 
 package.json was created using the official vitest guide and ChatGPT
 vitest.config.js file was generated in ChatGPT
+
+
+
