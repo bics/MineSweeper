@@ -12,7 +12,7 @@ describe("Tile tests", () =>
         })
         test("Given null", () =>
         {
-            expect(() => new Tile(null,1)).toThrowError();
+            expect(() => new Tile(null, 1)).toThrowError();
         })
         test("Given nothing", () =>
         {
@@ -20,15 +20,15 @@ describe("Tile tests", () =>
         })
         test("Given both incorrect", () =>
         {
-            expect(() => new Tile("a","b")).toThrowError();
+            expect(() => new Tile("a", "b")).toThrowError();
         })
         test("Given incorrect", () =>
         {
-            expect(() => new Tile(1,"b")).toThrowError();
+            expect(() => new Tile(1, "b")).toThrowError();
         })
         test("Given correct", () =>
         {
-            expect(() => new Tile(1,1)).not.toThrowError();
+            expect(() => new Tile(1, 1)).not.toThrowError();
         })
     })
 
@@ -50,11 +50,11 @@ describe("Tile tests", () =>
         })
         test("Given null element", () =>
         {
-            expect(()=> tile.flagTile(null)).toThrowError();
-        })        
+            expect(() => tile.flagTile(null)).toThrowError();
+        })
         test("Given empty", () =>
         {
-            expect(()=> tile.flagTile("")).toThrowError();
+            expect(() => tile.flagTile("")).toThrowError();
         })
         test("Given any element", () =>
         {
@@ -64,11 +64,11 @@ describe("Tile tests", () =>
         })
         test("Given incorrect", () =>
         {
-            expect(()=> tile.flagTile("a")).toThrowError();
+            expect(() => tile.flagTile("a")).toThrowError();
         })
         test("Given incorrect", () =>
         {
-            expect(()=> tile.flagTile(1)).toThrowError();
+            expect(() => tile.flagTile(1)).toThrowError();
         })
     })
 
@@ -109,7 +109,7 @@ describe("Tile tests", () =>
             const text = "text;"
             tile.addToClassList(element, text);
             tile.removeFromClassList(element, text);
-            expect(element.classList).not.toContain(text);            
+            expect(element.classList).not.toContain(text);
         })
         test("Given null", () =>
         {

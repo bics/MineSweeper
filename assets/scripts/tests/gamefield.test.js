@@ -19,7 +19,7 @@ describe("Gamefield tests", () =>
         })
         test("Received not numbers", () =>
         {
-            expect(() => new GameField("a","b","c")).toThrowError();
+            expect(() => new GameField("a", "b", "c")).toThrowError();
         })
         test("Received 1 incorrect value", () =>
         {
@@ -40,7 +40,7 @@ describe("Gamefield tests", () =>
         })
         test("Playarea created with correct mine values", () =>
         {
-            expect(gameField.Mines).toBe(row*column*mines);
+            expect(gameField.Mines).toBe(row * column * mines);
         })
         test("Playarea hints are correct", () =>
         {

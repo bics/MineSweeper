@@ -108,13 +108,13 @@ function revealTile(element, isGameOver = false)
     {
         return;
     }
-    
+
     const position = element.id.split("-");
 
-    
+
     /* Code snippet and future occurrences taken and modified from ChatGPT*/
     let pElement = element.tileInstance.createTilePElement(element, gameField.PlayArea[position[0]][position[1]]);
-    
+
     if (isGameOver)
     {
         if (!isNotMine(position))
@@ -170,7 +170,7 @@ function hintClick()
             flaggedTilesCount += 1;
         }
     }
-    
+
     if (flaggedTilesCount >= hintCount)
     {
         revealNeighbourTiles(element);
@@ -182,7 +182,7 @@ function hoverTiles()
 {
     const element = event.target;
     let position = element.id.split("-");
-    
+
     const neighbourTiles = gameField.getNeighbourTiles(position);
 
     for (let i = 0; i < neighbourTiles.length; i++)
@@ -202,7 +202,7 @@ function deHoverTiles()
 {
     const element = event.target;
     let position = element.id.split("-");
-    
+
     const neighbourTiles = gameField.getNeighbourTiles(position);
 
     for (let i = 0; i < neighbourTiles.length; i++)
@@ -318,7 +318,7 @@ function endGame(message)
 {
     let toast = document.getElementById("endGame-toast-body");
     toast.innerHTML = message;
-    
+
     /* Code snippet taken from ChatGTP*/
     const toastEl = document.getElementById("endGame-toast");
     toast = new bootstrap.Toast(toastEl);
@@ -338,7 +338,7 @@ function clearField()
     {
         message.remove();
     }
-    
+
     document.getElementById("reset-button").style.backgroundImage = "url('assets/images/game-face.png')";
 }
 

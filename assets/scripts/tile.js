@@ -13,7 +13,7 @@ export class Tile
 {
     constructor(row, column)
     {
-        if (helper.isNull(row,column) || helper.isNotNumber(row,column))
+        if (helper.isNull(row, column) || helper.isNotNumber(row, column))
         {
             throw new Error(`Received incorrect value(s): row:${row}, column:${column}`);
         }
@@ -67,9 +67,9 @@ export class Tile
 
         switch (textNode)
         {
-            case "x":                
+            case "x":
                 p.classList.add(classTileMine);
-                break;            
+                break;
             case " ":
                 break;
             default:

@@ -1,16 +1,16 @@
 :root {
-    --hint-1 : blue;
-    --hint-2 : green;
+    --hint-1: blue;
+    --hint-2: green;
     --hint-3: red;
     --hint-4: darkblue;
     --hint-5: darkred;
     --hint-6: teal;
     --hint-7: black;
-    --hint-8: gray;    
+    --hint-8: gray;
 
     --silver: #c0c0c0;
     --dominant-background-color: #161616;
-    --dominant-background-color-with-opacity: rgba(22,22,22,0.4);
+    --dominant-background-color-with-opacity: rgba(22, 22, 22, 0.4);
     --text-color: #85C1D5;
 
     --divider: 1rem;
@@ -25,7 +25,8 @@ p {
     margin-bottom: var(--divider);
 }
 
-h1,h2 {
+h1,
+h2 {
     margin-bottom: 0;
 }
 
@@ -40,11 +41,11 @@ main {
     justify-items: center;
 }
 
-footer{
+footer {
     width: 100%;
 }
 
-body{
+body {
     background-color: var(--dominant-background-color);
     background: url("../images/tile-background.jpg") no-repeat fixed center / cover;
 }
@@ -54,7 +55,7 @@ hr {
     opacity: 1;
 }
 
-.divider {    
+.divider {
     margin-bottom: var(--divider);
 }
 
@@ -65,7 +66,7 @@ hr {
 #game-area {
     border: 2px solid var(--silver);
     padding: 0 var(--divider);
-    
+
     /*Code snippet taken and modifed from transparenttextures*/
     background-color: #161616;
     background-image: url("../images/bright-squares.png");
@@ -76,15 +77,15 @@ hr {
     justify-content: space-evenly;
 }
 
-.color-silver{
+.color-silver {
     color: var(--silver);
 }
 
-.toast{
+.toast {
     background-color: var(--dominant-background-color);
 }
 
-.modal-content{
+.modal-content {
     background-color: var(--dominant-background-color);
 }
 
@@ -93,43 +94,43 @@ hr {
     color: var(--text-color);
 }
 
-.pointer{    
+.pointer {
     cursor: pointer;
 }
 
 /* Code blocks taken and modified from W3schools*/
 .w3tooltip {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .w3tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: var(--dominant-background-color);
-  color: var(--text-color);
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 50%;
-  margin-left: -60px;
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--dominant-background-color);
+    color: var(--text-color);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
 }
 
 .w3tooltip:hover .tooltiptext {
-  visibility: visible;
+    visibility: visible;
 }
 
 /* Code snippet taken from ChatGPT*/
 .btn-close {
-  filter: brightness(0) saturate(100%) invert(85%) sepia(0%) saturate(0%) hue-rotate(163deg) brightness(95%) contrast(92%);
+    filter: brightness(0) saturate(100%) invert(85%) sepia(0%) saturate(0%) hue-rotate(163deg) brightness(95%) contrast(92%);
 }
 
-.flag-checkbox:checked{
+.flag-checkbox:checked {
     background-image: url("../images/redflag.png");
 }
 
@@ -146,7 +147,7 @@ hr {
     color: var(--text-color);
 }
 
-#game-setup{
+#game-setup {
     background-color: var(--dominant-background-color-with-opacity);
 }
 
@@ -159,16 +160,16 @@ hr {
     text-align: center;
 }
 
-.revealed{
-    border: 0.1px ridge #d0d0d0 ;
+.revealed {
+    border: 0.1px ridge #d0d0d0;
     cursor: pointer;
 }
 
-.tile-button:hover {    
+.tile-button:hover {
     background-color: gray;
 }
 
-.tile-hover{
+.tile-hover {
     background-color: gray;
 }
 
@@ -179,13 +180,11 @@ hr {
     background-repeat: no-repeat;
 }
 
-.hit
-{
+.hit {
     background-color: red;
 }
 
-.hit-correct
-{
+.hit-correct {
     background-color: green;
 }
 
@@ -205,29 +204,29 @@ hr {
 }
 
 .hint-2 {
-    color: var(--hint-2);    
+    color: var(--hint-2);
 }
 
 .hint-3 {
-    color: var(--hint-3);    
+    color: var(--hint-3);
 }
 
 .hint-4 {
-    color: var(--hint-4);    
+    color: var(--hint-4);
 }
 
 .hint-5 {
-    color: var(--hint-5);    
+    color: var(--hint-5);
 }
 
 .hint-6 {
-    color: var(--hint-6);    
+    color: var(--hint-6);
 }
 
 .hint-7 {
-    color: var(--hint-7);    
+    color: var(--hint-7);
 }
 
 .hint-8 {
-    color: var(--hint-8);    
+    color: var(--hint-8);
 }
