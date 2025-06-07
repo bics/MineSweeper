@@ -45,6 +45,62 @@ Main colours used on the website\
 Typography
 * Roboto font is used with a fallback value of sans-serif.
 
+### Wireframes
+<details>
+<summary>Mobile</summary>
+
+![Mobile wireframe](/assets/images/Wireframe_Mobile.png)
+
+</details>
+<details>
+<summary>Tablet</summary>
+
+![Tablet wireframe](/assets/images/Wireframe_Tablet.png)
+
+</details>
+<details>
+<summary>Desktop</summary>
+
+![Desktop wireframe](/assets/images/Wireframe_Desktop.png)
+
+</details>
+
+# Features
+
+## Existing features
+
+### Footer
+The footer element is positioned and fixed at the bottom of the page.\
+The element provides links to social media platforms, namely in order Facebook, X, Google and Github.
+
+![Footer](/assets/images/Footer.PNG)
+
+### Landing page 
+
+The only page of the site.\
+It features a distinct header and an interactable carousel.\
+
+![Header](/assets/images/Header.PNG)
+
+* #### Caruosel
+
+The carousel consist two sections.\
+The first element is the game options. This element helps the user choose the size of the field and the difficulty as well.\
+On smaller screens only the smaller (10*10 and 15*15) sizes are available to be selected. On tablet screen size (above 767 pixels) the large grid will become available and on
+larger desktop screens (above 1177 pixels) the last option will become active as well.
+
+![GridSelectionSmallScreen](/assets/images/GridSmall.PNG)
+
+![GridSelectionTabletScreen](/assets/images/GridTablet.PNG)
+
+![GridSelectionLargeScreen](/assets/images/GridLarge.PNG)
+
+The difficulty selector consist of four levels, each increases the placed mines by 5% starting with an initial difficulty of 10% on "Easy" level based on the grid size.\
+For example a 10*10 dimension play field will have a total of 100 tiles. On easy difficulty there will be a total of 10 mines. On normal difficulty with the same size it the player will need to evade a total of 15 mines.
+
+![Difficulty](/assets/images/MineCount.PNG)
+
+
 Bootsrap: https://getbootstrap.com
 Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
 Google fonts: https://fonts.google.com
