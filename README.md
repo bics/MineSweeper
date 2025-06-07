@@ -84,7 +84,7 @@ It features a distinct header and an interactable carousel.
 
 The carousel consist two sections.\
 The first element is the game options. This element helps the user choose the size of the field and the difficulty as well.\
-On smaller screens only the smaller (10 times 10 and 15 times 15) sizes are available to be selected. On tablet screen size (above 767 pixels) the large grid will become available and on
+On smaller screens only the smaller (10 * 10 and 15 * 15) sizes are available to be selected. On tablet screen size (above 767 pixels) the large grid will become available and on
 larger desktop screens (above 1177 pixels) the last option will become active as well.
 
 ![GridSelectionSmallScreen](/assets/images/GridSmall.PNG)
@@ -94,7 +94,7 @@ larger desktop screens (above 1177 pixels) the last option will become active as
 ![GridSelectionLargeScreen](/assets/images/GridLarge.PNG)
 
 The difficulty selector consist of four levels, each increases the placed mines by 5% starting with an initial difficulty of 10% on "Easy" level based on the grid size.\
-For example a 10 times 10 dimension play field will have a total of 100 tiles. On easy difficulty there will be a total of 10 mines. On normal difficulty with the same size it the player will need to evade a total of 15 mines.
+For example a 10 * 10 dimension play field will have a total of 100 tiles. On easy difficulty there will be a total of 10 mines. On normal difficulty with the same size it the player will need to evade a total of 15 mines.
 
 ![Difficulty](/assets/images/MineCount.PNG)
 
@@ -105,6 +105,40 @@ It starts with a neutral happy face. When the player wins the game the face chan
 On the top right there is button which shows the player the rules for the game and a couple tips for them.
 
 ![Fieldmenu](/assets/images/Field_header.PNG)
+
+Below this menu is the actual game field. It has a distinct border around it.\
+The tiles first represented as a button. Hovering over any button will highlight it for ease of use. Once clicked the tile transforms.\
+If the tile clicked was empty, the nearby empty tiles and hints will be revealed. Hints should help the player locate any mine, and they all coloured differently. Hovering over this hints highligth its neighbour button tiles. If there are as many flags placed around a hint tile it represents, clicking the hint will reveal all tiles around itself.\
+If the tile clicked was a mine, the game ends and all tiles are revealed.
+
+![Gamefield](/assets/images/Game-field.PNG)
+
+At the bottom the users can find a checkbox. This enables the "flagging" mode, which if enabled instead of revealing a tile places a flag on it. Flagged tiles will not be revealed by either clicking or automatically. To remove a flag the player should click the tile again in "flagging" mode.\
+Below this is the "Reselect" button. It will bring back the previous grid and mine selection panel.
+
+![Gamefieldbottom](/assets/images/Field_bottom.PNG)
+
+#### About section
+
+The about section is placed in a model. It has the game description and a bit of it's history, which could be found on [Wikipedia](https://en.wikipedia.org/wiki/Minesweeper_(video_game)).\
+This modal can be accessed on the first part of the carousel.
+
+#### How to play
+
+This section is also placed in a modal. It consists the features currently implemented in the game and a couple hints for new players.
+
+#### Endgame message
+
+The message will pop-up as a [Bootstrap](https://getbootstrap.com) toast message, based on the outcome of the game(win/lose).
+
+## Future features consideration
+
+* For larger screens there could be a manual input field for grid sizes and mine count.
+* The first step could be made "safe" to ensure the game is not too difficult.
+* A win streak counter could be included to motivate players to play more.
+* A timer and highscore chart could be added for competitiveness.
+* Further color coding can be implemented for color impaired players.
+* Sound effects can be played while interacting with the game field.
 
 Bootsrap: https://getbootstrap.com
 Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
