@@ -216,9 +216,9 @@ The project is deployed to Github Pages. In order to achieve this the following 
 
 # Acknowledgements
 
-Thank you to my mentor Benjamin Kavanagh for his continuous support and feedback during development.
-Thank you to my friend Richárd Pónusz for his support and tips during development.
-Thank you to Tom Cowen, our cohort leader, and the rest of the class for playtesting.
+Thank you to my mentor Benjamin Kavanagh for his continuous support and feedback during development.\
+Thank you to my friend Richárd Pónusz for his support and tips during development.\
+Thank you to Tom Cowen, our cohort leader, and the rest of the class for playtesting.\
 
 Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
 
