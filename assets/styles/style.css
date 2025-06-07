@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
     --hint-1: blue;
     --hint-2: green;
@@ -48,6 +50,7 @@ footer {
 body {
     background-color: var(--dominant-background-color);
     background: url("../images/tile-background.jpg") no-repeat fixed center / cover;
+    font-family: "Roboto", "sans-serif";
 }
 
 hr {

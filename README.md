@@ -43,10 +43,11 @@ Main colours used on the website\
 ![Color palette](/assets/images/Color_Palette_hex.png)
 
 Typography
-* 
+* Roboto font is used with a fallback value of sans-serif.
 
 Bootsrap: https://getbootstrap.com
 Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
+Google fonts: https://fonts.google.com
 
 pics
 
