@@ -204,7 +204,7 @@ The project is deployed to Github Pages. In order to achieve this the following 
     4. If prompted sign in to [Github](https://github.com/) account and enter the password.
 2. Click on the "+" icon to add a local repository.
 3. Select the "Remote" option on the top navigation bar.
-4. Search for the [Best Barber](https://github.com/bics/BestBarber) repository and hit clone.
+4. Search for the [Minesweeper](https://github.com/bics/MineSweeper) repository and hit clone.
 
 # Credits
 
