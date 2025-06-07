@@ -86,7 +86,7 @@ It features a distinct header and an interactable carousel.\
 
 The carousel consist two sections.\
 The first element is the game options. This element helps the user choose the size of the field and the difficulty as well.\
-On smaller screens only the smaller (10*10 and 15*15) sizes are available to be selected. On tablet screen size (above 767 pixels) the large grid will become available and on
+On smaller screens only the smaller (10 times 10 and 15 times 15) sizes are available to be selected. On tablet screen size (above 767 pixels) the large grid will become available and on
 larger desktop screens (above 1177 pixels) the last option will become active as well.
 
 ![GridSelectionSmallScreen](/assets/images/GridSmall.PNG)
@@ -96,7 +96,7 @@ larger desktop screens (above 1177 pixels) the last option will become active as
 ![GridSelectionLargeScreen](/assets/images/GridLarge.PNG)
 
 The difficulty selector consist of four levels, each increases the placed mines by 5% starting with an initial difficulty of 10% on "Easy" level based on the grid size.\
-For example a 10*10 dimension play field will have a total of 100 tiles. On easy difficulty there will be a total of 10 mines. On normal difficulty with the same size it the player will need to evade a total of 15 mines.
+For example a 10 times 10 dimension play field will have a total of 100 tiles. On easy difficulty there will be a total of 10 mines. On normal difficulty with the same size it the player will need to evade a total of 15 mines.
 
 ![Difficulty](/assets/images/MineCount.PNG)
 
