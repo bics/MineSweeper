@@ -78,11 +78,9 @@ The element provides links to social media platforms, namely in order Facebook, 
 ### Landing page 
 
 The only page of the site.\
-It features a distinct header and an interactable carousel.\
+It features a distinct header and an interactable carousel.
 
-![Header](/assets/images/Header.PNG)
-
-* #### Caruosel
+#### Caruosel
 
 The carousel consist two sections.\
 The first element is the game options. This element helps the user choose the size of the field and the difficulty as well.\
@@ -100,6 +98,13 @@ For example a 10 times 10 dimension play field will have a total of 100 tiles. O
 
 ![Difficulty](/assets/images/MineCount.PNG)
 
+The second element is the actual game field. On this field the users can play the game.\
+On the top left the players can see the remaining amount of mines. Each time a flag is placed on the field this number will decrease.\
+In the middle sits a button with a face on it. The button's function is to reset the game field with the currently selected grid size and difficulty. The face also chages it's "emotion" by the state of the game.\
+It starts with a neutral happy face. When the player wins the game the face changes to an ecstatic smiling version. And in case there was a misstep and the game abruptly ended, the face will represent a sad emotion.\
+On the top right there is button which shows the player the rules for the game and a couple tips for them.
+
+![Fieldmenu](/assets/images/Field_header.PNG)
 
 Bootsrap: https://getbootstrap.com
 Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
