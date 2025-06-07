@@ -140,9 +140,87 @@ The message will pop-up as a [Bootstrap](https://getbootstrap.com) toast message
 * Further color coding can be implemented for color impaired players.
 * Sound effects can be played while interacting with the game field.
 
-Bootsrap: https://getbootstrap.com
+# Technologies used
+
+* The core project is written in HTML5, CSS3 and Javascript.
+* Used [Balsamiq](https://balsamiq.com) to create wriframes.
+* Used [Visual Studio Code](https://code.visualstudio.com) as IDE.
+* Used [Github](https://github.com) to store and deploy the repository.
+* Used [Sourcetree](https://www.sourcetreeapp.com) for version control.
+* Used [Opera](https://www.opera.com), [Mozilla](https://www.mozilla.org/en-GB/) and [Chrome](https://www.google.com/intl/en_uk/chrome/) browsers and their respective developer tools for testing.
+* Used [ChatGPT](https://chatgpt.com) to help with the content, and a bit of debugging.
+* Used [W3Schools](https://www.w3schools.com) to help to understand and write codes.
+* Frequently visited [Stack Overflow](https://stackoverflow.com/questions) to understand some behaviours.
+* Used [W3C](https://www.w3.org) to validate both html and css files.
+* Used [Bootstrap](https://getbootstrap.com) as css.
+* Used [Font Awesome](https://fontawesome.com) to display footer elements.
+* Used [Google fonts](https://fonts.google.com) for typography.
+* Used [Freepik](https://www.freepik.com), [Pixabay](https://pixabay.com) and [Transparent Textures](https://www.transparenttextures.com) to acquire free images.
+* Used [Coolors](https://coolors.co) to create color palette.
+* Used [Microsoft Windows](https://www.microsoft.com/en-gb/windows?r=1) in-built **Snippet** tool to capture images.
+* Used [Vitest](https://vitest.dev) for unit testing.
+
+# Testing
+
+## Manual testing
+
+## Automated testing
+
+# Deployment
+
+### Github pages
+
+The project is deployed to Github Pages. In order to achieve this the following steps were taken:\
+1. Sign into [Github](https://github.com/).
+2. Locate the [Minesweeper](https://github.com/bics/MineSweeper) repository.
+3. Locate the settings for the repository on the top navigation bar.
+4. On the left hand side menu select the "Pages" option.
+5. Under the "Branch" option select the main branch to deploy and press save.
+6. Go to the "Code" window.
+7. On the right hand side a new element should appear with the name "Deployments" which should reveal the deployed site url.
+
+### Forking a repository
+
+1. Sign into [Github](https://github.com/) (can be done later).
+2. On [Github](https://github.com/) locate the [Minesweeper](https://github.com/bics/MineSweeper) repository.
+3. On the top right hand side click on the "Fork" option.
+4. Sign into [Github](https://github.com/) (not needed if step 1. was taken).
+5. The repository should be present under your account's repositories.
+
+### Download local repository
+
+1. Navigate to the [Minesweeper](https://github.com/bics/MineSweeper) repository.
+2. On the right side select the "Code" dropdown menu.
+3. Download the repository as a .zip file.
+4. Extract the downloaded file.
+5. Open up your preferred IDE and add the extracted folder as a project.
+
+### Clone a repository with Sourcetree
+
+1. Import SSH key. If SSH key already imported skip these steps
+    1. Acquire the SSH key, and password for this repository.
+    2. Locate the "Tools" menu, and select the "Create or import SSH keys" option.
+    3. In the dialog select "Load" and locate the acquired SSH key.
+    4. If prompted sign in to [Github](https://github.com/) account and enter the password.
+2. Click on the "+" icon to add a local repository.
+3. Select the "Remote" option on the top navigation bar.
+4. Search for the [Best Barber](https://github.com/bics/BestBarber) repository and hit clone.
+
+# Credits
+
+### Code
+
+### Content
+
+### Media
+
+# Acknowledgements
+
+Thank you to my mentor Benjamin Kavanagh for his continuous support and feedback during development.
+Thank you to my friend Richárd Pónusz for his support and tips during development.
+Thank you to Tom Cowen, our cohort leader, and the rest of the class for playtesting.
+
 Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
-Google fonts: https://fonts.google.com
 
 pics
 
