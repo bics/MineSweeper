@@ -24,78 +24,81 @@
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <div class="text-center content-container divider" id="game-setup">
+                    <div class="text-center content-container divider">
                         <div class="row d-flex justify-content-center divider">
                             <div class="d-flex col-12 col-md-2 text-nowrap justify-content-center">
                                 <div class="position-relative">
                                     <h2 class="color-silver px-4">About</h2>
-                                    <button class="btn w3tooltip color-silver position-absolute top-50 end-0 translate-middle-y" data-bs-toggle="modal" data-bs-target="#aboutModal">?<span class="tooltiptext">About</span></button>
+                                    <button class="btn w3tooltip color-silver position-absolute top-50 end-0 translate-middle-y"
+                                        data-bs-toggle="modal" data-bs-target="#aboutModal">?<span
+                                            class="tooltiptext">About</span></button>
                                 </div>
                             </div>
                             <div class="d-flex color-silver col-12 col-md-2 text-nowrap justify-content-center">
                                 <div class="position-relative">
                                     <h2 class="color-silver px-4">Let's play</h2>
-                                    <button class="btn w3tooltip color-silver position-absolute top-50 end-0 translate-middle-y" data-bs-toggle="modal" data-bs-target="#howToModal">?<span class="tooltiptext">Help</span></button>
+                                    <button class="btn w3tooltip color-silver position-absolute top-50 end-0 translate-middle-y"
+                                        data-bs-toggle="modal" data-bs-target="#howToModal">?<span
+                                            class="tooltiptext">Help</span></button>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
-                        <div>
-                            <section class="divider" id="grid-section">
-                                <h4>Grid Size</h4>
-                        <hr class="divider">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="grid-selector"
-                                            id="grid-small" value="10*10" checked>
-                                        <label for="grid-small">Small: 10*10</label>
+                        <div class="rounded-4 shadow" id="game-setup">
+                            <div>
+                                <section class="divider" id="grid-section">
+                                    <h4>Grid Size</h4>
+                                    <hr class="divider">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-small" value="10*10"
+                                                checked>
+                                            <label for="grid-small">Small: 10*10</label>
+                                        </div>
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-medium"
+                                                value="15*15">
+                                            <label for="grid-medium">Medium: 15*15</label>
+                                        </div>
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-large" value="25*25">
+                                            <label for="grid-large">Large: 25*25</label>
+                                        </div>
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="grid-selector" id="grid-xlarge"
+                                                value="40*40">
+                                            <label for="grid-xlarge">XLarge: 40*40</label>
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="grid-selector"
-                                            id="grid-medium" value="15*15">
-                                        <label for="grid-medium">Medium: 15*15</label>
+                                </section>
+                                <section class="divider" id="mine-section">
+                                    <h4>Mine count</h4>
+                                    <hr class="divider">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="mine-count-selector" id="easy" value="0.1"
+                                                checked>
+                                            <label for="easy">Easy</label>
+                                        </div>
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="mine-count-selector" id="normal"
+                                                value="0.15">
+                                            <label for="normal">Normal</label>
+                                        </div>
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="mine-count-selector" id="hard" value="0.20">
+                                            <label for="hard">Hard</label>
+                                        </div>
+                                        <div class="col-12 col-lg-2 text-nowrap">
+                                            <input class="form-check-input" type="radio" name="mine-count-selector" id="extreme"
+                                                value="0.25">
+                                            <label for="extreme">Extreme</label>
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="grid-selector"
-                                            id="grid-large" value="25*25">
-                                        <label for="grid-large">Large: 25*25</label>
-                                    </div>
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="grid-selector"
-                                            id="grid-xlarge" value="40*40">
-                                        <label for="grid-xlarge">XLarge: 40*40</label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section class="divider" id="mine-section">
-                                <h4>Mine count</h4>
-                        <hr class="divider">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector"
-                                            id="easy" value="0.1" checked>
-                                        <label for="easy">Easy</label>
-                                    </div>
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector"
-                                            id="normal" value="0.15">
-                                        <label for="normal">Normal</label>
-                                    </div>
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector"
-                                            id="hard" value="0.20">
-                                        <label for="hard">Hard</label>
-                                    </div>
-                                    <div class="col-12 col-lg-2 text-nowrap">
-                                        <input class="form-check-input" type="radio" name="mine-count-selector"
-                                            id="extreme" value="0.25">
-                                        <label for="extreme">Extreme</label>
-                                    </div>
-                                </div>
-                            </section>
+                                </section>
+                            </div>
+                            <button class="btn btn-secondary divider" data-bs-slide="next" data-bs-target="#main-carousel"
+                                id="playButton">Play</button><br>
                         </div>
-                        <button class="btn btn-secondary divider" data-bs-slide="next" data-bs-target="#main-carousel"
-                            id="playButton">Play</button><br>
                     </div>
                 </div>
 

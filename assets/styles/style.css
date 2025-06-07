@@ -10,6 +10,7 @@
 
     --silver: #c0c0c0;
     --dominant-background-color: #161616;
+    --dominant-background-color-with-opacity: rgba(22,22,22,0.4);
     --text-color: #85C1D5;
 
     --divider: 1rem;
@@ -143,6 +144,10 @@ hr {
 
 #main-carousel {
     color: var(--text-color);
+}
+
+#game-setup{
+    background-color: var(--dominant-background-color-with-opacity);
 }
 
 /*Styles for field*/
