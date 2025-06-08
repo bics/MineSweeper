@@ -12,7 +12,7 @@ const ScreenSizes =
     Small: 0,
     Medium: 1,
     Large: 2
-}
+};
 
 window.addEventListener("load", switchControls);
 window.addEventListener("resize", switchControls);

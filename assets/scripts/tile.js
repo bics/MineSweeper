@@ -5,7 +5,7 @@ const classFlagged = "flagged";
 const classTile = "tile";
 const classTileButton = "tile-button";
 const classRevealed = "revealed";
-const classTileMine = "tile-mine"
+const classTileMine = "tile-mine";
 const classHint = "hint";
 const helper = new Helper();
 

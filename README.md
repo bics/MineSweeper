@@ -166,6 +166,59 @@ The message will pop-up as a [Bootstrap](https://getbootstrap.com) toast message
 
 ## Automated testing
 
+Used [W3C](https://www.w3.org) validator for both [html](https://validator.w3.org) and [css](https://jigsaw.w3.org/css-validator/) validation.\
+Used [Jshint](https://jshint.com) for javascript validation
+
+### HTML validation
+
+Landing page (index.html) page testing:
+* During validation only 1 warning was flagged
+    * The type attribute is unnecessary for JavaScript resources.
+
+Steps taken:
+1. Removed unneded type attribute.
+
+### CSS validation 
+
+Style (style.css) testing:
+* During validation there were no errors present.
+
+### JS validation
+
+Class file of game field (gamefield.js) testing:
+* During validation there were no errors present.
+* Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
+
+Game manager file (gamemanager.js) testing:
+* During validation there were no errors present.
+* Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
+* Warning were present for missing semicolon.
+* Warning for One undefined variable 324 bootstrap
+
+Steps taken:
+1. Semicolon added to line ends.
+2. Added a global directive on the top of the file based on this [Stack Overflow discussion](https://stackoverflow.com/questions/17359232/how-to-tell-jshint-to-ignore-all-undefined-variables-in-one-file), also verified with [ChatGPT](https://chatgpt.com).
+
+Helper module (helperfunctions.js) testing:
+* During validation there were no errors present.
+* Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
+
+Class file of Tile (tile.js) testing:
+* During validation there were no errors present.
+* Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
+* Warning were present for missing semicolon.
+
+Steps taken:
+1. Semicolon added to line ends.
+
+UI scripts (uiscripts.js) testing:
+* During validation there were no errors present.
+* Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
+* Warning were present for missing semicolon.
+
+Steps taken:
+1. Semicolon added to line ends.
+
 # Deployment
 
 ### Github pages
@@ -247,6 +300,7 @@ Modal: https://getbootstrap.com/docs/5.3/components/modal/
 Close button recolor from ChatGPT
 Tooltip code: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_bottom
 Tile background from https://www.transparenttextures.com
+Global directive for Bootstrap /* global bootstrap */
 
 package.json was created using the official vitest guide and ChatGPT
 vitest.config.js file was generated in ChatGPT

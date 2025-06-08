@@ -1,5 +1,8 @@
+// Code snippet taken from ChatGPT
+/* global bootstrap */
+
 import { Tile } from './tile.js';
-import { GameField } from './gamefield.js'
+import { GameField } from './gamefield.js';
 
 let gameField;
 const classFlagged = "flagged";
