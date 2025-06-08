@@ -32,7 +32,7 @@ Minesweeper is an interactive website where users can play a classic puzzle game
 
 * Frequent User Goals
     * Frequent users should be able to take a break and challenge themselves with a cozy little game.
-    * They should be able to dwelve into the history of the game.
+    * They should be able to delve into the history of the game.
     * They may spend some time solving the larger and harder puzzles.
 
 ### Design
@@ -80,7 +80,7 @@ The element provides links to social media platforms, namely in order Facebook, 
 The only page of the site.\
 It features a distinct header and an interactable carousel.
 
-#### Caruosel
+#### Carousel
 
 The carousel consist two sections.\
 The first element is the game options. This element helps the user choose the size of the field and the difficulty as well.\
@@ -108,7 +108,7 @@ On the top right there is button which shows the player the rules for the game a
 
 Below this menu is the actual game field. It has a distinct border around it.\
 The tiles first represented as a button. Hovering over any button will highlight it for ease of use. Once clicked the tile transforms.\
-If the tile clicked was empty, the nearby empty tiles and hints will be revealed. Hints should help the player locate any mine, and they all coloured differently. Hovering over this hints highligth its neighbour button tiles. If there are as many flags placed around a hint tile it represents, clicking the hint will reveal all tiles around itself.\
+If the tile clicked was empty, the nearby empty tiles and hints will be revealed. Hints should help the player locate any mine, and they all coloured differently. Hovering over this hints highlight its neighbour button tiles. If there are as many flags placed around a hint tile it represents, clicking the hint will reveal all tiles around itself.\
 If the tile clicked was a mine, the game ends and all tiles are revealed.
 
 ![Gamefield](/assets/images/Game-field.PNG)
@@ -143,7 +143,7 @@ The message will pop-up as a [Bootstrap](https://getbootstrap.com) toast message
 # Technologies used
 
 * The core project is written in HTML5, CSS3 and Javascript.
-* Used [Balsamiq](https://balsamiq.com) to create wriframes.
+* Used [Balsamiq](https://balsamiq.com) to create wireframes.
 * Used [Visual Studio Code](https://code.visualstudio.com) as IDE.
 * Used [Github](https://github.com) to store and deploy the repository.
 * Used [Sourcetree](https://www.sourcetreeapp.com) for version control.
@@ -221,6 +221,7 @@ Issues found and steps taken:
     * Updated flagging method to ensure players can always remove flags
 
 
+
 ## Automated testing
 
 Used [W3C](https://www.w3.org) validator for both [html](https://validator.w3.org) and [css](https://jigsaw.w3.org/css-validator/) validation.\
@@ -287,7 +288,7 @@ Steps taken:
 1. Semicolon added to line ends.
 
 Unit testing:
-Unit tests currently cover the two main Class files and their respective methods. This should help further development of the game.
+* Unit tests currently cover the two main Class files and their respective methods. This should help further development of the game.
 
 ![Unittest](/assets/images/Unittests.PNG)
 
@@ -335,7 +336,7 @@ The project is deployed to Github Pages. In order to achieve this the following 
 
 ### Code
 * Toast snippet from official [Bootstrap documentation](https://getbootstrap.com/docs/5.3/components/toasts/)
-* Enums were isnpired from a [Stack overflow discussion](https://stackoverflow.com/questions/44447847/enums-in-javascript-with-es6)
+* Enums were inspired from a [Stack overflow discussion](https://stackoverflow.com/questions/44447847/enums-in-javascript-with-es6)
 * Modal snippet from official [Bootstrap documentation](https://getbootstrap.com/docs/5.3/components/modal/)
 * Close button recolor from [ChatGPT](https://chatgpt.com)
 * Tooltip code from [W3Schools](https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_bottom)
@@ -346,7 +347,7 @@ The project is deployed to Github Pages. In order to achieve this the following 
 * Multiple js from [ChatGPT](https://chatgpt.com):
     1. Query selectors for grid and mine values
     2. Retrieving and creating Tile instances
-    3. Code to display bootrap toast message
+    3. Code to display bootsrap toast message
     4. Helper function multiple value check
     5. Generated a list for all vitest "expect" functions (removed in the process as placed in an extra file)
 * Footer element was copied from previous [Best Barber project](https://github.com/bics/BestBarber)
