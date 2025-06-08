@@ -159,6 +159,7 @@ The message will pop-up as a [Bootstrap](https://getbootstrap.com) toast message
 * Used [Coolors](https://coolors.co) to create color palette.
 * Used [Microsoft Windows](https://www.microsoft.com/en-gb/windows?r=1) in-built **Snippet** tool to capture images.
 * Used [Vitest](https://vitest.dev) for unit testing.
+* Used [Krita](https://krita.org/en/) for modifying pictures.
 
 # Testing
 
@@ -229,6 +230,11 @@ UI scripts (uiscripts.js) testing:
 Steps taken:
 1. Semicolon added to line ends.
 
+Unit testing:
+Unit tests currently cover the two main Class files and their respective methods. This should help further development of the game.
+
+![Unittest](/assets/images/Unittests.PNG)
+
 # Deployment
 
 ### Github pages
@@ -272,48 +278,49 @@ The project is deployed to Github Pages. In order to achieve this the following 
 # Credits
 
 ### Code
+* Toast snippet from official [Bootstrap documentation](https://getbootstrap.com/docs/5.3/components/toasts/)
+* Enums were isnpired from a [Stack overflow discussion](https://stackoverflow.com/questions/44447847/enums-in-javascript-with-es6)
+* Modal snippet from official [Bootstrap documentation](https://getbootstrap.com/docs/5.3/components/modal/)
+* Close button recolor from [ChatGPT](https://chatgpt.com)
+* Tooltip code from [W3Schools](https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_bottom)
+* Tile background from [Transparent Textures](https://www.transparenttextures.com)
+* Global directive for Bootstrap from [ChatGPT](https://chatgpt.com)
+* package.json was created using the official [Vitest guide](https://vitest.dev/guide/) and [ChatGPT](https://chatgpt.com)
+* vitest.config.js file was generated in [ChatGPT](https://chatgpt.com)
+* Multiple js from ChatGPT:
+    1. Query selectors for grid and mine values
+    2. Retrieving and creating Tile instances
+    3. Code to display bootrap toast message
+    4. Helper function multiple value check
+    5. Generated a list for all vitest expect functions (removed in the process as placed in an extra file)
 
 ### Content
+* About section was copied from the official [Wikipedia page](https://en.wikipedia.org/wiki/Minesweeper_(video_game)).
+* How to section was partly written by me, and partly by [ChatGPT](https://chatgpt.com).
 
 ### Media
+
+* mine by [OpenClipart-Vectors](https://pixabay.com/vectors/mine-war-explosive-bomb-grenade-146747/)
+
+* flag by [Schmidsi](https://pixabay.com/vectors/banner-flag-vector-white-blow-1486374/), modified in [Krita](https://krita.org/en/) into a red flag
+
+* game-face by [95C](https://pixabay.com/vectors/smile-emoji-happy-happiness-5840910/)
+
+* win-face by [95C](https://pixabay.com/vectors/smile-emoji-happy-happiness-5865208/)
+
+* lose-face by [95C](https://pixabay.com/vectors/smile-emoji-sad-sullen-sad-face-5872116/)
+
+* tile-background by [starline](https://www.freepik.com/free-vector/decorative-premium-upholstery-sofa-pattern-dark-background-design_151611884.htm#fromView=search&page=2&position=23&uuid=ec661338-070e-4bf7-8d14-e9ad4dc0506c&query=dark+tile)
+
+* bright-squares by [Waseem Dahman](https://www.transparenttextures.com/patterns/bright-squares.png)
+
 
 # Acknowledgements
 
 Thank you to my mentor Benjamin Kavanagh for his continuous support and feedback during development.\
 Thank you to my friend Richárd Pónusz for his support and tips during development.\
-Thank you to Tom Cowen, our cohort leader, and the rest of the class for playtesting.\
+Thank you to Tom Cowen, our cohort leader, and the rest of the class for playtesting.
 
-Description: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
-
-pics
-
-mine: https://pixabay.com/vectors/mine-war-explosive-bomb-grenade-146747/
-
-flag: https://pixabay.com/vectors/banner-flag-vector-white-blow-1486374/
-downloaded and modified in Krita
-
-game-face: https://pixabay.com/vectors/smile-emoji-happy-happiness-5840910/
-
-win-face: https://pixabay.com/vectors/smile-emoji-happy-happiness-5865208/
-
-lose-face: https://pixabay.com/vectors/smile-emoji-sad-sullen-sad-face-5872116/
-
-tile-background: https://www.freepik.com/free-vector/decorative-premium-upholstery-sofa-pattern-dark-background-design_151611884.htm#fromView=search&page=2&position=23&uuid=ec661338-070e-4bf7-8d14-e9ad4dc0506c&query=dark+tile
-
-bright-squares: https://www.transparenttextures.com/patterns/bright-squares.png by Waseem Dahman
-
-Code snippet:
-Toast snippet from official Bootstrap docs
-Multiple js from ChatGPT
-Enums by stackoverflow: https://stackoverflow.com/questions/44447847/enums-in-javascript-with-es6
-Modal: https://getbootstrap.com/docs/5.3/components/modal/
-Close button recolor from ChatGPT
-Tooltip code: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_bottom
-Tile background from https://www.transparenttextures.com
-Global directive for Bootstrap /* global bootstrap */
-
-package.json was created using the official vitest guide and ChatGPT
-vitest.config.js file was generated in ChatGPT
 
 
 
