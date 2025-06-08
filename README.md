@@ -189,6 +189,11 @@ Class file of game field (gamefield.js) testing:
 * During validation there were no errors present.
 * Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
 
+Test file of game field (gamefield.test.js) testing:
+* During validation there were no errors present.
+* Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
+* Warnings were present for missing semicolons. Decided to ignore these as tests run without any errors.
+
 Game manager file (gamemanager.js) testing:
 * During validation there were no errors present.
 * Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
@@ -210,6 +215,11 @@ Class file of Tile (tile.js) testing:
 
 Steps taken:
 1. Semicolon added to line ends.
+
+Test file of tile (tile.test.js) testing:
+* During validation there were no errors present.
+* Warnings were present for newer technologies (e.g.:'import' is only available in ES6 (use 'esversion: 6').) only available in ES6. Decided to ignore these warnings as the scripts working on all tested browsers including Mozilla.
+* Warnings were present for missing semicolons. Decided to ignore these as tests run without any errors.
 
 UI scripts (uiscripts.js) testing:
 * During validation there were no errors present.
