@@ -152,6 +152,7 @@ The message will pop-up as a [Bootstrap](https://getbootstrap.com) toast message
 * Used [W3Schools](https://www.w3schools.com) to help to understand and write codes.
 * Frequently visited [Stack Overflow](https://stackoverflow.com/questions) to understand some behaviours.
 * Used [W3C](https://www.w3.org) to validate both html and css files.
+* Used [Jshint](https://jshint.com) to validate js file.
 * Used [Bootstrap](https://getbootstrap.com) as css.
 * Used [Font Awesome](https://fontawesome.com) to display footer elements.
 * Used [Google fonts](https://fonts.google.com) for typography.
@@ -287,12 +288,13 @@ The project is deployed to Github Pages. In order to achieve this the following 
 * Global directive for Bootstrap from [ChatGPT](https://chatgpt.com)
 * package.json was created using the official [Vitest guide](https://vitest.dev/guide/) and [ChatGPT](https://chatgpt.com)
 * vitest.config.js file was generated in [ChatGPT](https://chatgpt.com)
-* Multiple js from ChatGPT:
+* Multiple js from [ChatGPT](https://chatgpt.com):
     1. Query selectors for grid and mine values
     2. Retrieving and creating Tile instances
     3. Code to display bootrap toast message
     4. Helper function multiple value check
-    5. Generated a list for all vitest expect functions (removed in the process as placed in an extra file)
+    5. Generated a list for all vitest "expect" functions (removed in the process as placed in an extra file)
+* Footer element was copied from previous [Best Barber project](https://github.com/bics/BestBarber)
 
 ### Content
 * About section was copied from the official [Wikipedia page](https://en.wikipedia.org/wiki/Minesweeper_(video_game)).
