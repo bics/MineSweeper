@@ -9,19 +9,19 @@ describe("Gamefield tests", () =>
         {
             expect(() => new GameField(0, 0, 0)).not.toThrowError();
         })
-        test("Received null", () =>
+        test("constuctor received null", () =>
         {
             expect(() => new GameField(null)).toThrowError();
         })
-        test("Received 1 null value", () =>
+        test("constuctor received 1 null value", () =>
         {
             expect(() => new GameField(0, null, 0)).toThrowError();
         })
-        test("Received not numbers", () =>
+        test("constuctor received not numbers", () =>
         {
             expect(() => new GameField("a", "b", "c")).toThrowError();
         })
-        test("Received 1 incorrect value", () =>
+        test("constuctor received 1 incorrect value", () =>
         {
             expect(() => new GameField(0, "a", 0)).toThrowError();
         })
@@ -88,7 +88,7 @@ describe("Gamefield tests", () =>
             const result = gameField.getNeighbourTiles([1, 1]);
             expect(result.length).toBe(5);
         })
-        test("Boundary tests", () =>
+        test("Gamefield boundary tests", () =>
         {
             expect(gameField.isInBounds([0, 0])).toBeTruthy();
             expect(gameField.isInBounds([1, 1])).toBeTruthy();
