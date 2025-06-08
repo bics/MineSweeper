@@ -166,6 +166,61 @@ The message will pop-up as a [Bootstrap](https://getbootstrap.com) toast message
 
 ## Manual testing
 
+### Landing (index.html) page with the first carousel slide:
+
+* Visually tested all elements are in place.
+* Devtools were used to simulate different devices and ensure page is responsive.
+* Tested both input radio input fields.
+* Tested modals appearance for both About and Let's play sections.
+* Tested Play button functionality 
+
+Issues found and steps taken:
+* About and Let's play sections text were not centered.
+    * Updated button positioning to be fixed at the end of the text containers.
+* On [Mozilla](https://www.mozilla.org/en-GB/) elements were not centered.
+    * Using devtools, styling sheet showed the main container element were missing flex properties.
+* Carousal would start moving without input
+    * Official documentation suggested using "data-bs-interval" attribute.
+
+### Landing (index.html) page with the second carousel slide:
+
+* Visually tested all elements are in place.
+* Devtools were used to simulate different devices and ensure page is responsive.
+* Tested modal appearance for Help section.
+* Tested Reselect button functionality 
+
+Issues found and steps taken:
+* Gamefield were not centered.
+    * Removed fixed 100% width.
+
+### Playtesting
+
+* Tested grid size creation
+* Played on different difficulty levels
+* Tested tile revealing
+* Tested flagging mode
+* Tested hint click
+* Both endgame states were tested
+
+Issues found and steps taken:
+* Initial difficulty levels were impossible to beat (at least for me)
+    * Lowered scaling and initial easy value
+* Larger grid sizes will overflow browsers memory (limit found to be 67 * 67 with 2 mines placed)
+    * Limited options to only safe sizes
+    * Stepping out of reveal function on already revealed tiles.
+    * Future consideration can be made for reveal function to stop at a limit stack size or complete rework of the recursion.
+* Multiple mines were placed on the same tile
+    * Added validation for placement
+* Hints were incorrectly numbered
+    * Initially the game area was filled with +1 values. While retrieving hints these were added as well. Updated initial values to be -1 and completely overwrite hint value for the tile.
+* Reveal function would reveal non-neighbour tiles
+    * Position values were saved as "string" values, forcefully parsed them.
+* Endgame state were showing both win and lose
+    * If there were only 2 tiles left (1 mine and 1 not mine), clicking on the mine would win and lose the game at the same time. Updated endgame function to check first to lose condition and secondly for win.
+* Couldn't remove flag from tiles when player ran out of flags
+    * Updated flagging method to ensure players can always remove flags
+
+
 ## Automated testing
 
 Used [W3C](https://www.w3.org) validator for both [html](https://validator.w3.org) and [css](https://jigsaw.w3.org/css-validator/) validation.\
